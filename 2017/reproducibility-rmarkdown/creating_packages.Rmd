@@ -1,0 +1,354 @@
+---
+title: "Reproducibility and R Markdown"
+author: "Andrew"
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+* Creating functions and packages [[link](creating_packages.html)]
+* Intro to R Markdown [[link](rmarkdown.html)]
+
+## Creating functions and packages
+
+### Sisyphus
+
+Find yourself repeating the same tasks over and over again?
+
+**Example:**
+
+- Analyzing data that's published regularly
+- Always replacing that one county name so it matches a lookup file
+- Adjusting summary state data for population.
+
+### Reproducibility
+
+Save your most common tasks as a function
+
+<img src="https://cdn.shopify.com/s/files/1/0535/6917/products/sisyphus-shirt.gif?v=1414446009" width="100%">
+
+# Introducing the example 
+
+Data with counts by state
+
+```{r }
+sb <- read.csv("https://docs.google.com/spreadsheets/d/1gH6eUQVQsEmFagy0qzQDEuwb3cutMWaddCLc7ESbzjc/pub?gid=294374511&single=true&output=csv", stringsAsFactors=F)
+```
+<img src="images/sbcount.png">
+
+What would be a problem with this data set if we tried to map it?
+
+That's right, it's raw data that hasn't be adjusted for population yet.
+
+This is a problem that we have to deal with all the time.
+
+Let's make it easier on ourselves in the future by dealing with it now.
+
+1. Start with a look up file
+
+(You can bring in a Google Sheet if you publish as a CSV and copy the link over)
+
+<img src="images/lookup.png">
+
+```{r }
+pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+```
+
+2. Figure out the columns to join by
+
+Which ones match? 
+
+<img src="images/columns.png">
+
+This is what it looks like when joined.
+
+```{r warning=F, message=F}
+library(tidyverse)
+sb_adjusted <- left_join(sb, pop, by=c("State_Abbreviation"="Abbrev"))
+
+library(knitr)
+kable(head(sb_adjusted, 3))
+```
+
+And how it looks after some math.
+
+```{r }
+sb_adjusted$per_capita <- sb_adjusted$Starbucks/sb_adjusted$Population*100000
+kable(head(sb_adjusted, 3))
+```
+
+# Turn your code into a function
+
+### Adjust the code for general data sets
+
+**First, establish some rules**
+
+All data sets you want to join with the population data set:
+
+1. First column will contain either the full state name or the state abbreviation
+2. Second column will have values you want to adjust for population
+
+Now, rewrite the code so it's more generalized. As in, it can deal with any data set you give it.
+
+```{r warning=F, message=F}
+# Save the dataframe as a consistent name
+any_df <- sb
+
+# Rename the first column to "Abbrev"
+colnames(any_df)[1] <- "Abbrev"
+
+# Join by the similar name
+df_adjusted <- left_join(any_df, pop, by="Abbrev")
+
+# Do the calculations based on the values in the second column
+df_adjusted$per_capita <- df_adjusted[,2] / df_adjusted$Population * 100000
+
+kable(head(df_adjusted, 3))
+```
+
+### Function and variables
+Turn your lines of code into a function by wrapping it with 
+
+`function(arg1, arg2, ... ){` and `}`
+
+Remember how there were two types of State ID data? 
+
+Full name and abbreviations. 
+
+We can write the function so you can tell it to join based on what type it should join by.
+
+```{r warning=F, message=F}
+pc_adjust <- function(any_df, state_type){
+  pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+  # State type options are either "Abbrev" or "State"
+colnames(any_df)[1] <- state_type
+df_adjusted <- left_join(any_df, pop, by=state_type)
+df_adjusted$per_capita <- df_adjusted[,2] / df_adjusted$Population * 1000000
+return(df_adjusted)
+}
+```
+
+---
+
+***Test it out***
+
+Start out with `sb` dataframe.
+
+```{r }
+kable(head(sb, 3))
+```
+
+Apply the function `pc_adjust` to `sb` with the variable `Abbrev`.
+
+```{r warning=F, message=F}
+test <- pc_adjust(sb, "Abbrev")
+kable(head(test, 3))
+```
+
+Success!
+
+### Test it on another data set
+
+Alright, we've got it working with Starbucks data.
+
+Let's try it with Dunkin' Donuts data.
+
+```{r warning=F, message=F}
+dd <- read.csv("https://docs.google.com/spreadsheets/d/1TWuWZpfDUMWmMpc7aPqUQ-g1a1J0rUO8_cle_zcPyI8/pub?gid=1983903926&single=true&output=csv", stringsAsFactors=F)
+
+kable(head(dd))
+```
+
+The state identification is spelled out this time and not abbreviated.
+
+Fortunately, we accounted for that when making the formula.
+
+Run this code.
+
+```{r warning=F, message=F}
+dd_adjusted <- pc_adjust(dd, "State")
+
+kable(head(dd_adjusted))
+```
+
+**Yay, we did it!**
+
+```
+pc_adjust() is your tiny perfect function
+```
+
+<img src="https://media.giphy.com/media/26xBABFAnPoa4BZMk/source.gif" width="100%">
+
+**Keep going!**
+
+# Turn your function into a package
+
+For everyone to use.
+
+Select **File > New Project > New Directory > R Package**
+
+<div style="max-width:500px; margin-left:auto; margin-right:auto;"><img src="images/pckg1.png"></div>
+
+### Name the package
+
+One word. Some [tips](http://r-pkgs.had.co.nz/package.html) on figuring out the best name.
+
+<div style="max-width:500px; margin-left:auto; margin-right:auto;"><img src="images/pckg2.png"></div>
+
+---
+
+**Three components**
+
+* An `R/` folder where you save your function code - [more details](http://r-pkgs.had.co.nz/r.html#r)
+* A basic `DESCRIPTION` file for package metadata - [more details](http://r-pkgs.had.co.nz/description.html#description)
+* A basic `NAMESPACE` file, which is only necessary if you're submitting to CRAN - [more details](http://r-pkgs.had.co.nz/namespace.html#namespace)
+
+<div style="max-width:600px; margin-left:auto; margin-right:auto;"><img src="images/pckg4.png" ></div>
+
+
+***Welcome script***
+
+<img src="images/pckg3.png" width="100%">
+
+
+### Edit the DESCRIPTION file
+
+<div style="max-width:600px; margin-left:auto; margin-right:auto;"><img src="images/desc.png"></div>
+
+
+Questions about which License to use? Check out [the options](http://r-pkgs.had.co.nz/description.html#license).
+
+
+<img src="images/details.png" width="100%">
+
+Also, notice that I added `Imports: dplyr` because this function won't work without the `left_join` function from **dplyr**.
+
+### Create a new script
+
+Copy and paste the `pc_adjust` function you made into a new script file.
+
+```
+pc_adjust <- function(any_df, state_type){
+  pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+  # State type options are either "Abbrev" or "State"
+colnames(any_df)[1] <- state_type
+df_adjusted <- left_join(any_df, pop, by=state_type)
+df_adjusted$per_capita <- df_adjusted[,2] / df_adjusted$Population * 1000000
+return(df_adjusted)
+}
+```
+
+### Save as new script in the R folder
+
+Name the file after the function, `pc_adjust` and save it into the `R/` folder
+
+<img src="images/new_script.png" width="100%">
+
+
+### Add documentation 
+
+**To your script**
+
+Go back to your `pc_adjust.R` script and add these lines above the code.
+
+```
+#' Population adjuster
+#'
+#' This function appends state population data
+#' @param any_df The name of the dataframe you want to append to
+#' @param state_type if state identification is abbreviations, use "Abbrev" if full state name, use "State"
+#' @keywords per capita
+#' @import dplyr
+#' @export
+#' @examples
+#' pc_adjust(dataframe, "Abbrev")
+
+```
+
+What is all that gibberish?
+
+<img src="images/popup.png">
+
+These special comments above the function will be compiled into the correct format.
+
+Watch.
+
+Run these lines in console.
+
+```
+install.packages("roxygen2")
+library(roxygen2)
+roxygenise()
+```
+
+It wrote to the `NAMESPACE` file and created a `pc_adjust.Rd` file based on the special comments.
+
+<img src="images/roxy.png" width="100%">
+
+Find and open pc_adjust.Rd in the man folder.
+
+<img src="images/roxygenise.png" width="100%">
+
+This would've been tough to put together by hand.
+
+### Build your package
+
+Press `Cmd + Shift + B` to build the package.
+
+**Now, you have your package forever and ever.**
+
+Just run
+
+```
+install.packages("whateveryoucalledyourpackage")
+```
+
+and you can run `pc_adjust` whenever you want.
+
+## Your help file
+
+Type
+```
+?pc_adjust
+```
+<img src="images/helpfile.png" width="100%">
+
+This is what your special comments above your R function helped generate.
+
+Hold up.
+<img src="http://www.rockpapercynic.com/images/but-wait-theres-more.gif" width="100%">
+
+### Upload package folder to Github
+
+<img src="images/github.png" width="100%">
+
+Let others download and use your R package.
+
+Here's how the [easy way](https://github.com/blog/2105-upload-files-to-your-repositories) and here's the [official way](https://try.github.io/levels/1/challenges/1).
+
+This means you have to add some clean documentation, such as a `readme.MD` file.
+
+```
+install.packages("devtools")
+library(devtools)
+
+install_github("andrewbtran/abtnicarr")
+library(abtnicarr)
+```
+
+### Next steps
+
+Keep adding functions to your package.
+
+Perhaps, create a [Shiny version](http://shiny.trendct.org/ctnamecleaner/) of it for those who don't use R.
+
+Over time you'll build up a bunch that you'll rely on over and over again.
+
+If it's awesome, submit it to CRAN.
+
+This was an extremely simple version of making a package.
+
+For better details, check out [the free book](http://r-pkgs.had.co.nz/) from Hadley Wikham. 
+
+

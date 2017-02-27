@@ -1,0 +1,5 @@
+"0","# If it's taking too long, you can cancel and load the output by uncommenting the line below"
+"0","geo <- read.csv(""data/geo_stations.csv"")"
+"0","# Bringing over the longitude and latitude data"
+"0","stations$lon <- geo$lon"
+"0","stations$lat <- geo$lat"

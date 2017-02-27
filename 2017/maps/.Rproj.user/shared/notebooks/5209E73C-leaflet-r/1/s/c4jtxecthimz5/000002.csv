@@ -1,0 +1,5 @@
+"0","sb_again <- rbind(sb_solo, sb_solo2)
+"
+"2","Error in rbind(deparse.level, ...) : 
+  numbers of columns of arguments do not match
+"

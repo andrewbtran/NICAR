@@ -1,0 +1,18 @@
+# NICAR 2017
+
+---
+
+### Reproducibility and R Markdown
+
+**How to use R regularly in your newsroom**
+
+* [Schedule](http://ire.org/events-and-training/event/2702/3078/)
+* [Session notes](http://andrewbtran.github.io/NICAR/2017/reproducibility-rmarkdown)
+
+
+### Using R as a GIS for spatial analysis and visualization
+
+* [Schedule](http://ire.org/events-and-training/event/2702/3083/)
+* [Session notes](http://andrewbtran.github.io/NICAR/2017/maps)
+
+

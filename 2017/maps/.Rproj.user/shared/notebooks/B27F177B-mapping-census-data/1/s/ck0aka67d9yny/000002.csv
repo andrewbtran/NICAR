@@ -1,0 +1,4 @@
+"0","library(knitr)"
+"0","# Bring in a dataframe that has matches census tract ID numbers to town names"
+"0","tracts2towns <- read.csv(""data/tracts_to_towns.csv"", stringsAsFactors=FALSE)"
+"0","kable(head(tracts2towns, 5))"

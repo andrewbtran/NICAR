@@ -1,0 +1,2 @@
+"0","stations <- read.csv(""data/Police_Departments.csv"", stringsAsFactors=F)"
+"0","datatable(head(stations))"

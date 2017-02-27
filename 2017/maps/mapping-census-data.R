@@ -1,0 +1,450 @@
+# install.package("tidyverse")
+# install.package("ggmap")
+# install.package("DT")
+# install.package("knitr")
+
+library(tidyverse)
+library(ggmap)
+library(DT)
+library(knitr)
+
+stations <- read.csv("data/Police_Departments.csv", stringsAsFactors=F)
+datatable(head(stations))
+
+# We need a single column for addresses,
+
+stations$location <- paste0(stations$ADDRESS, ", ", stations$CITY, ", CT ", stations$ZIP)
+
+# This function geocodes a location (find latitude and longitude) using the Google Maps API
+geo <- geocode(location = stations$location, output="latlon", source="google")
+
+# If it's taking too long, you can cancel and load the output by uncommenting the line below
+# geo <- read.csv("data/geo_stations.csv")
+
+# Bringing over the longitude and latitude data
+stations$lon <- geo$lon
+stations$lat <- geo$lat
+
+# Shapefiles with ggplot2
+
+
+# install.packages(rgdal)
+library(rgdal)
+
+# dsn is the folder the shape files are in. layer is the name of the file.
+towns <- readOGR(dsn="map_shapes", layer="ctgeo")
+
+plot(towns)
+
+# first, we have to isolate the coordinates of the police stations
+# and let R know that these are spatial points
+
+coords <- stations[c("lon", "lat")]
+
+# Making sure we are working with rows that don't have any blanks
+coords <- coords[complete.cases(coords),]
+
+# Letting R know that these are specifically spatial coordinates
+sp <- SpatialPoints(coords)
+
+
+plot(towns)
+plot(sp, col="red", add=TRUE)
+
+# Congrats, this is the **base** method of plotting spatial data.
+
+# Plotting points with ggplot2
+
+# First, ggplot2 works with dataframes
+# So, we need to convert the towns shapefile into a dataframe with the fortify function
+# Also, we'll make sure the region option is set to a unique name column if we want to join data later
+
+towns_fortify <- fortify(towns, region="NAME10")
+
+gg <- ggplot()
+gg <- gg + geom_polygon(data=towns_fortify, aes(x=long, y=lat, group=group, fill=NA), color = "black", fill=NA, size=0.5) 
+gg <- gg + geom_point(data=stations, aes(x=lon, y=lat, color="red"))
+gg <- gg +  coord_map()
+gg
+  
+# Styling maps with ggplot2
+  
+gg <- ggplot()
+gg <- gg + geom_polygon(data=towns_fortify, aes(x=long, y=lat, group=group, fill=NA), color = "black", fill=NA, size=0.5) 
+gg <- gg + geom_point(data=stations, aes(x=lon, y=lat, color="red"))
+gg <- gg +  coord_map()
+gg <- gg + labs(x=NULL, y=NULL, 
+                title="Police stations in Connecticut",
+                subtitle=NULL,
+                caption="Source: data.ct.gov")
+gg <- gg + theme(plot.title=element_text(face="bold", family="Arial", size=13))
+gg <- gg + theme(plot.caption=element_text(face="bold", family="Arial", size=7, color="gray", margin=margin(t=10, r=80)))
+gg <- gg + theme(legend.position="none")
+gg <- gg + theme(axis.line =  element_blank(),
+                 axis.text =  element_blank(),
+                 axis.ticks =  element_blank(),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank(),
+                 panel.border = element_blank(),
+                 panel.background = element_blank()) 
+print(gg)
+
+
+# From here, you could export this as a **png** or **svg** and edit it further with Adobe Illustrator.
+
+ggsave(file="filename.svg", plot=gg, width=10, height=8)
+
+# Bring in the data
+stops <- read.csv("data/hamden_stops.csv", stringsAsFactors=FALSE)
+
+# Check and eliminate the rows that don't have location information 
+stops <- stops[!is.na(stops$InterventionLocationLatitude),]
+stops <- subset(stops, InterventionLocationLatitude!=0)
+
+# Bring in the shape files for census tracts
+
+# map_shapes is the folder the shape files are in. layer is the name of the file.
+towntracts <- readOGR(dsn="map_shapes", layer="hamden_census_tracts")
+
+# creating a copy
+towntracts_only <- towntracts
+
+# turn the shapefile into a dataframe that can be worked on in R
+
+towntracts <- fortify(towntracts, region="GEOID10")
+
+# So now we have towntracts and towntracts_only
+# What's the difference? towntracts is a dataframe and can be seen easily
+
+gg <- ggplot()
+gg <- gg + geom_polygon(data=towntracts, aes(x=long, y=lat, group=group, fill=NA), color = "black", fill=NA, size=0.5) 
+gg <- gg + geom_point(data=stops, aes(x=InterventionLocationLongitude, y=InterventionLocationLatitude, color="red"))
+gg <- gg +  coord_map()
+gg <- gg + labs(x=NULL, y=NULL, 
+                title="Traffic stops in Hamden",
+                subtitle=NULL,
+                caption="Source: data.ct.gov")
+gg <- gg + theme(plot.title=element_text(face="bold", family="Arial", size=13))
+gg <- gg + theme(plot.caption=element_text(face="bold", family="Arial", size=7, color="gray", margin=margin(t=10, r=80)))
+gg <- gg + theme(legend.position="none")
+gg <- gg + theme(axis.line =  element_blank(),
+                 axis.text =  element_blank(),
+                 axis.ticks =  element_blank(),
+                 panel.grid.major = element_blank(),
+                 panel.grid.minor = element_blank(),
+                 panel.border = element_blank(),
+                 panel.background = element_blank()) 
+print(gg)
+
+  
+# Deeper analysis
+
+# Heat map
+
+gg <- ggplot()
+gg <- gg + stat_density2d(data=stops, show.legend=F, aes(x=InterventionLocationLongitude, y=InterventionLocationLatitude, fill=..level.., alpha=..level..), geom="polygon", size=2, bins=10)
+gg <- gg + geom_polygon(data=towntracts, aes(x=long, y=lat, group=group, fill=NA), color = "black", fill=NA, size=0.5) 
+gg <- gg + scale_fill_gradient(low="deepskyblue2", high="firebrick1", name="Distribution")
+gg <- gg +  coord_map("polyconic", xlim=c(-73.067649, -72.743739), ylim=c(41.280972, 41.485011)) 
+gg <- gg + labs(x=NULL, y=NULL, 
+                title="Traffic stops distribution in Hamden",
+                subtitle=NULL,
+                caption="Source: data.ct.gov")
+gg
+
+# Cleaning up for Hispanic distinction
+stops$race <- ifelse(stops$SubjectEthnicityCode=="H", "H", stops$SubjectRaceCode)
+
+# Heat map facet
+
+gg <- ggplot()
+gg <- gg + stat_density2d(data=stops, show.legend=F, aes(x=InterventionLocationLongitude, y=InterventionLocationLatitude, fill=..level.., alpha=..level..), geom="polygon", size=2, bins=10)
+gg <- gg + geom_polygon(data=towntracts, aes(x=long, y=lat, group=group, fill=NA), color = "black", fill=NA, size=0.5) 
+gg <- gg + scale_fill_gradient(low="deepskyblue2", high="firebrick1", name="Distribution")
+gg <- gg +  coord_map("polyconic", xlim=c(-73.067649, -72.743739), ylim=c(41.280972, 41.485011)) 
+
+# This is the line that's being added
+gg <- gg + facet_wrap(~race)
+gg <- gg + labs(x=NULL, y=NULL, 
+                title="Traffic stops distribution in Hamden by race",
+                subtitle=NULL,
+                caption="Source: data.ct.gov")
+gg
+
+# Points in a polygon 
+
+# We only need the columns with the latitude and longitude
+coords <- stops[c("InterventionLocationLongitude", "InterventionLocationLatitude")]
+
+# Letting R know that these are specifically spatial coordinates
+sp <- SpatialPoints(coords)
+
+# Applying projections to the coordinates so they match up with the shapefile we're joining them with
+# More projections information http://trac.osgeo.org/proj/wiki/GenParms 
+proj4string(sp) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+proj4string(sp)
+
+
+# Calculating points in a polygon
+# Using the over function, the first option is the points and the second is the polygons shapefile
+by_tract <- over(sp, towntracts_only)
+
+datatable(by_tract)
+
+
+by_tract <- by_tract %>%
+  group_by(GEOID10) %>%
+  summarise(total=n())
+
+# Get rid of the census tracts with no data
+by_tract <- by_tract[!is.na(by_tract$GEOID10),]
+
+colnames(by_tract) <- c("id", "total")
+
+# Changing the GEOID number to character so it can be joined to future data
+by_tract$id <- as.character(by_tract$id)
+
+# Bring in a dataframe that has matches census tract ID numbers to town names
+tracts2towns <- read.csv("data/tracts_to_towns.csv", stringsAsFactors=FALSE)
+
+# Changing the column names so it can be joined to the by_tract dataframe
+colnames(tracts2towns) <- c("id", "town_name")
+
+# Changing the GEOID number to character so it can be joined to the by_tract dataframe
+tracts2towns$id <- as.character(tracts2towns$id)
+
+# Adding a 0 to the front of the GEOID string because it was originally left out when it was imported
+tracts2towns$id <- paste0("0", tracts2towns$id)
+
+# Bringing in a library to deal with strings
+library(stringr)
+
+# Eliminating leading and trailing white space just in case
+tracts2towns$town_name <- str_trim(tracts2towns$town_name)
+
+# Joining the by_tract dataframe to the tracts2towns dataframe
+
+by_tract <- left_join(by_tract, tracts2towns)
+
+
+# Making a choropleth
+
+# Join the by_tract points to polygon dataframe to the original census tracts dataframe
+total_map <- left_join(towntracts, by_tract)
+
+library(scales)
+
+hamden_ts <- ggplot() 
+hamden_ts <- hamden_ts +  geom_polygon(data = total_map, aes(x=long, y=lat, group=group, fill=total), color = "black", size=0.2) 
+hamden_ts <- hamden_ts + geom_polygon(data = total_map, aes(x=long, y=lat, group=group, fill=total), color = "black", size=0.2) 
+hamden_ts <- hamden_ts + coord_map() 
+hamden_ts <- hamden_ts + scale_fill_distiller(type="seq", trans="reverse", palette = "Reds", breaks=pretty_breaks(n=10)) 
+hamden_ts <- hamden_ts + theme_nothing(legend=TRUE) 
+hamden_ts <- hamden_ts + labs(title="Where Hamden police conduct traffic stops", fill="")
+print(hamden_ts)
+
+# Filter out the tracts with NA in the total column
+
+total_map <- subset(total_map, !is.na(total))
+
+hamden_ts <- ggplot() 
+hamden_ts <- hamden_ts +  geom_polygon(data = total_map, aes(x=long, y=lat, group=group, fill=total), color = "black", size=0.2)
+hamden_ts <- hamden_ts +  coord_map()
+hamden_ts <- hamden_ts +  scale_fill_distiller(type="seq", trans="reverse", palette = "Reds", breaks=pretty_breaks(n=10))
+hamden_ts <- hamden_ts +  theme_nothing(legend=TRUE)
+hamden_ts <- hamden_ts +  labs(title="Where Hamden police conduct traffic stops", fill="")
+print(hamden_ts)
+
+# bringing in another shape file of all connecticut towns
+townborders <- readOGR(dsn="map_shapes", layer="ctgeo")
+townborders_only <- townborders
+townborders<- fortify(townborders, region="NAME10")
+
+# Subset the town borders to just Hamden since that's the department we're looking at
+town_borders <- subset(townborders, id=="Hamden")
+
+hamden_ts <- ggplot() 
+hamden_ts <- hamden_ts +  geom_polygon(data = total_map, aes(x=long, y=lat, group=group, fill=total), color = "black", size=0.2) 
+hamden_ts <- hamden_ts +  geom_polygon(data = town_borders, aes(x=long, y=lat, group=group, fill=total), color = "black", fill=NA, size=0.5) 
+hamden_ts <- hamden_ts +  coord_map() 
+hamden_ts <- hamden_ts +  scale_fill_distiller(type="seq", trans="reverse", palette = "Reds", breaks=pretty_breaks(n=10)) 
+hamden_ts <- hamden_ts +  theme_nothing(legend=TRUE) 
+hamden_ts <- hamden_ts +  labs(title="Where Hamden police conduct traffic stops", fill="")
+print(hamden_ts)
+
+
+
+# Analyzing the data
+
+# Add a column to original stops dataset identifying a driver as white or a minority
+stops$ethnicity <- ifelse(((stops$SubjectRaceCode ==  "W") & (stops$SubjectEthnicityCode =="N")), "White", "Minority")
+
+# Create a dataframe of only minority stops
+coords <- subset(stops, ethnicity=="Minority")
+coords <- coords[c("InterventionLocationLongitude", "InterventionLocationLatitude")]
+coords <- coords[complete.cases(coords),]
+sp <- SpatialPoints(coords)
+proj4string(sp) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+proj4string(sp)
+
+# Points in a polygon for minorities who were stopped
+m_tract <- over(sp, towntracts_only)
+
+m_tract <- m_tract %>%
+group_by(GEOID10) %>%
+summarise(minority=n())
+
+m_tract <- m_tract[!is.na(m_tract$GEOID10),]
+colnames(m_tract) <- c("id", "minority")
+m_tract$id <- as.character(m_tract$id)
+
+joined_tracts <- left_join(by_tract, m_tract)
+
+# Calculating percent of stops that were minorities
+
+joined_tracts$minority_p <- round(joined_tracts$minority/joined_tracts$total*100,2)
+
+
+  # Joining with census data
+  
+
+# If you do not yet have the censusapi package installed, uncomment the lines below and run them.
+
+#install.packages("devtools")
+#devtools::install_github("hrecht/censusapi")
+library("censusapi")
+
+# Loading my census key from an external script
+source("key.R")
+
+# Replace census_key below with "your_own_key_whatever_it_is"
+# Apply for one here http://api.census.gov/data/key_signup.html
+
+race_tracts <- getCensus(name="acs5",
+                         vintage=2014,
+                         key=census_key,
+                         vars=c("NAME", "B02001_001E", "B02001_002E"),
+                         region="tract:*", regionin="state:09")
+
+  
+  # Calculating geo disparity
+  
+
+# ok, let's clean this up
+race_tracts$NAME <- NULL
+
+# Creating a new column for the GEOID that can be joined with the dataframe we already have
+race_tracts$id <- paste0(race_tracts$state, race_tracts$county, race_tracts$tract)
+
+# Renaming the column names for clarity
+colnames(race_tracts) <- c("state_code", "county_code", "tract_code", "total_pop", "white_pop", "id")
+
+# Determining the minority population by subtracting the white population from the total
+race_tracts$minority_pop <- race_tracts$total_pop - race_tracts$white_pop
+
+# Now figuring out the percent makeup of each census tract
+race_tracts$white_pop_p <- round(race_tracts$white_pop/race_tracts$total_pop*100,2)
+race_tracts$minority_pop_p <- round(race_tracts$minority_pop/race_tracts$total_pop*100,2)
+
+# Joining the two datframes
+joined_tracts <- left_join(joined_tracts, race_tracts)
+
+# Calculating disparity between minority traffic stops and population
+
+joined_tracts$min_disp <- joined_tracts$minority_p - joined_tracts$minority_pop_p
+
+
+  
+  # Visualizing geo disparity
+  
+
+mapping_disparity <- left_join(towntracts, joined_tracts)
+mapping_disparity <- subset(mapping_disparity, !is.na(min_disp))
+
+
+pm_ct <- ggplot() 
+pm_ct <- pm_ct + geom_polygon(data = mapping_disparity, aes(x=long, y=lat, group=group, fill=min_disp/100), color="white", size=.25)
+pm_ct <- pm_ct + geom_polygon(data = town_borders, aes(x=long, y=lat, group=group), fill=NA, color = "black", size=0.5)
+pm_ct <- pm_ct + coord_map() 
+pm_ct <- pm_ct + scale_fill_distiller(type="seq", trans="reverse", palette = "PuOr", label=percent, breaks=pretty_breaks(n=10), name="Gap") 
+pm_ct <- pm_ct + theme_nothing(legend=TRUE) 
+pm_ct <- pm_ct + labs(x=NULL, y=NULL, title="Hamden: Minority traffic stops versus population")
+pm_ct <- pm_ct + theme(text = element_text(size=15))
+pm_ct <- pm_ct + theme(plot.title=element_text(face="bold", hjust=.4))
+pm_ct <- pm_ct + theme(plot.subtitle=element_text(face="italic", size=9, margin=margin(l=20)))
+pm_ct <- pm_ct + theme(plot.caption=element_text(size=12, margin=margin(t=12), color="#7a7d7e", hjust=0))
+pm_ct <- pm_ct + theme(legend.key.size = unit(1, "cm"))
+print(pm_ct)
+
+  
+  # Add annotations to graphic
+  
+
+pm_ct <- ggplot() 
+pm_ct <- pm_ct + geom_polygon(data = mapping_disparity, aes(x=long, y=lat, group=group, fill=min_disp/100), color="white", size=.25)
+pm_ct <- pm_ct + geom_polygon(data = town_borders, aes(x=long, y=lat, group=group), fill=NA, color = "black", size=0.5)
+pm_ct <- pm_ct + coord_map() 
+pm_ct <- pm_ct + scale_fill_distiller(type="seq", trans="reverse", palette = "PuOr", label=percent, breaks=pretty_breaks(n=10), name="Gap") 
+pm_ct <- pm_ct + theme_nothing(legend=TRUE) 
+pm_ct <- pm_ct + labs(x=NULL, y=NULL, title="Hamden: Minority traffic stops versus population")
+pm_ct <- pm_ct + theme(text = element_text(size=15))
+pm_ct <- pm_ct + theme(plot.title=element_text(face="bold", hjust=.4))
+pm_ct <- pm_ct + theme(plot.subtitle=element_text(face="italic", size=9, margin=margin(l=20)))
+pm_ct <- pm_ct + theme(plot.caption=element_text(size=12, margin=margin(t=12), color="#7a7d7e", hjust=0))
+pm_ct <- pm_ct + theme(legend.key.size = unit(1, "cm"))
+
+# Annotations 
+
+pm_ct <- pm_ct + annotate("segment", x = -72.93, xend = -72.87, y = 41.325, yend = 41.325, colour = "lightblue", size=.5) 
+pm_ct <- pm_ct + annotate("point", x = -72.93, y = 41.325, colour = "lightblue", size = 2) 
+pm_ct <- pm_ct + annotate("text", x = -72.85, y = 41.325, label = "New Haven", size=5, colour="gray30") 
+pm_ct <- pm_ct + annotate("segment", x = -72.89, xend = -72.86, y = 41.375, yend = 41.375, colour = "lightblue", size=.5) 
+pm_ct <- pm_ct + annotate("point", x = -72.89, y = 41.375, colour = "lightblue", size = 2) 
+pm_ct <- pm_ct + annotate("text", x = -72.845, y = 41.375, label = "Hamden", size=5, colour="gray30") 
+pm_ct <- pm_ct + annotate("point", x = -72.83, y = 41.375, colour="white", size=.2) 
+
+print(pm_ct)
+
+# Export as a geojson file
+
+# install.packages("geojsonio")
+library(geojsonio)
+
+mapping_disparity_gj <- geojson_json(mapping_disparity)
+geojson_write(mapping_disparity_gj)
+
+# Slope graph for fun
+
+joined_tracts2 <- subset(joined_tracts, !is.na(minority_p))
+sb1 <- select(joined_tracts2, id, minority_pop_p)
+colnames(sb1) <- c("id", "percent")
+sb1$category <- "Minority population"
+sb2 <- select(joined_tracts2, id, minority_p)
+colnames(sb2) <- c("id", "percent")
+sb2$category <- "Minorities stopped"
+
+sb3 <- rbind(sb1, sb2)
+
+sp <- ggplot(sb3) 
+sp <- sp + geom_line(aes(x=as.factor(category), y=percent, group=id), size=1)
+sp <- sp + geom_point(aes(x=as.factor(category), y=percent), size=3)
+sp <- sp + theme_minimal()
+sp <- sp + scale_y_log10()
+sp <- sp +geom_text(data = subset(sb3, category=="Minority population"), 
+aes(x = as.factor(category), y = percent, label = percent), 
+size = 3, hjust = -.7)
+sp <- sp +  geom_text(data = subset(sb3, category=="Minorities stopped"), 
+aes(x = as.factor(category), y = percent, label = percent), 
+size = 3, hjust = 1.5) 
+sp <- sp+ theme(legend.position = "none", 
+panel.grid.major.y = element_blank(),
+panel.grid.minor.y = element_blank(),
+panel.grid.major.x = element_blank(), 
+axis.ticks.y = element_blank(),
+axis.ticks.x = element_blank(), 
+axis.title.y = element_blank(), 
+axis.text.y = element_blank(), 
+plot.title = element_text(size = 18))  
+sp <- sp + ggtitle("Stops in neighborhoods versus residents in Hamden")
+sp <- sp + xlab("")
+sp

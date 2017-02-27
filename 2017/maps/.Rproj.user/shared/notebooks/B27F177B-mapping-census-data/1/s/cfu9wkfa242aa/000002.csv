@@ -1,0 +1,6 @@
+"0","by_tract <- by_tract %>%"
+"0","  group_by(GEOID10) %>%"
+"0","  summarise(total=n())"
+"0","# Get rid of the census tracts with no data"
+"0","by_tract <- by_tract[!is.na(by_tract$GEOID10),]"
+"0","kable(head(by_tract,5))"

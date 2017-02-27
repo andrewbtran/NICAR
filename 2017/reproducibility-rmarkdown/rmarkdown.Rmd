@@ -1,0 +1,249 @@
+---
+title: "Reproducibility and R Markdown"
+author: "Andrew Tran"
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+* Creating functions and packages [[link](creating_packages.html)]
+* Intro to R Markdown [[link](rmarkdown.html)]
+
+# Introduction to R Markdown
+
+### Markdown
+
+Super simple way to add formating to plain text
+
+- headers
+- bold
+- bullet lists
+- links
+
+Created by John Gruber (of Daring Fireball) as a simple way for non-programming types to write in an easy-to-read format that could be converted directly into HTML.
+
+<img src="images/markdown.png">
+
+### R code
+
+```
+boston_payroll %>%
+  group_by(TITLE) %>%
+  summarise_each(funs(mean), REGULAR, OVERTIME)
+```
+
+### .Rmd files
+
+<div style="float:left; padding-right:20px"><img src="images/rmdfiles.png"></div>
+An R Markdown (.Rmd) file is a record of your analysis process. 
+
+It contains the code that a scientist needs to reproduce your work along with the narration that a reader needs to understand your work.
+
+### Reproducible research
+
+The idea that data analyses, and more generally, stories, are published with their data and software code so that others may verify the findings and build upon them.
+
+* Look for insight deeper than the summary report
+* Verify details yourself
+* Learn new techniques from looking at other processes
+* Figure out ways to apply the analysis to your own needs
+* Your future self will thank you for documenting your process now
+
+-----
+ 
+### Example
+
+The Washington state Department of Health created a formula estimating lead risk based on poverty level and housing age in a neighborhood. 
+
+<a href="https://fortress.wa.gov/doh/wtn/WTNIBL/"><img src="images/washdoh.png"></a>
+
+Vox journalists converted the STATA script into Python and did their own analysis and visualizations.
+
+<a href="http://www.vox.com/a/lead-exposure-risk-map"><img src="images/voxmap.png"></a>
+
+They put their analysis and methodology on Github.
+
+<a href="https://github.com/voxmedia/data-projects/tree/master/vox-lead-exposure-risk"><img src="images/voxdoc.png"></a>
+
+Thanks to the clear documentation, I could replicate it myself in R.
+
+<a href="http://trendct.github.io/data/2016/03/lead-analysis/geospatial_lead_risk.html"><img src="images/trendmap.png"></a>
+
+I then took the formula and applied it to town-wide data so I could compare it to actual lead-test results in children across the state.
+
+<a href="http://trendct.org/2016/04/08/where-the-risk-for-lead-poisoning-in-connecticut-is-highest/"><img src="images/leadscatter.png"></a>
+
+### Reproducible research
+
+<div style="float:left; width:40%;padding-right:20px"><img src="http://rmarkdown.rstudio.com/images/bandThree2.png"></div> 
+At the click of a button, or the type of a command, you can rerun the code in an R Markdown file to reproduce your work and export the results as a finished report.
+
+R Markdown supports dozens of static and dynamic output formats including
+
+- HTML
+- PDF
+- MS Word
+- Beamer
+- HTML5 slides
+- Tufte-style handouts
+- books
+- dashboards
+- scientific articles (white pages)
+- websites
+
+---
+
+### 1. Open a new .Rmd file
+
+at **File > New File > R Markdown**. 
+
+<div style="max-width:500px; margin-left:auto; margin-right:auto;"><img src="images/menu.png"></div>
+
+Title the R Markdown file and select **HTML** as the output for now.
+
+<div style="max-width:400px; margin-left:auto; margin-right:auto;"><img src="images/html.png"></div>
+
+### .Rmd structure
+
+<div style="width:50%; margin-left:auto; margin-right:auto;"><img src="images/layout2.png"></div>
+
+**YAML HEADER**
+
+Optional section of render options written as **key:value** pairs.
+
+- At start of file
+- Between lines of **---** (3 dashes)
+
+**CODE CHUNKS**
+
+Chunks of embedded R code. Each chunk:
+
+- begins with **```{r}** (the key to the left of 1)
+- ends with **```**
+
+**TEXT**
+
+Narration formatted with markdown mixed with code chunks.
+
+
+### 2. Write document
+
+Edit the default template by putting in your own code and text.
+
+Intersperse the text with your code to tell a story.
+
+### 2b. Label your chunks of code
+
+You'll see why in a moment.
+
+<img src="images/labels.png">
+
+### 2c. Notebooks style
+
+You can run individual chunks of code before generating the full report to see how it looks.
+
+Click the green arrow next to each chunk.
+
+<img src="images/chunky.png">
+
+
+### 3. Knit document to create report
+
+Use knit button or type **render()** to knit
+
+<div style="width:60%; margin-left:auto; margin-right:auto;"><img src="images/knit_button.png"></div>
+
+### 3b. Check out the build log
+
+Down in the console. Warnings and errors will appear.
+
+Also measures progress by chunks, which is why it's important to label them.
+
+<img src="images/console.png">
+
+### 4. Preview output in IDE window
+
+<img src="images/preview.png">
+
+### 5. Output file
+
+You have a .Rmd file and clicking knit HTML also generated a .html file
+
+<div style="width:50%; margin-left:auto; margin-right:auto;"><img src="images/testpage.png"></div>
+
+### Datatables
+
+You need to load libraries just like you would a normal script.
+
+Let's look at the data in R Markdown with a new package called [`DT`](https://rstudio.github.io/DT/) that uses the Datatables [jquery library](https://datatables.net/).
+
+Example from **Part 1**
+
+# Specific features
+
+### Hide warnings, messages
+
+Adding `warning=F` and `message=F` hid the little messages.
+
+Example from **Part 2** in the `chunks.MD` file.
+
+### Hide code
+
+If the person you're sharing this with has no interest in the code and only the quick results, use `echo=F` to hide the chunk of code and just display the output.
+
+Example from **Part 3** in the `chunks.MD` file.
+
+### Inline R code
+
+Embed lines of R code within the narrative with
+
+<div style="width:50%; margin-left:auto; margin-right:auto;"><img src="images/inline.png"></div>
+
+Example from **Part 4** in the `chunks.MD` file.
+
+### Pretty tables
+
+Make pretty tables with the `knitr` package and the `kable` function.
+
+Example from **Part 5** in the `chunks.MD` file.
+
+### Change theme and style
+
+Change the appearance and style of the HTML document by changing the theme up top.
+
+Options from the [Bootswatch](http://bootswatch.com/) theme library includes:
+
+- `default`
+- `cerulean`
+- `journal`
+- `cosmo`
+
+highlights 
+
+- `tango`
+- `pygments`
+- `kate`
+
+Example from **Part 6** in the `chunks.MD` file.
+
+### Table of contents
+
+Add a floating table of contents by changing `html_document` to `toc: true` and `toc_float: true`.
+
+Example from **Part 7** in the `chunks.MD` file.
+
+### Next steps?
+
+Exporting as a PDF will require LaTex installed first
+  * Get it from [latex-project.org](https://www.latex-project.org/get/) or [MacTex](http://www.tug.org/mactex/)
+
+Check out [all the features](http://rmarkdown.rstudio.com/html_document_format.html#overview) of R Markdown at RStudio
+
+**Publish your results to Github pages**
+
+Read more [on how](http://www.stephaniehicks.com/githubPages_tutorial/pages/github-intro.html)
+
+**Try to publish directly to Wordpress**
+
+I haven't actually made this work but maybe you [can try](https://yihui.name/knitr/demo/wordpress/#comment-1102994305)
