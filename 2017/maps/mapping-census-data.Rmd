@@ -711,8 +711,9 @@ sp <- sp + xlab("")
 sp
 ```
 
-Next steps? 
+**Next steps?**
 
-Well, police argue that they patrol areas with high levels of crime, so if we get the latitude and longitude of every crime sorted by type, we can also compare that to the traffic stops and see if that squares up. 
+Play around with Census U.S. gazetteer data
 
-There are so many more possible stories. And now you know how to get started.
+* [bhaskarvk.github.io/usgazetteer](https://bhaskarvk.github.io/usgazetteer/)
+* What's a gazetteer? It's a geographical index or dictionary. This one's from [the Census](https://www.census.gov/geo/maps-data/data/gazetteer.html)
