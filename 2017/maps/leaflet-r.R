@@ -1,3 +1,4 @@
+
 # Getting started with R Leaflet
 
 # Uncomment and run "install.packages" functions below if you have not yet installed these packages
@@ -7,6 +8,7 @@ library(leaflet)
 
 #install.packages("tidyverse")
 library(tidyverse)
+
 
 
 # Putting a marker on a map

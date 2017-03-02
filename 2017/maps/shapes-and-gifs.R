@@ -1,3 +1,8 @@
+# install.packages("tigris")
+# install.packages("tidyverse")
+# install.packages("lubridate")
+# install.packages("mapproj")
+# install.packages("magick")
 
 library(tigris)
 library(tidyverse)
