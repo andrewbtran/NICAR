@@ -52,28 +52,6 @@ The idea that data analyses, and more generally, stories, are published with the
 
 -----
  
-### Example
-
-The Washington state Department of Health created a formula estimating lead risk based on poverty level and housing age in a neighborhood. 
-
-<a href="https://fortress.wa.gov/doh/wtn/WTNIBL/"><img src="images/washdoh.png"></a>
-
-Vox journalists converted the STATA script into Python and did their own analysis and visualizations.
-
-<a href="http://www.vox.com/a/lead-exposure-risk-map"><img src="images/voxmap.png"></a>
-
-They put their analysis and methodology on Github.
-
-<a href="https://github.com/voxmedia/data-projects/tree/master/vox-lead-exposure-risk"><img src="images/voxdoc.png"></a>
-
-Thanks to the clear documentation, I could replicate it myself in R.
-
-<a href="http://trendct.github.io/data/2016/03/lead-analysis/geospatial_lead_risk.html"><img src="images/trendmap.png"></a>
-
-I then took the formula and applied it to town-wide data so I could compare it to actual lead-test results in children across the state.
-
-<a href="http://trendct.org/2016/04/08/where-the-risk-for-lead-poisoning-in-connecticut-is-highest/"><img src="images/leadscatter.png"></a>
-
 ### Reproducible research
 
 <div style="float:left; width:40%;padding-right:20px"><img src="http://rmarkdown.rstudio.com/images/bandThree2.png"></div> 
@@ -178,7 +156,7 @@ You need to load libraries just like you would a normal script.
 
 Let's look at the data in R Markdown with a new package called [`DT`](https://rstudio.github.io/DT/) that uses the Datatables [jquery library](https://datatables.net/).
 
-Example from **Part 1**
+Example from **Part 1** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
 
 # Specific features
 
@@ -186,13 +164,13 @@ Example from **Part 1**
 
 Adding `warning=F` and `message=F` hid the little messages.
 
-Example from **Part 2** in the `chunks.MD` file.
+Example from **Part 2** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
 
 ### Hide code
 
 If the person you're sharing this with has no interest in the code and only the quick results, use `echo=F` to hide the chunk of code and just display the output.
 
-Example from **Part 3** in the `chunks.MD` file.
+Example from **Part 3** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
 
 ### Inline R code
 
@@ -200,13 +178,13 @@ Embed lines of R code within the narrative with
 
 <div style="width:50%; margin-left:auto; margin-right:auto;"><img src="images/inline.png"></div>
 
-Example from **Part 4** in the `chunks.MD` file.
+Example from **Part 4** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
 
 ### Pretty tables
 
 Make pretty tables with the `knitr` package and the `kable` function.
 
-Example from **Part 5** in the `chunks.MD` file.
+Example from **Part 5** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
 
 ### Change theme and style
 
@@ -225,13 +203,13 @@ highlights
 - `pygments`
 - `kate`
 
-Example from **Part 6** in the `chunks.MD` file.
+Example from **Part 6** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
 
 ### Table of contents
 
 Add a floating table of contents by changing `html_document` to `toc: true` and `toc_float: true`.
 
-Example from **Part 7** in the `chunks.MD` file.
+Example from **Part 7** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
 
 ### Next steps?
 
