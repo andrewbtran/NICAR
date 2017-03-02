@@ -534,6 +534,7 @@ race_tracts <- getCensus(name="acs5",
     vars=c("NAME", "B02001_001E", "B02001_002E"),
     region="tract:*", regionin="state:09")
 
+# read.csv("race_tracts.csv", stringsAsFactors=F)
 kable(head(race_tracts))
 ```
 
@@ -717,3 +718,5 @@ Play around with Census U.S. gazetteer data
 
 * [bhaskarvk.github.io/usgazetteer](https://bhaskarvk.github.io/usgazetteer/)
 * What's a gazetteer? It's a geographical index or dictionary. This one's from [the Census](https://www.census.gov/geo/maps-data/data/gazetteer.html)
+
+Forecasting gentrification with R - [link](http://urbanspatialanalysis.com/dataviz-tutorial-mapping-san-francisco-home-prices-using-r/)

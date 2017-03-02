@@ -326,6 +326,7 @@ race_tracts <- getCensus(name="acs5",
                          vars=c("NAME", "B02001_001E", "B02001_002E"),
                          region="tract:*", regionin="state:09")
 
+# race_tracts <- read.csv("race_tracts.csv", stringsAsFactors=F)
   
   # Calculating geo disparity
   

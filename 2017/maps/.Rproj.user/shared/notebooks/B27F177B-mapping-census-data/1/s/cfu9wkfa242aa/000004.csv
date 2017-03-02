@@ -1,4 +1,0 @@
-"0","# Rename the columns of this datframe so it can be joined to future data"
-"0","colnames(by_tract) <- c(""id"", ""total"")"
-"0","# Changing the GEOID number to character so it can be joined to future data"
-"0","by_tract$id <- as.character(by_tract$id)"
