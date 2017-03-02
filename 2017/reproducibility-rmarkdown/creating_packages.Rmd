@@ -34,6 +34,8 @@ Data with counts by state
 
 ```{r }
 sb <- read.csv("https://docs.google.com/spreadsheets/d/1gH6eUQVQsEmFagy0qzQDEuwb3cutMWaddCLc7ESbzjc/pub?gid=294374511&single=true&output=csv", stringsAsFactors=F)
+
+# sb <- read.csv("sb.csv", stringsAsFactors=F)
 ```
 <img src="images/sbcount.png">
 
@@ -53,6 +55,8 @@ Let's make it easier on ourselves in the future by dealing with it now.
 
 ```{r }
 pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+
+# pop <- read.csv("pop.csv", stringsAsFactors=F)
 ```
 
 2. Figure out the columns to join by
@@ -121,6 +125,7 @@ We can write the function so you can tell it to join based on what type it shoul
 ```{r warning=F, message=F}
 pc_adjust <- function(any_df, state_type){
   pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+  # pop <- read.csv("pop.csv", stringsAsFactors=F)
   # State type options are either "Abbrev" or "State"
 colnames(any_df)[1] <- state_type
 df_adjusted <- left_join(any_df, pop, by=state_type)
@@ -156,6 +161,8 @@ Let's try it with Dunkin' Donuts data.
 
 ```{r warning=F, message=F}
 dd <- read.csv("https://docs.google.com/spreadsheets/d/1TWuWZpfDUMWmMpc7aPqUQ-g1a1J0rUO8_cle_zcPyI8/pub?gid=1983903926&single=true&output=csv", stringsAsFactors=F)
+
+# dd <- read.csv("dd.csv", stringsAsFactors=F)
 
 kable(head(dd))
 ```
@@ -231,6 +238,7 @@ Copy and paste the `pc_adjust` function you made into a new script file.
 ```
 pc_adjust <- function(any_df, state_type){
   pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+  # pop <- read.csv("pop.csv", stringsAsFactors=F)
   # State type options are either "Abbrev" or "State"
 colnames(any_df)[1] <- state_type
 df_adjusted <- left_join(any_df, pop, by=state_type)
