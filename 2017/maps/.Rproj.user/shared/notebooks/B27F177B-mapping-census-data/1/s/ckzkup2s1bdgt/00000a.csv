@@ -1,8 +1,0 @@
-"0","# first, we have to isolate the coordinates of the police stations"
-"0","# and let R know that these are spatial points"
-"0","coords <- stations[c(""lon"", ""lat"")]"
-"0","# Making sure we are working with rows that don't have any blanks"
-"0","coords <- coords[complete.cases(coords),]"
-"0","# Letting R know that these are specifically spatial coordinates"
-"0","sp <- SpatialPoints(coords)"
-"0","plot(towns)"

@@ -1,0 +1,834 @@
+"","NAME","state","county","tract","B02001_001E","B02001_002E"
+"1","Census Tract 101.01, Fairfield County, Connecticut","09","001","010101",4392,4050
+"2","Census Tract 101.02, Fairfield County, Connecticut","09","001","010102",4134,3800
+"3","Census Tract 102.01, Fairfield County, Connecticut","09","001","010201",3387,2928
+"4","Census Tract 102.02, Fairfield County, Connecticut","09","001","010202",5066,4447
+"5","Census Tract 103, Fairfield County, Connecticut","09","001","010300",4209,3846
+"6","Census Tract 104, Fairfield County, Connecticut","09","001","010400",5701,4968
+"7","Census Tract 105, Fairfield County, Connecticut","09","001","010500",5399,4146
+"8","Census Tract 106, Fairfield County, Connecticut","09","001","010600",1769,1525
+"9","Census Tract 107, Fairfield County, Connecticut","09","001","010700",3870,3475
+"10","Census Tract 108, Fairfield County, Connecticut","09","001","010800",3390,2946
+"11","Census Tract 109, Fairfield County, Connecticut","09","001","010900",5263,4301
+"12","Census Tract 110, Fairfield County, Connecticut","09","001","011000",5160,4642
+"13","Census Tract 111, Fairfield County, Connecticut","09","001","011100",4779,4445
+"14","Census Tract 112, Fairfield County, Connecticut","09","001","011200",1755,1656
+"15","Census Tract 113, Fairfield County, Connecticut","09","001","011300",3867,2707
+"16","Census Tract 201, Fairfield County, Connecticut","09","001","020100",4136,2089
+"17","Census Tract 202, Fairfield County, Connecticut","09","001","020200",3826,3510
+"18","Census Tract 203, Fairfield County, Connecticut","09","001","020300",7146,6328
+"19","Census Tract 204, Fairfield County, Connecticut","09","001","020400",3795,3361
+"20","Census Tract 205, Fairfield County, Connecticut","09","001","020500",4764,4352
+"21","Census Tract 206, Fairfield County, Connecticut","09","001","020600",4862,3723
+"22","Census Tract 207, Fairfield County, Connecticut","09","001","020700",4402,4100
+"23","Census Tract 208, Fairfield County, Connecticut","09","001","020800",2841,2461
+"24","Census Tract 209, Fairfield County, Connecticut","09","001","020900",4825,3528
+"25","Census Tract 210, Fairfield County, Connecticut","09","001","021000",3190,2507
+"26","Census Tract 211, Fairfield County, Connecticut","09","001","021100",5564,4042
+"27","Census Tract 212, Fairfield County, Connecticut","09","001","021200",4552,3402
+"28","Census Tract 213, Fairfield County, Connecticut","09","001","021300",4578,2758
+"29","Census Tract 214, Fairfield County, Connecticut","09","001","021400",6799,2225
+"30","Census Tract 215, Fairfield County, Connecticut","09","001","021500",6403,1787
+"31","Census Tract 216, Fairfield County, Connecticut","09","001","021600",7202,3310
+"32","Census Tract 217, Fairfield County, Connecticut","09","001","021700",6892,3282
+"33","Census Tract 218.01, Fairfield County, Connecticut","09","001","021801",4138,2253
+"34","Census Tract 218.02, Fairfield County, Connecticut","09","001","021802",5156,2375
+"35","Census Tract 219, Fairfield County, Connecticut","09","001","021900",5912,4027
+"36","Census Tract 220, Fairfield County, Connecticut","09","001","022000",2957,1361
+"37","Census Tract 221, Fairfield County, Connecticut","09","001","022100",8202,2626
+"38","Census Tract 222, Fairfield County, Connecticut","09","001","022200",4497,1529
+"39","Census Tract 223, Fairfield County, Connecticut","09","001","022300",6401,2348
+"40","Census Tract 224, Fairfield County, Connecticut","09","001","022400",2361,2060
+"41","Census Tract 301, Fairfield County, Connecticut","09","001","030100",3711,3589
+"42","Census Tract 302, Fairfield County, Connecticut","09","001","030200",3751,3423
+"43","Census Tract 303, Fairfield County, Connecticut","09","001","030300",4148,3990
+"44","Census Tract 304, Fairfield County, Connecticut","09","001","030400",4134,3628
+"45","Census Tract 305, Fairfield County, Connecticut","09","001","030500",5446,5073
+"46","Census Tract 351, Fairfield County, Connecticut","09","001","035100",7724,7041
+"47","Census Tract 352, Fairfield County, Connecticut","09","001","035200",3302,3207
+"48","Census Tract 353, Fairfield County, Connecticut","09","001","035300",3874,3674
+"49","Census Tract 354, Fairfield County, Connecticut","09","001","035400",5173,4883
+"50","Census Tract 425, Fairfield County, Connecticut","09","001","042500",4058,3415
+"51","Census Tract 426, Fairfield County, Connecticut","09","001","042600",4139,3471
+"52","Census Tract 427, Fairfield County, Connecticut","09","001","042700",4916,3830
+"53","Census Tract 428, Fairfield County, Connecticut","09","001","042800",5030,4069
+"54","Census Tract 429, Fairfield County, Connecticut","09","001","042900",1746,1596
+"55","Census Tract 430, Fairfield County, Connecticut","09","001","043000",3172,2548
+"56","Census Tract 431, Fairfield County, Connecticut","09","001","043100",4890,4091
+"57","Census Tract 432, Fairfield County, Connecticut","09","001","043200",2991,2044
+"58","Census Tract 433, Fairfield County, Connecticut","09","001","043300",3711,2902
+"59","Census Tract 434, Fairfield County, Connecticut","09","001","043400",4261,2336
+"60","Census Tract 435, Fairfield County, Connecticut","09","001","043500",2802,2377
+"61","Census Tract 436, Fairfield County, Connecticut","09","001","043600",3155,2468
+"62","Census Tract 437, Fairfield County, Connecticut","09","001","043700",2173,1368
+"63","Census Tract 438, Fairfield County, Connecticut","09","001","043800",8458,5035
+"64","Census Tract 439, Fairfield County, Connecticut","09","001","043900",5952,4676
+"65","Census Tract 440, Fairfield County, Connecticut","09","001","044000",5350,3412
+"66","Census Tract 441, Fairfield County, Connecticut","09","001","044100",3399,2102
+"67","Census Tract 442, Fairfield County, Connecticut","09","001","044200",3541,2566
+"68","Census Tract 443, Fairfield County, Connecticut","09","001","044300",3713,3285
+"69","Census Tract 444, Fairfield County, Connecticut","09","001","044400",3523,1977
+"70","Census Tract 445, Fairfield County, Connecticut","09","001","044500",2830,648
+"71","Census Tract 446, Fairfield County, Connecticut","09","001","044600",3404,3299
+"72","Census Tract 451.01, Fairfield County, Connecticut","09","001","045101",4313,4057
+"73","Census Tract 451.02, Fairfield County, Connecticut","09","001","045102",5910,5174
+"74","Census Tract 452, Fairfield County, Connecticut","09","001","045200",2380,2262
+"75","Census Tract 453, Fairfield County, Connecticut","09","001","045300",2549,2340
+"76","Census Tract 454, Fairfield County, Connecticut","09","001","045400",3367,2896
+"77","Census Tract 501, Fairfield County, Connecticut","09","001","050100",4072,3551
+"78","Census Tract 502, Fairfield County, Connecticut","09","001","050200",4086,3557
+"79","Census Tract 503, Fairfield County, Connecticut","09","001","050300",8318,7634
+"80","Census Tract 504, Fairfield County, Connecticut","09","001","050400",2508,2220
+"81","Census Tract 505, Fairfield County, Connecticut","09","001","050500",4728,4358
+"82","Census Tract 506, Fairfield County, Connecticut","09","001","050600",3343,3040
+"83","Census Tract 551, Fairfield County, Connecticut","09","001","055100",5932,5411
+"84","Census Tract 552, Fairfield County, Connecticut","09","001","055200",4387,4127
+"85","Census Tract 601, Fairfield County, Connecticut","09","001","060100",4297,3765
+"86","Census Tract 602, Fairfield County, Connecticut","09","001","060200",4438,4025
+"87","Census Tract 603, Fairfield County, Connecticut","09","001","060300",3973,3647
+"88","Census Tract 604, Fairfield County, Connecticut","09","001","060400",4503,4282
+"89","Census Tract 605, Fairfield County, Connecticut","09","001","060500",2839,2703
+"90","Census Tract 606, Fairfield County, Connecticut","09","001","060600",2365,2165
+"91","Census Tract 607, Fairfield County, Connecticut","09","001","060700",7943,7309
+"92","Census Tract 608, Fairfield County, Connecticut","09","001","060800",2035,1965
+"93","Census Tract 609, Fairfield County, Connecticut","09","001","060900",2636,2511
+"94","Census Tract 610, Fairfield County, Connecticut","09","001","061000",3822,3401
+"95","Census Tract 611, Fairfield County, Connecticut","09","001","061100",3776,3444
+"96","Census Tract 612, Fairfield County, Connecticut","09","001","061200",2116,1733
+"97","Census Tract 613, Fairfield County, Connecticut","09","001","061300",3242,2478
+"98","Census Tract 614, Fairfield County, Connecticut","09","001","061400",2830,1836
+"99","Census Tract 615, Fairfield County, Connecticut","09","001","061500",4562,4305
+"100","Census Tract 616, Fairfield County, Connecticut","09","001","061600",5301,5064
+"101","Census Tract 701, Fairfield County, Connecticut","09","001","070100",4514,3770
+"102","Census Tract 702, Fairfield County, Connecticut","09","001","070200",4169,1192
+"103","Census Tract 703, Fairfield County, Connecticut","09","001","070300",1189,350
+"104","Census Tract 704, Fairfield County, Connecticut","09","001","070400",1548,760
+"105","Census Tract 705, Fairfield County, Connecticut","09","001","070500",2149,467
+"106","Census Tract 706, Fairfield County, Connecticut","09","001","070600",2291,832
+"107","Census Tract 709, Fairfield County, Connecticut","09","001","070900",2697,992
+"108","Census Tract 710, Fairfield County, Connecticut","09","001","071000",3941,864
+"109","Census Tract 711, Fairfield County, Connecticut","09","001","071100",4334,1407
+"110","Census Tract 712, Fairfield County, Connecticut","09","001","071200",5757,1527
+"111","Census Tract 713, Fairfield County, Connecticut","09","001","071300",4032,1302
+"112","Census Tract 714, Fairfield County, Connecticut","09","001","071400",3761,1807
+"113","Census Tract 716, Fairfield County, Connecticut","09","001","071600",2601,1260
+"114","Census Tract 719, Fairfield County, Connecticut","09","001","071900",5057,1737
+"115","Census Tract 720, Fairfield County, Connecticut","09","001","072000",3488,1694
+"116","Census Tract 721, Fairfield County, Connecticut","09","001","072100",5225,3427
+"117","Census Tract 722, Fairfield County, Connecticut","09","001","072200",3971,2464
+"118","Census Tract 723, Fairfield County, Connecticut","09","001","072300",5980,3083
+"119","Census Tract 724, Fairfield County, Connecticut","09","001","072400",2548,1023
+"120","Census Tract 725, Fairfield County, Connecticut","09","001","072500",6623,3593
+"121","Census Tract 726, Fairfield County, Connecticut","09","001","072600",7998,5655
+"122","Census Tract 727, Fairfield County, Connecticut","09","001","072700",3572,1465
+"123","Census Tract 728, Fairfield County, Connecticut","09","001","072800",5726,1311
+"124","Census Tract 729, Fairfield County, Connecticut","09","001","072900",5256,1871
+"125","Census Tract 730, Fairfield County, Connecticut","09","001","073000",1905,889
+"126","Census Tract 731, Fairfield County, Connecticut","09","001","073100",5007,2247
+"127","Census Tract 732, Fairfield County, Connecticut","09","001","073200",2461,1240
+"128","Census Tract 733, Fairfield County, Connecticut","09","001","073300",3206,984
+"129","Census Tract 734, Fairfield County, Connecticut","09","001","073400",4448,1573
+"130","Census Tract 735, Fairfield County, Connecticut","09","001","073500",3462,1086
+"131","Census Tract 736, Fairfield County, Connecticut","09","001","073600",2421,840
+"132","Census Tract 737, Fairfield County, Connecticut","09","001","073700",4810,1530
+"133","Census Tract 738, Fairfield County, Connecticut","09","001","073800",2702,857
+"134","Census Tract 739, Fairfield County, Connecticut","09","001","073900",3311,1257
+"135","Census Tract 740, Fairfield County, Connecticut","09","001","074000",1930,626
+"136","Census Tract 743, Fairfield County, Connecticut","09","001","074300",4113,1317
+"137","Census Tract 744, Fairfield County, Connecticut","09","001","074400",4571,1098
+"138","Census Tract 801, Fairfield County, Connecticut","09","001","080100",5014,3068
+"139","Census Tract 802, Fairfield County, Connecticut","09","001","080200",4520,2768
+"140","Census Tract 804, Fairfield County, Connecticut","09","001","080400",5722,2238
+"141","Census Tract 805, Fairfield County, Connecticut","09","001","080500",3213,3112
+"142","Census Tract 806, Fairfield County, Connecticut","09","001","080600",2111,1733
+"143","Census Tract 807, Fairfield County, Connecticut","09","001","080700",2096,1679
+"144","Census Tract 808, Fairfield County, Connecticut","09","001","080800",4835,4358
+"145","Census Tract 809, Fairfield County, Connecticut","09","001","080900",5144,4148
+"146","Census Tract 810, Fairfield County, Connecticut","09","001","081000",4406,3508
+"147","Census Tract 811, Fairfield County, Connecticut","09","001","081100",4707,4232
+"148","Census Tract 812, Fairfield County, Connecticut","09","001","081200",5441,4531
+"149","Census Tract 813, Fairfield County, Connecticut","09","001","081300",4883,4376
+"150","Census Tract 901, Fairfield County, Connecticut","09","001","090100",3286,2961
+"151","Census Tract 902, Fairfield County, Connecticut","09","001","090200",8238,7818
+"152","Census Tract 903, Fairfield County, Connecticut","09","001","090300",4703,4088
+"153","Census Tract 904, Fairfield County, Connecticut","09","001","090400",6626,5511
+"154","Census Tract 905, Fairfield County, Connecticut","09","001","090500",4624,4098
+"155","Census Tract 906, Fairfield County, Connecticut","09","001","090600",3394,3095
+"156","Census Tract 907, Fairfield County, Connecticut","09","001","090700",5573,5182
+"157","Census Tract 1001, Fairfield County, Connecticut","09","001","100100",5720,5532
+"158","Census Tract 1002, Fairfield County, Connecticut","09","001","100200",7273,6867
+"159","Census Tract 1003, Fairfield County, Connecticut","09","001","100300",6751,6148
+"160","Census Tract 1051, Fairfield County, Connecticut","09","001","105100",4116,3977
+"161","Census Tract 1052, Fairfield County, Connecticut","09","001","105200",3477,3227
+"162","Census Tract 1101, Fairfield County, Connecticut","09","001","110100",2330,2198
+"163","Census Tract 1102.01, Fairfield County, Connecticut","09","001","110201",5177,4659
+"164","Census Tract 1102.02, Fairfield County, Connecticut","09","001","110202",5113,4805
+"165","Census Tract 1103.01, Fairfield County, Connecticut","09","001","110301",6039,5263
+"166","Census Tract 1103.02, Fairfield County, Connecticut","09","001","110302",2781,2531
+"167","Census Tract 1104, Fairfield County, Connecticut","09","001","110400",5172,5036
+"168","Census Tract 1105, Fairfield County, Connecticut","09","001","110500",5809,5734
+"169","Census Tract 1106, Fairfield County, Connecticut","09","001","110600",8051,7698
+"170","Census Tract 2001, Fairfield County, Connecticut","09","001","200100",3621,3003
+"171","Census Tract 2002, Fairfield County, Connecticut","09","001","200200",4851,4290
+"172","Census Tract 2003.01, Fairfield County, Connecticut","09","001","200301",5202,4728
+"173","Census Tract 2003.02, Fairfield County, Connecticut","09","001","200302",5404,4936
+"174","Census Tract 2051, Fairfield County, Connecticut","09","001","205100",4180,3427
+"175","Census Tract 2052, Fairfield County, Connecticut","09","001","205200",6578,6219
+"176","Census Tract 2053, Fairfield County, Connecticut","09","001","205300",6016,5627
+"177","Census Tract 2101, Fairfield County, Connecticut","09","001","210100",6330,3030
+"178","Census Tract 2102, Fairfield County, Connecticut","09","001","210200",6993,2217
+"179","Census Tract 2103, Fairfield County, Connecticut","09","001","210300",5626,3634
+"180","Census Tract 2104, Fairfield County, Connecticut","09","001","210400",9183,5111
+"181","Census Tract 2105, Fairfield County, Connecticut","09","001","210500",7180,6010
+"182","Census Tract 2106, Fairfield County, Connecticut","09","001","210600",6144,3150
+"183","Census Tract 2107.01, Fairfield County, Connecticut","09","001","210701",4881,2606
+"184","Census Tract 2107.02, Fairfield County, Connecticut","09","001","210702",4468,2545
+"185","Census Tract 2108, Fairfield County, Connecticut","09","001","210800",5857,4479
+"186","Census Tract 2109, Fairfield County, Connecticut","09","001","210900",5195,4761
+"187","Census Tract 2110, Fairfield County, Connecticut","09","001","211000",4099,3045
+"188","Census Tract 2111, Fairfield County, Connecticut","09","001","211100",1119,441
+"189","Census Tract 2112, Fairfield County, Connecticut","09","001","211200",6458,4980
+"190","Census Tract 2113, Fairfield County, Connecticut","09","001","211300",3848,3241
+"191","Census Tract 2114, Fairfield County, Connecticut","09","001","211400",5400,4345
+"192","Census Tract 2201, Fairfield County, Connecticut","09","001","220100",4932,4691
+"193","Census Tract 2202, Fairfield County, Connecticut","09","001","220200",5199,4716
+"194","Census Tract 2203, Fairfield County, Connecticut","09","001","220300",3948,3637
+"195","Census Tract 2301, Fairfield County, Connecticut","09","001","230100",6882,6667
+"196","Census Tract 2302, Fairfield County, Connecticut","09","001","230200",2027,1911
+"197","Census Tract 2303, Fairfield County, Connecticut","09","001","230300",3462,3033
+"198","Census Tract 2304, Fairfield County, Connecticut","09","001","230400",6404,5964
+"199","Census Tract 2305.01, Fairfield County, Connecticut","09","001","230501",4236,3649
+"200","Census Tract 2305.02, Fairfield County, Connecticut","09","001","230502",4949,4431
+"201","Census Tract 2401, Fairfield County, Connecticut","09","001","240100",4727,4410
+"202","Census Tract 2402, Fairfield County, Connecticut","09","001","240200",4540,4395
+"203","Census Tract 2451, Fairfield County, Connecticut","09","001","245100",3062,2940
+"204","Census Tract 2452, Fairfield County, Connecticut","09","001","245200",4304,4198
+"205","Census Tract 2453, Fairfield County, Connecticut","09","001","245300",5036,4813
+"206","Census Tract 2454, Fairfield County, Connecticut","09","001","245400",3544,3284
+"207","Census Tract 2455, Fairfield County, Connecticut","09","001","245500",2837,2738
+"208","Census Tract 2456, Fairfield County, Connecticut","09","001","245600",6242,5820
+"209","Census Tract 2571, Fairfield County, Connecticut","09","001","257100",3636,3491
+"210","Census Tract 2572, Fairfield County, Connecticut","09","001","257200",3906,1777
+"211","Census Tract 9900, Fairfield County, Connecticut","09","001","990000",0,0
+"212","Census Tract 3301, Hartford County, Connecticut","09","003","330100",2211,2129
+"213","Census Tract 4001, Hartford County, Connecticut","09","003","400100",7354,6629
+"214","Census Tract 4002, Hartford County, Connecticut","09","003","400200",5893,5592
+"215","Census Tract 4003, Hartford County, Connecticut","09","003","400300",7105,7042
+"216","Census Tract 4051, Hartford County, Connecticut","09","003","405100",3121,2775
+"217","Census Tract 4052, Hartford County, Connecticut","09","003","405200",4404,4050
+"218","Census Tract 4053, Hartford County, Connecticut","09","003","405300",6041,5858
+"219","Census Tract 4054.01, Hartford County, Connecticut","09","003","405401",3039,2848
+"220","Census Tract 4054.02, Hartford County, Connecticut","09","003","405402",4088,2975
+"221","Census Tract 4055, Hartford County, Connecticut","09","003","405500",5386,4246
+"222","Census Tract 4056, Hartford County, Connecticut","09","003","405600",7626,7142
+"223","Census Tract 4057, Hartford County, Connecticut","09","003","405700",2128,1838
+"224","Census Tract 4058, Hartford County, Connecticut","09","003","405800",7359,6935
+"225","Census Tract 4059, Hartford County, Connecticut","09","003","405900",4596,4245
+"226","Census Tract 4060.01, Hartford County, Connecticut","09","003","406001",3780,3086
+"227","Census Tract 4060.02, Hartford County, Connecticut","09","003","406002",4986,4707
+"228","Census Tract 4061, Hartford County, Connecticut","09","003","406100",4002,2901
+"229","Census Tract 4101.01, Hartford County, Connecticut","09","003","410101",5642,5456
+"230","Census Tract 4101.02, Hartford County, Connecticut","09","003","410102",3801,3613
+"231","Census Tract 4153, Hartford County, Connecticut","09","003","415300",2932,1352
+"232","Census Tract 4154, Hartford County, Connecticut","09","003","415400",5120,3218
+"233","Census Tract 4155, Hartford County, Connecticut","09","003","415500",2675,1471
+"234","Census Tract 4156, Hartford County, Connecticut","09","003","415600",4465,2405
+"235","Census Tract 4157, Hartford County, Connecticut","09","003","415700",3065,2168
+"236","Census Tract 4158, Hartford County, Connecticut","09","003","415800",2444,1474
+"237","Census Tract 4159, Hartford County, Connecticut","09","003","415900",1787,1328
+"238","Census Tract 4160, Hartford County, Connecticut","09","003","416000",4990,3821
+"239","Census Tract 4161, Hartford County, Connecticut","09","003","416100",5465,3027
+"240","Census Tract 4162, Hartford County, Connecticut","09","003","416200",2942,1889
+"241","Census Tract 4163, Hartford County, Connecticut","09","003","416300",3532,2061
+"242","Census Tract 4164, Hartford County, Connecticut","09","003","416400",3334,2806
+"243","Census Tract 4165, Hartford County, Connecticut","09","003","416500",4908,2810
+"244","Census Tract 4166, Hartford County, Connecticut","09","003","416600",2832,1821
+"245","Census Tract 4167, Hartford County, Connecticut","09","003","416700",6409,4363
+"246","Census Tract 4168, Hartford County, Connecticut","09","003","416800",3170,2385
+"247","Census Tract 4171, Hartford County, Connecticut","09","003","417100",1697,867
+"248","Census Tract 4172, Hartford County, Connecticut","09","003","417200",1828,1456
+"249","Census Tract 4173, Hartford County, Connecticut","09","003","417300",2121,1606
+"250","Census Tract 4174, Hartford County, Connecticut","09","003","417400",2726,2120
+"251","Census Tract 4175, Hartford County, Connecticut","09","003","417500",4653,3819
+"252","Census Tract 4204, Hartford County, Connecticut","09","003","420400",2781,2680
+"253","Census Tract 4205, Hartford County, Connecticut","09","003","420500",5268,4797
+"254","Census Tract 4206, Hartford County, Connecticut","09","003","420600",6039,5377
+"255","Census Tract 4207, Hartford County, Connecticut","09","003","420700",3703,3528
+"256","Census Tract 4301, Hartford County, Connecticut","09","003","430100",4085,3937
+"257","Census Tract 4302.01, Hartford County, Connecticut","09","003","430201",3256,2903
+"258","Census Tract 4302.02, Hartford County, Connecticut","09","003","430202",4962,4594
+"259","Census Tract 4302.03, Hartford County, Connecticut","09","003","430203",4321,4005
+"260","Census Tract 4303.01, Hartford County, Connecticut","09","003","430301",3619,3534
+"261","Census Tract 4303.02, Hartford County, Connecticut","09","003","430302",2676,2632
+"262","Census Tract 4304, Hartford County, Connecticut","09","003","430400",4960,4796
+"263","Census Tract 4305, Hartford County, Connecticut","09","003","430500",6661,6491
+"264","Census Tract 4306.01, Hartford County, Connecticut","09","003","430601",5031,4837
+"265","Census Tract 4306.02, Hartford County, Connecticut","09","003","430602",3938,3662
+"266","Census Tract 4601, Hartford County, Connecticut","09","003","460100",3423,2862
+"267","Census Tract 4602.02, Hartford County, Connecticut","09","003","460202",4226,3710
+"268","Census Tract 4602.03, Hartford County, Connecticut","09","003","460203",2671,2184
+"269","Census Tract 4602.04, Hartford County, Connecticut","09","003","460204",6374,4962
+"270","Census Tract 4603.01, Hartford County, Connecticut","09","003","460301",5030,4500
+"271","Census Tract 4603.02, Hartford County, Connecticut","09","003","460302",3791,3554
+"272","Census Tract 4621.01, Hartford County, Connecticut","09","003","462101",6166,5676
+"273","Census Tract 4621.02, Hartford County, Connecticut","09","003","462102",4077,3387
+"274","Census Tract 4622.01, Hartford County, Connecticut","09","003","462201",5330,4786
+"275","Census Tract 4622.02, Hartford County, Connecticut","09","003","462202",2725,2461
+"276","Census Tract 4641.01, Hartford County, Connecticut","09","003","464101",5311,5081
+"277","Census Tract 4641.02, Hartford County, Connecticut","09","003","464102",5023,4793
+"278","Census Tract 4661.01, Hartford County, Connecticut","09","003","466101",4430,4070
+"279","Census Tract 4661.02, Hartford County, Connecticut","09","003","466102",5110,4426
+"280","Census Tract 4662.01, Hartford County, Connecticut","09","003","466201",2314,1920
+"281","Census Tract 4662.02, Hartford County, Connecticut","09","003","466202",4640,4302
+"282","Census Tract 4663, Hartford County, Connecticut","09","003","466300",4666,4385
+"283","Census Tract 4664, Hartford County, Connecticut","09","003","466400",2521,2317
+"284","Census Tract 4681.01, Hartford County, Connecticut","09","003","468101",7120,6819
+"285","Census Tract 4681.02, Hartford County, Connecticut","09","003","468102",4190,3966
+"286","Census Tract 4701, Hartford County, Connecticut","09","003","470100",5098,4509
+"287","Census Tract 4711, Hartford County, Connecticut","09","003","471100",3790,428
+"288","Census Tract 4712, Hartford County, Connecticut","09","003","471200",3021,431
+"289","Census Tract 4713, Hartford County, Connecticut","09","003","471300",5026,2074
+"290","Census Tract 4714, Hartford County, Connecticut","09","003","471400",5368,3514
+"291","Census Tract 4715, Hartford County, Connecticut","09","003","471500",3421,1046
+"292","Census Tract 4731, Hartford County, Connecticut","09","003","473100",6548,2643
+"293","Census Tract 4734, Hartford County, Connecticut","09","003","473400",1829,1253
+"294","Census Tract 4735.01, Hartford County, Connecticut","09","003","473501",4388,2815
+"295","Census Tract 4735.02, Hartford County, Connecticut","09","003","473502",3294,2067
+"296","Census Tract 4736.01, Hartford County, Connecticut","09","003","473601",3161,2406
+"297","Census Tract 4736.02, Hartford County, Connecticut","09","003","473602",2498,1374
+"298","Census Tract 4737, Hartford County, Connecticut","09","003","473700",5536,2107
+"299","Census Tract 4738, Hartford County, Connecticut","09","003","473800",1876,461
+"300","Census Tract 4761, Hartford County, Connecticut","09","003","476100",4515,3881
+"301","Census Tract 4762, Hartford County, Connecticut","09","003","476200",2609,2477
+"302","Census Tract 4763, Hartford County, Connecticut","09","003","476300",5430,4350
+"303","Census Tract 4771.01, Hartford County, Connecticut","09","003","477101",3958,3770
+"304","Census Tract 4771.02, Hartford County, Connecticut","09","003","477102",8933,6470
+"305","Census Tract 4772, Hartford County, Connecticut","09","003","477200",2873,2749
+"306","Census Tract 4803, Hartford County, Connecticut","09","003","480300",2368,2171
+"307","Census Tract 4804, Hartford County, Connecticut","09","003","480400",3719,3565
+"308","Census Tract 4805, Hartford County, Connecticut","09","003","480500",3245,2867
+"309","Census Tract 4806, Hartford County, Connecticut","09","003","480600",5318,3928
+"310","Census Tract 4807, Hartford County, Connecticut","09","003","480700",2178,1773
+"311","Census Tract 4808, Hartford County, Connecticut","09","003","480800",4278,3882
+"312","Census Tract 4809, Hartford County, Connecticut","09","003","480900",2556,2182
+"313","Census Tract 4810, Hartford County, Connecticut","09","003","481000",3603,3562
+"314","Census Tract 4811, Hartford County, Connecticut","09","003","481100",4006,3849
+"315","Census Tract 4812, Hartford County, Connecticut","09","003","481200",3694,3413
+"316","Census Tract 4813, Hartford County, Connecticut","09","003","481300",2832,2687
+"317","Census Tract 4841, Hartford County, Connecticut","09","003","484100",5516,3796
+"318","Census Tract 4842, Hartford County, Connecticut","09","003","484200",5837,4962
+"319","Census Tract 4871, Hartford County, Connecticut","09","003","487100",6940,5865
+"320","Census Tract 4872.01, Hartford County, Connecticut","09","003","487201",4721,3986
+"321","Census Tract 4872.02, Hartford County, Connecticut","09","003","487202",3604,2830
+"322","Census Tract 4873, Hartford County, Connecticut","09","003","487300",1463,1168
+"323","Census Tract 4874, Hartford County, Connecticut","09","003","487400",2293,1985
+"324","Census Tract 4875, Hartford County, Connecticut","09","003","487500",6774,5105
+"325","Census Tract 4901, Hartford County, Connecticut","09","003","490100",5079,4466
+"326","Census Tract 4903.02, Hartford County, Connecticut","09","003","490302",8674,6255
+"327","Census Tract 4921, Hartford County, Connecticut","09","003","492100",3572,3105
+"328","Census Tract 4922, Hartford County, Connecticut","09","003","492200",4163,3395
+"329","Census Tract 4923, Hartford County, Connecticut","09","003","492300",5941,4730
+"330","Census Tract 4924, Hartford County, Connecticut","09","003","492400",2804,2597
+"331","Census Tract 4925, Hartford County, Connecticut","09","003","492500",3253,3064
+"332","Census Tract 4926, Hartford County, Connecticut","09","003","492600",6846,6112
+"333","Census Tract 4941, Hartford County, Connecticut","09","003","494100",5803,4564
+"334","Census Tract 4942.01, Hartford County, Connecticut","09","003","494201",4808,3895
+"335","Census Tract 4942.02, Hartford County, Connecticut","09","003","494202",2889,2473
+"336","Census Tract 4943, Hartford County, Connecticut","09","003","494300",4068,3420
+"337","Census Tract 4944, Hartford County, Connecticut","09","003","494400",4880,4166
+"338","Census Tract 4945, Hartford County, Connecticut","09","003","494500",4678,3814
+"339","Census Tract 4946, Hartford County, Connecticut","09","003","494600",3526,3029
+"340","Census Tract 4961, Hartford County, Connecticut","09","003","496100",2594,1325
+"341","Census Tract 4962, Hartford County, Connecticut","09","003","496200",4484,3533
+"342","Census Tract 4963, Hartford County, Connecticut","09","003","496300",3637,3096
+"343","Census Tract 4964, Hartford County, Connecticut","09","003","496400",2769,2577
+"344","Census Tract 4965, Hartford County, Connecticut","09","003","496500",2708,2453
+"345","Census Tract 4966, Hartford County, Connecticut","09","003","496600",2687,2171
+"346","Census Tract 4967, Hartford County, Connecticut","09","003","496700",4097,2660
+"347","Census Tract 4968, Hartford County, Connecticut","09","003","496800",3628,2498
+"348","Census Tract 4969, Hartford County, Connecticut","09","003","496900",6381,4514
+"349","Census Tract 4970, Hartford County, Connecticut","09","003","497000",4392,4212
+"350","Census Tract 4971, Hartford County, Connecticut","09","003","497100",4361,3687
+"351","Census Tract 4972, Hartford County, Connecticut","09","003","497200",2276,1934
+"352","Census Tract 4973, Hartford County, Connecticut","09","003","497300",4889,3947
+"353","Census Tract 4974, Hartford County, Connecticut","09","003","497400",3927,3317
+"354","Census Tract 4975, Hartford County, Connecticut","09","003","497500",3760,3191
+"355","Census Tract 4976, Hartford County, Connecticut","09","003","497600",2329,2036
+"356","Census Tract 4977, Hartford County, Connecticut","09","003","497700",4477,3945
+"357","Census Tract 5001, Hartford County, Connecticut","09","003","500100",3845,1351
+"358","Census Tract 5002, Hartford County, Connecticut","09","003","500200",2749,1140
+"359","Census Tract 5003, Hartford County, Connecticut","09","003","500300",2011,896
+"360","Census Tract 5004, Hartford County, Connecticut","09","003","500400",1819,713
+"361","Census Tract 5005, Hartford County, Connecticut","09","003","500500",1415,416
+"362","Census Tract 5007, Hartford County, Connecticut","09","003","500700",1200,421
+"363","Census Tract 5009, Hartford County, Connecticut","09","003","500900",2291,939
+"364","Census Tract 5012, Hartford County, Connecticut","09","003","501200",2543,290
+"365","Census Tract 5013, Hartford County, Connecticut","09","003","501300",1769,51
+"366","Census Tract 5014, Hartford County, Connecticut","09","003","501400",2840,92
+"367","Census Tract 5015, Hartford County, Connecticut","09","003","501500",3420,192
+"368","Census Tract 5017, Hartford County, Connecticut","09","003","501700",1264,201
+"369","Census Tract 5018, Hartford County, Connecticut","09","003","501800",2822,498
+"370","Census Tract 5021, Hartford County, Connecticut","09","003","502100",1767,1097
+"371","Census Tract 5023, Hartford County, Connecticut","09","003","502300",6465,3839
+"372","Census Tract 5024, Hartford County, Connecticut","09","003","502400",6378,3429
+"373","Census Tract 5025, Hartford County, Connecticut","09","003","502500",1851,1194
+"374","Census Tract 5026, Hartford County, Connecticut","09","003","502600",4038,2302
+"375","Census Tract 5027, Hartford County, Connecticut","09","003","502700",4787,2738
+"376","Census Tract 5028, Hartford County, Connecticut","09","003","502800",2959,1217
+"377","Census Tract 5029, Hartford County, Connecticut","09","003","502900",3158,1285
+"378","Census Tract 5030, Hartford County, Connecticut","09","003","503000",3276,1125
+"379","Census Tract 5031, Hartford County, Connecticut","09","003","503100",4408,1344
+"380","Census Tract 5033, Hartford County, Connecticut","09","003","503300",2726,633
+"381","Census Tract 5035, Hartford County, Connecticut","09","003","503500",1905,306
+"382","Census Tract 5037, Hartford County, Connecticut","09","003","503700",2559,100
+"383","Census Tract 5038, Hartford County, Connecticut","09","003","503800",3808,2249
+"384","Census Tract 5039, Hartford County, Connecticut","09","003","503900",5115,93
+"385","Census Tract 5040, Hartford County, Connecticut","09","003","504000",3502,72
+"386","Census Tract 5041, Hartford County, Connecticut","09","003","504100",1692,612
+"387","Census Tract 5042, Hartford County, Connecticut","09","003","504200",5057,2771
+"388","Census Tract 5043, Hartford County, Connecticut","09","003","504300",2620,1159
+"389","Census Tract 5045, Hartford County, Connecticut","09","003","504500",3981,1541
+"390","Census Tract 5048, Hartford County, Connecticut","09","003","504800",4060,1495
+"391","Census Tract 5049, Hartford County, Connecticut","09","003","504900",4276,1603
+"392","Census Tract 5101, Hartford County, Connecticut","09","003","510100",2426,1176
+"393","Census Tract 5102, Hartford County, Connecticut","09","003","510200",2675,1346
+"394","Census Tract 5103, Hartford County, Connecticut","09","003","510300",4683,1736
+"395","Census Tract 5104, Hartford County, Connecticut","09","003","510400",4917,2470
+"396","Census Tract 5105, Hartford County, Connecticut","09","003","510500",3236,1224
+"397","Census Tract 5106, Hartford County, Connecticut","09","003","510600",5114,2109
+"398","Census Tract 5107, Hartford County, Connecticut","09","003","510700",4942,2959
+"399","Census Tract 5108, Hartford County, Connecticut","09","003","510800",2899,1769
+"400","Census Tract 5109, Hartford County, Connecticut","09","003","510900",3327,2428
+"401","Census Tract 5110, Hartford County, Connecticut","09","003","511000",3827,2449
+"402","Census Tract 5111, Hartford County, Connecticut","09","003","511100",3537,2452
+"403","Census Tract 5112, Hartford County, Connecticut","09","003","511200",3722,1948
+"404","Census Tract 5113, Hartford County, Connecticut","09","003","511300",3522,1264
+"405","Census Tract 5114, Hartford County, Connecticut","09","003","511400",2384,1592
+"406","Census Tract 5141.01, Hartford County, Connecticut","09","003","514101",3422,3137
+"407","Census Tract 5141.02, Hartford County, Connecticut","09","003","514102",7045,3615
+"408","Census Tract 5142, Hartford County, Connecticut","09","003","514200",3131,2231
+"409","Census Tract 5143, Hartford County, Connecticut","09","003","514300",4485,3272
+"410","Census Tract 5144, Hartford County, Connecticut","09","003","514400",4590,3304
+"411","Census Tract 5145, Hartford County, Connecticut","09","003","514500",4412,3285
+"412","Census Tract 5146, Hartford County, Connecticut","09","003","514600",5329,3613
+"413","Census Tract 5147, Hartford County, Connecticut","09","003","514700",4420,2812
+"414","Census Tract 5148, Hartford County, Connecticut","09","003","514800",3630,2393
+"415","Census Tract 5149, Hartford County, Connecticut","09","003","514900",2731,2609
+"416","Census Tract 5150, Hartford County, Connecticut","09","003","515000",2998,2685
+"417","Census Tract 5151.01, Hartford County, Connecticut","09","003","515101",2605,2107
+"418","Census Tract 5151.02, Hartford County, Connecticut","09","003","515102",6147,3583
+"419","Census Tract 5152, Hartford County, Connecticut","09","003","515200",3325,2923
+"420","Census Tract 5201, Hartford County, Connecticut","09","003","520100",5980,5488
+"421","Census Tract 5202.01, Hartford County, Connecticut","09","003","520201",3656,3191
+"422","Census Tract 5202.02, Hartford County, Connecticut","09","003","520202",4372,3688
+"423","Census Tract 5203.01, Hartford County, Connecticut","09","003","520301",4825,3500
+"424","Census Tract 5203.02, Hartford County, Connecticut","09","003","520302",3780,3179
+"425","Census Tract 5204, Hartford County, Connecticut","09","003","520400",7841,6945
+"426","Census Tract 5205.01, Hartford County, Connecticut","09","003","520501",4207,3623
+"427","Census Tract 5241, Hartford County, Connecticut","09","003","524100",6428,6175
+"428","Census Tract 5242, Hartford County, Connecticut","09","003","524200",6085,5438
+"429","Census Tract 5243, Hartford County, Connecticut","09","003","524300",6916,4583
+"430","Census Tract 5244, Hartford County, Connecticut","09","003","524400",3084,547
+"431","Census Tract 5245.01, Hartford County, Connecticut","09","003","524501",2508,1270
+"432","Census Tract 5245.02, Hartford County, Connecticut","09","003","524502",2219,1057
+"433","Census Tract 5246, Hartford County, Connecticut","09","003","524600",3719,550
+"434","Census Tract 5247, Hartford County, Connecticut","09","003","524700",3305,1669
+"435","Census Tract 9800, Hartford County, Connecticut","09","003","980000",0,0
+"436","Census Tract 2501, Litchfield County, Connecticut","09","005","250100",1747,1621
+"437","Census Tract 2531, Litchfield County, Connecticut","09","005","253100",3397,3073
+"438","Census Tract 2532, Litchfield County, Connecticut","09","005","253200",7253,6080
+"439","Census Tract 2533, Litchfield County, Connecticut","09","005","253300",2256,1923
+"440","Census Tract 2534, Litchfield County, Connecticut","09","005","253400",6157,5748
+"441","Census Tract 2535, Litchfield County, Connecticut","09","005","253500",6218,6047
+"442","Census Tract 2536, Litchfield County, Connecticut","09","005","253600",2540,2189
+"443","Census Tract 2602, Litchfield County, Connecticut","09","005","260200",3262,3065
+"444","Census Tract 2611, Litchfield County, Connecticut","09","005","261100",3708,3458
+"445","Census Tract 2621, Litchfield County, Connecticut","09","005","262100",2746,2509
+"446","Census Tract 2632, Litchfield County, Connecticut","09","005","263200",1505,1457
+"447","Census Tract 2651, Litchfield County, Connecticut","09","005","265100",1390,1355
+"448","Census Tract 2661, Litchfield County, Connecticut","09","005","266100",2951,2680
+"449","Census Tract 2671, Litchfield County, Connecticut","09","005","267100",3529,3371
+"450","Census Tract 2681, Litchfield County, Connecticut","09","005","268100",2273,2221
+"451","Census Tract 2901, Litchfield County, Connecticut","09","005","290100",3749,3690
+"452","Census Tract 2931, Litchfield County, Connecticut","09","005","293100",1594,1568
+"453","Census Tract 2961, Litchfield County, Connecticut","09","005","296100",2956,2897
+"454","Census Tract 2983, Litchfield County, Connecticut","09","005","298300",2798,2798
+"455","Census Tract 2984, Litchfield County, Connecticut","09","005","298400",2794,2736
+"456","Census Tract 3001, Litchfield County, Connecticut","09","005","300100",2541,2452
+"457","Census Tract 3004, Litchfield County, Connecticut","09","005","300400",2179,2107
+"458","Census Tract 3005, Litchfield County, Connecticut","09","005","300500",3645,3613
+"459","Census Tract 3031, Litchfield County, Connecticut","09","005","303100",2289,2263
+"460","Census Tract 3061, Litchfield County, Connecticut","09","005","306100",6910,6745
+"461","Census Tract 3101, Litchfield County, Connecticut","09","005","310100",4342,3937
+"462","Census Tract 3102, Litchfield County, Connecticut","09","005","310200",3101,2787
+"463","Census Tract 3103, Litchfield County, Connecticut","09","005","310300",1398,1274
+"464","Census Tract 3104, Litchfield County, Connecticut","09","005","310400",2656,2519
+"465","Census Tract 3105, Litchfield County, Connecticut","09","005","310500",1834,1740
+"466","Census Tract 3106.01, Litchfield County, Connecticut","09","005","310601",3631,3326
+"467","Census Tract 3106.02, Litchfield County, Connecticut","09","005","310602",4914,4487
+"468","Census Tract 3107, Litchfield County, Connecticut","09","005","310700",3791,3459
+"469","Census Tract 3108.01, Litchfield County, Connecticut","09","005","310801",2815,2347
+"470","Census Tract 3108.03, Litchfield County, Connecticut","09","005","310803",4432,3482
+"471","Census Tract 3108.04, Litchfield County, Connecticut","09","005","310804",2860,2659
+"472","Census Tract 3201, Litchfield County, Connecticut","09","005","320100",6153,5844
+"473","Census Tract 3202, Litchfield County, Connecticut","09","005","320200",4936,4493
+"474","Census Tract 3421, Litchfield County, Connecticut","09","005","342100",3551,3512
+"475","Census Tract 3491, Litchfield County, Connecticut","09","005","349100",5030,4860
+"476","Census Tract 3492, Litchfield County, Connecticut","09","005","349200",2763,2571
+"477","Census Tract 3601, Litchfield County, Connecticut","09","005","360100",5302,4828
+"478","Census Tract 3602, Litchfield County, Connecticut","09","005","360200",7476,7245
+"479","Census Tract 3603, Litchfield County, Connecticut","09","005","360300",3438,3183
+"480","Census Tract 3604, Litchfield County, Connecticut","09","005","360400",6070,5742
+"481","Census Tract 3621.01, Litchfield County, Connecticut","09","005","362101",4183,3950
+"482","Census Tract 3621.02, Litchfield County, Connecticut","09","005","362102",5668,5363
+"483","Census Tract 4253, Litchfield County, Connecticut","09","005","425300",4124,3910
+"484","Census Tract 4254, Litchfield County, Connecticut","09","005","425400",4415,4298
+"485","Census Tract 4255, Litchfield County, Connecticut","09","005","425500",3546,3259
+"486","Census Tract 4256, Litchfield County, Connecticut","09","005","425600",2726,2586
+"487","Census Tract 5411, Middlesex County, Connecticut","09","007","541100",2569,1513
+"488","Census Tract 5412, Middlesex County, Connecticut","09","007","541200",5163,3994
+"489","Census Tract 5413, Middlesex County, Connecticut","09","007","541300",5987,4512
+"490","Census Tract 5414.01, Middlesex County, Connecticut","09","007","541401",3280,2823
+"491","Census Tract 5414.02, Middlesex County, Connecticut","09","007","541402",5600,4576
+"492","Census Tract 5415, Middlesex County, Connecticut","09","007","541500",3746,2859
+"493","Census Tract 5416, Middlesex County, Connecticut","09","007","541600",1697,1135
+"494","Census Tract 5417, Middlesex County, Connecticut","09","007","541700",3404,2433
+"495","Census Tract 5420, Middlesex County, Connecticut","09","007","542000",4338,3596
+"496","Census Tract 5421, Middlesex County, Connecticut","09","007","542100",3708,2759
+"497","Census Tract 5422, Middlesex County, Connecticut","09","007","542200",1638,1326
+"498","Census Tract 5501, Middlesex County, Connecticut","09","007","550100",5689,5148
+"499","Census Tract 5502.01, Middlesex County, Connecticut","09","007","550201",3904,3718
+"500","Census Tract 5502.02, Middlesex County, Connecticut","09","007","550202",3343,3143
+"501","Census Tract 5601, Middlesex County, Connecticut","09","007","560100",6185,6036
+"502","Census Tract 5602, Middlesex County, Connecticut","09","007","560200",3298,3093
+"503","Census Tract 5701, Middlesex County, Connecticut","09","007","570100",5092,3886
+"504","Census Tract 5702, Middlesex County, Connecticut","09","007","570200",3306,3044
+"505","Census Tract 5703, Middlesex County, Connecticut","09","007","570300",5679,5087
+"506","Census Tract 5801, Middlesex County, Connecticut","09","007","580100",4426,4230
+"507","Census Tract 5851, Middlesex County, Connecticut","09","007","585100",7371,6934
+"508","Census Tract 5901, Middlesex County, Connecticut","09","007","590100",8356,8095
+"509","Census Tract 5951.01, Middlesex County, Connecticut","09","007","595101",3640,3496
+"510","Census Tract 5951.02, Middlesex County, Connecticut","09","007","595102",5502,5216
+"511","Census Tract 6001, Middlesex County, Connecticut","09","007","600100",4223,4125
+"512","Census Tract 6101, Middlesex County, Connecticut","09","007","610100",2064,2028
+"513","Census Tract 6102, Middlesex County, Connecticut","09","007","610200",3635,3367
+"514","Census Tract 6103, Middlesex County, Connecticut","09","007","610300",4187,4145
+"515","Census Tract 6104, Middlesex County, Connecticut","09","007","610400",3302,3165
+"516","Census Tract 6201, Middlesex County, Connecticut","09","007","620100",4611,4193
+"517","Census Tract 6301, Middlesex County, Connecticut","09","007","630100",6643,6569
+"518","Census Tract 6401, Middlesex County, Connecticut","09","007","640100",6516,6146
+"519","Census Tract 6701, Middlesex County, Connecticut","09","007","670100",4881,4557
+"520","Census Tract 6702, Middlesex County, Connecticut","09","007","670200",5341,4956
+"521","Census Tract 6801, Middlesex County, Connecticut","09","007","680100",6916,6665
+"522","Census Tract 6802, Middlesex County, Connecticut","09","007","680200",6294,4826
+"523","Census Tract 9901, Middlesex County, Connecticut","09","007","990100",0,0
+"524","Census Tract 1201, New Haven County, Connecticut","09","009","120100",6014,5136
+"525","Census Tract 1202, New Haven County, Connecticut","09","009","120200",6823,5512
+"526","Census Tract 1251, New Haven County, Connecticut","09","009","125100",4509,4143
+"527","Census Tract 1252, New Haven County, Connecticut","09","009","125200",5950,4925
+"528","Census Tract 1253, New Haven County, Connecticut","09","009","125300",5246,4073
+"529","Census Tract 1254, New Haven County, Connecticut","09","009","125400",3423,2679
+"530","Census Tract 1301.01, New Haven County, Connecticut","09","009","130101",4806,4619
+"531","Census Tract 1301.02, New Haven County, Connecticut","09","009","130102",2959,2618
+"532","Census Tract 1302, New Haven County, Connecticut","09","009","130200",8786,7486
+"533","Census Tract 1401, New Haven County, Connecticut","09","009","140100",3198,1636
+"534","Census Tract 1402, New Haven County, Connecticut","09","009","140200",1374,464
+"535","Census Tract 1403, New Haven County, Connecticut","09","009","140300",2762,758
+"536","Census Tract 1404, New Haven County, Connecticut","09","009","140400",3931,1403
+"537","Census Tract 1405, New Haven County, Connecticut","09","009","140500",3934,994
+"538","Census Tract 1406, New Haven County, Connecticut","09","009","140600",4276,1217
+"539","Census Tract 1407, New Haven County, Connecticut","09","009","140700",4165,1862
+"540","Census Tract 1408, New Haven County, Connecticut","09","009","140800",3816,897
+"541","Census Tract 1409, New Haven County, Connecticut","09","009","140900",4557,1509
+"542","Census Tract 1410, New Haven County, Connecticut","09","009","141000",4095,3133
+"543","Census Tract 1411, New Haven County, Connecticut","09","009","141100",3141,1512
+"544","Census Tract 1412, New Haven County, Connecticut","09","009","141200",5025,1483
+"545","Census Tract 1413, New Haven County, Connecticut","09","009","141300",5951,2984
+"546","Census Tract 1414, New Haven County, Connecticut","09","009","141400",4968,1051
+"547","Census Tract 1415, New Haven County, Connecticut","09","009","141500",6166,353
+"548","Census Tract 1416, New Haven County, Connecticut","09","009","141600",4884,1084
+"549","Census Tract 1418, New Haven County, Connecticut","09","009","141800",3788,1688
+"550","Census Tract 1419, New Haven County, Connecticut","09","009","141900",5301,4466
+"551","Census Tract 1420, New Haven County, Connecticut","09","009","142000",3305,2387
+"552","Census Tract 1421, New Haven County, Connecticut","09","009","142100",1724,723
+"553","Census Tract 1422, New Haven County, Connecticut","09","009","142200",1609,1363
+"554","Census Tract 1423, New Haven County, Connecticut","09","009","142300",5680,2306
+"555","Census Tract 1424, New Haven County, Connecticut","09","009","142400",5438,1933
+"556","Census Tract 1425, New Haven County, Connecticut","09","009","142500",5943,3080
+"557","Census Tract 1426.01, New Haven County, Connecticut","09","009","142601",6306,2052
+"558","Census Tract 1426.03, New Haven County, Connecticut","09","009","142603",4022,2331
+"559","Census Tract 1426.04, New Haven County, Connecticut","09","009","142604",3263,1852
+"560","Census Tract 1427, New Haven County, Connecticut","09","009","142700",6299,2802
+"561","Census Tract 1428, New Haven County, Connecticut","09","009","142800",4832,3662
+"562","Census Tract 1501, New Haven County, Connecticut","09","009","150100",3877,3657
+"563","Census Tract 1502, New Haven County, Connecticut","09","009","150200",3841,2741
+"564","Census Tract 1503, New Haven County, Connecticut","09","009","150300",4296,3978
+"565","Census Tract 1504, New Haven County, Connecticut","09","009","150400",4308,3552
+"566","Census Tract 1505, New Haven County, Connecticut","09","009","150500",4019,3558
+"567","Census Tract 1506, New Haven County, Connecticut","09","009","150600",6740,5922
+"568","Census Tract 1507, New Haven County, Connecticut","09","009","150700",4449,4239
+"569","Census Tract 1508, New Haven County, Connecticut","09","009","150800",3925,3651
+"570","Census Tract 1509, New Haven County, Connecticut","09","009","150900",3885,3530
+"571","Census Tract 1510, New Haven County, Connecticut","09","009","151000",3939,3745
+"572","Census Tract 1511, New Haven County, Connecticut","09","009","151100",6650,6244
+"573","Census Tract 1512, New Haven County, Connecticut","09","009","151200",3110,2898
+"574","Census Tract 1541, New Haven County, Connecticut","09","009","154100",7416,3657
+"575","Census Tract 1542, New Haven County, Connecticut","09","009","154200",7026,3070
+"576","Census Tract 1545, New Haven County, Connecticut","09","009","154500",4071,2872
+"577","Census Tract 1546, New Haven County, Connecticut","09","009","154600",4822,3086
+"578","Census Tract 1547, New Haven County, Connecticut","09","009","154700",6217,5821
+"579","Census Tract 1548, New Haven County, Connecticut","09","009","154800",4888,4477
+"580","Census Tract 1549, New Haven County, Connecticut","09","009","154900",3544,3031
+"581","Census Tract 1550, New Haven County, Connecticut","09","009","155000",5981,3505
+"582","Census Tract 1551, New Haven County, Connecticut","09","009","155100",3805,2949
+"583","Census Tract 1571, New Haven County, Connecticut","09","009","157100",2657,2238
+"584","Census Tract 1572, New Haven County, Connecticut","09","009","157200",3725,3351
+"585","Census Tract 1573, New Haven County, Connecticut","09","009","157300",3125,2799
+"586","Census Tract 1574, New Haven County, Connecticut","09","009","157400",4440,4035
+"587","Census Tract 1601, New Haven County, Connecticut","09","009","160100",3343,2955
+"588","Census Tract 1602, New Haven County, Connecticut","09","009","160200",5626,4711
+"589","Census Tract 1611, New Haven County, Connecticut","09","009","161100",5546,5385
+"590","Census Tract 1651, New Haven County, Connecticut","09","009","165100",4375,2884
+"591","Census Tract 1652, New Haven County, Connecticut","09","009","165200",2366,2046
+"592","Census Tract 1653, New Haven County, Connecticut","09","009","165300",2409,2148
+"593","Census Tract 1654, New Haven County, Connecticut","09","009","165400",5155,3517
+"594","Census Tract 1655, New Haven County, Connecticut","09","009","165500",4565,1126
+"595","Census Tract 1656, New Haven County, Connecticut","09","009","165600",5658,3983
+"596","Census Tract 1657, New Haven County, Connecticut","09","009","165700",4342,1933
+"597","Census Tract 1658.01, New Haven County, Connecticut","09","009","165801",6033,2935
+"598","Census Tract 1658.02, New Haven County, Connecticut","09","009","165802",4418,3048
+"599","Census Tract 1659, New Haven County, Connecticut","09","009","165900",8347,7007
+"600","Census Tract 1660.01, New Haven County, Connecticut","09","009","166001",6471,4988
+"601","Census Tract 1660.02, New Haven County, Connecticut","09","009","166002",7466,6740
+"602","Census Tract 1671, New Haven County, Connecticut","09","009","167100",8227,7246
+"603","Census Tract 1672.01, New Haven County, Connecticut","09","009","167201",4122,3504
+"604","Census Tract 1672.02, New Haven County, Connecticut","09","009","167202",4549,4208
+"605","Census Tract 1673, New Haven County, Connecticut","09","009","167300",7099,6371
+"606","Census Tract 1701, New Haven County, Connecticut","09","009","170100",1839,1083
+"607","Census Tract 1702, New Haven County, Connecticut","09","009","170200",2068,1270
+"608","Census Tract 1703, New Haven County, Connecticut","09","009","170300",2109,1197
+"609","Census Tract 1704, New Haven County, Connecticut","09","009","170400",1613,1262
+"610","Census Tract 1705, New Haven County, Connecticut","09","009","170500",6098,5573
+"611","Census Tract 1706, New Haven County, Connecticut","09","009","170600",2680,2152
+"612","Census Tract 1707, New Haven County, Connecticut","09","009","170700",2650,1733
+"613","Census Tract 1708, New Haven County, Connecticut","09","009","170800",5378,4345
+"614","Census Tract 1709, New Haven County, Connecticut","09","009","170900",2076,1278
+"615","Census Tract 1710, New Haven County, Connecticut","09","009","171000",1668,938
+"616","Census Tract 1711, New Haven County, Connecticut","09","009","171100",5510,4554
+"617","Census Tract 1712, New Haven County, Connecticut","09","009","171200",8717,7493
+"618","Census Tract 1713, New Haven County, Connecticut","09","009","171300",3854,3123
+"619","Census Tract 1714, New Haven County, Connecticut","09","009","171400",1892,1062
+"620","Census Tract 1715, New Haven County, Connecticut","09","009","171500",3184,1931
+"621","Census Tract 1716, New Haven County, Connecticut","09","009","171600",4928,3368
+"622","Census Tract 1717, New Haven County, Connecticut","09","009","171700",4352,3786
+"623","Census Tract 1751, New Haven County, Connecticut","09","009","175100",3082,2833
+"624","Census Tract 1752, New Haven County, Connecticut","09","009","175200",2412,2111
+"625","Census Tract 1753, New Haven County, Connecticut","09","009","175300",4033,3798
+"626","Census Tract 1754, New Haven County, Connecticut","09","009","175400",4361,3570
+"627","Census Tract 1755, New Haven County, Connecticut","09","009","175500",7843,7014
+"628","Census Tract 1756, New Haven County, Connecticut","09","009","175600",5042,4463
+"629","Census Tract 1757, New Haven County, Connecticut","09","009","175700",2455,2380
+"630","Census Tract 1758, New Haven County, Connecticut","09","009","175800",3687,3226
+"631","Census Tract 1759, New Haven County, Connecticut","09","009","175900",5341,4794
+"632","Census Tract 1760, New Haven County, Connecticut","09","009","176000",6898,6582
+"633","Census Tract 1801, New Haven County, Connecticut","09","009","180100",6585,5823
+"634","Census Tract 1802, New Haven County, Connecticut","09","009","180200",5474,3754
+"635","Census Tract 1803, New Haven County, Connecticut","09","009","180300",2484,2151
+"636","Census Tract 1804, New Haven County, Connecticut","09","009","180400",3024,2596
+"637","Census Tract 1805, New Haven County, Connecticut","09","009","180500",4514,3957
+"638","Census Tract 1806.01, New Haven County, Connecticut","09","009","180601",3016,2817
+"639","Census Tract 1806.02, New Haven County, Connecticut","09","009","180602",4042,3776
+"640","Census Tract 1841, New Haven County, Connecticut","09","009","184100",5270,5045
+"641","Census Tract 1842, New Haven County, Connecticut","09","009","184200",4178,3430
+"642","Census Tract 1843, New Haven County, Connecticut","09","009","184300",4022,3738
+"643","Census Tract 1844, New Haven County, Connecticut","09","009","184400",3213,3052
+"644","Census Tract 1845, New Haven County, Connecticut","09","009","184500",2362,2273
+"645","Census Tract 1846, New Haven County, Connecticut","09","009","184600",3001,2977
+"646","Census Tract 1847, New Haven County, Connecticut","09","009","184700",6020,5211
+"647","Census Tract 1861, New Haven County, Connecticut","09","009","186100",7444,7031
+"648","Census Tract 1862, New Haven County, Connecticut","09","009","186200",6943,6802
+"649","Census Tract 1901, New Haven County, Connecticut","09","009","190100",3229,3133
+"650","Census Tract 1902, New Haven County, Connecticut","09","009","190200",3318,3219
+"651","Census Tract 1903.01, New Haven County, Connecticut","09","009","190301",6923,6537
+"652","Census Tract 1903.02, New Haven County, Connecticut","09","009","190302",5529,5199
+"653","Census Tract 1903.03, New Haven County, Connecticut","09","009","190303",3406,3263
+"654","Census Tract 1941, New Haven County, Connecticut","09","009","194100",5417,5280
+"655","Census Tract 1942.01, New Haven County, Connecticut","09","009","194201",7428,7053
+"656","Census Tract 1942.02, New Haven County, Connecticut","09","009","194202",5439,5123
+"657","Census Tract 3411, New Haven County, Connecticut","09","009","341100",6065,5818
+"658","Census Tract 3431.01, New Haven County, Connecticut","09","009","343101",5939,3758
+"659","Census Tract 3431.02, New Haven County, Connecticut","09","009","343102",3544,3104
+"660","Census Tract 3432, New Haven County, Connecticut","09","009","343200",6596,5557
+"661","Census Tract 3433, New Haven County, Connecticut","09","009","343300",6485,5655
+"662","Census Tract 3434, New Haven County, Connecticut","09","009","343400",6708,5967
+"663","Census Tract 3441, New Haven County, Connecticut","09","009","344100",4740,4245
+"664","Census Tract 3442, New Haven County, Connecticut","09","009","344200",2835,2450
+"665","Census Tract 3451, New Haven County, Connecticut","09","009","345100",6753,5749
+"666","Census Tract 3452.01, New Haven County, Connecticut","09","009","345201",6780,5979
+"667","Census Tract 3452.02, New Haven County, Connecticut","09","009","345202",4116,3534
+"668","Census Tract 3453, New Haven County, Connecticut","09","009","345300",6837,5999
+"669","Census Tract 3454, New Haven County, Connecticut","09","009","345400",7304,6440
+"670","Census Tract 3461.01, New Haven County, Connecticut","09","009","346101",6959,6743
+"671","Census Tract 3461.02, New Haven County, Connecticut","09","009","346102",5872,5742
+"672","Census Tract 3471, New Haven County, Connecticut","09","009","347100",5391,5044
+"673","Census Tract 3472, New Haven County, Connecticut","09","009","347200",4224,4106
+"674","Census Tract 3481.11, New Haven County, Connecticut","09","009","348111",2879,2689
+"675","Census Tract 3481.22, New Haven County, Connecticut","09","009","348122",4274,3856
+"676","Census Tract 3481.23, New Haven County, Connecticut","09","009","348123",5654,5379
+"677","Census Tract 3481.24, New Haven County, Connecticut","09","009","348124",2404,2356
+"678","Census Tract 3481.25, New Haven County, Connecticut","09","009","348125",4665,4180
+"679","Census Tract 3501, New Haven County, Connecticut","09","009","350100",3569,2058
+"680","Census Tract 3502, New Haven County, Connecticut","09","009","350200",3641,1301
+"681","Census Tract 3503, New Haven County, Connecticut","09","009","350300",1794,540
+"682","Census Tract 3504, New Haven County, Connecticut","09","009","350400",2599,929
+"683","Census Tract 3505, New Haven County, Connecticut","09","009","350500",2776,1284
+"684","Census Tract 3508, New Haven County, Connecticut","09","009","350800",5782,3411
+"685","Census Tract 3509, New Haven County, Connecticut","09","009","350900",2316,1176
+"686","Census Tract 3510, New Haven County, Connecticut","09","009","351000",4209,2161
+"687","Census Tract 3511, New Haven County, Connecticut","09","009","351100",3895,1801
+"688","Census Tract 3512, New Haven County, Connecticut","09","009","351200",4073,1539
+"689","Census Tract 3513, New Haven County, Connecticut","09","009","351300",6031,3656
+"690","Census Tract 3514, New Haven County, Connecticut","09","009","351400",3816,2334
+"691","Census Tract 3515, New Haven County, Connecticut","09","009","351500",4918,3344
+"692","Census Tract 3516.01, New Haven County, Connecticut","09","009","351601",3406,2261
+"693","Census Tract 3516.02, New Haven County, Connecticut","09","009","351602",6232,5233
+"694","Census Tract 3517, New Haven County, Connecticut","09","009","351700",2773,1344
+"695","Census Tract 3518, New Haven County, Connecticut","09","009","351800",3615,3045
+"696","Census Tract 3519, New Haven County, Connecticut","09","009","351900",2576,1970
+"697","Census Tract 3520, New Haven County, Connecticut","09","009","352000",5031,3298
+"698","Census Tract 3521, New Haven County, Connecticut","09","009","352100",3905,2366
+"699","Census Tract 3522, New Haven County, Connecticut","09","009","352200",2637,975
+"700","Census Tract 3523, New Haven County, Connecticut","09","009","352300",3278,1915
+"701","Census Tract 3524, New Haven County, Connecticut","09","009","352400",3178,2137
+"702","Census Tract 3525, New Haven County, Connecticut","09","009","352500",2716,1643
+"703","Census Tract 3526, New Haven County, Connecticut","09","009","352600",5597,3971
+"704","Census Tract 3527.01, New Haven County, Connecticut","09","009","352701",3082,2606
+"705","Census Tract 3527.02, New Haven County, Connecticut","09","009","352702",5838,4495
+"706","Census Tract 3528, New Haven County, Connecticut","09","009","352800",6604,4040
+"707","Census Tract 3611, New Haven County, Connecticut","09","009","361100",6570,6314
+"708","Census Tract 3612, New Haven County, Connecticut","09","009","361200",5329,4981
+"709","Census Tract 3613, New Haven County, Connecticut","09","009","361300",4825,4571
+"710","Census Tract 3614.01, New Haven County, Connecticut","09","009","361401",3978,2764
+"711","Census Tract 3614.02, New Haven County, Connecticut","09","009","361402",2822,1881
+"712","Census Tract 3615, New Haven County, Connecticut","09","009","361500",7520,3862
+"713","Census Tract 9900, New Haven County, Connecticut","09","009","990000",0,0
+"714","Census Tract 6501, New London County, Connecticut","09","011","650100",2367,2287
+"715","Census Tract 6601.01, New London County, Connecticut","09","011","660101",3185,3132
+"716","Census Tract 6601.02, New London County, Connecticut","09","011","660102",4402,4173
+"717","Census Tract 6903, New London County, Connecticut","09","011","690300",6662,3162
+"718","Census Tract 6904, New London County, Connecticut","09","011","690400",2156,1143
+"719","Census Tract 6905, New London County, Connecticut","09","011","690500",2757,1514
+"720","Census Tract 6907, New London County, Connecticut","09","011","690700",1102,748
+"721","Census Tract 6908, New London County, Connecticut","09","011","690800",3329,1881
+"722","Census Tract 6909, New London County, Connecticut","09","011","690900",4964,3925
+"723","Census Tract 6933, New London County, Connecticut","09","011","693300",5211,4645
+"724","Census Tract 6934, New London County, Connecticut","09","011","693400",4210,3727
+"725","Census Tract 6935, New London County, Connecticut","09","011","693500",3546,3320
+"726","Census Tract 6936, New London County, Connecticut","09","011","693600",2927,2664
+"727","Census Tract 6937, New London County, Connecticut","09","011","693700",3605,2944
+"728","Census Tract 6952.01, New London County, Connecticut","09","011","695201",5095,4595
+"729","Census Tract 6952.02, New London County, Connecticut","09","011","695202",6694,5643
+"730","Census Tract 6961, New London County, Connecticut","09","011","696100",4903,3945
+"731","Census Tract 6962, New London County, Connecticut","09","011","696200",4974,4041
+"732","Census Tract 6963, New London County, Connecticut","09","011","696300",2766,2146
+"733","Census Tract 6964, New London County, Connecticut","09","011","696400",5603,3223
+"734","Census Tract 6965, New London County, Connecticut","09","011","696500",3285,2487
+"735","Census Tract 6966, New London County, Connecticut","09","011","696600",3943,2789
+"736","Census Tract 6967, New London County, Connecticut","09","011","696700",6059,3686
+"737","Census Tract 6968, New London County, Connecticut","09","011","696800",3789,1924
+"738","Census Tract 6970, New London County, Connecticut","09","011","697000",5056,3337
+"739","Census Tract 7001, New London County, Connecticut","09","011","700100",4735,3958
+"740","Census Tract 7011, New London County, Connecticut","09","011","701100",7889,6249
+"741","Census Tract 7012, New London County, Connecticut","09","011","701200",7184,6637
+"742","Census Tract 7021, New London County, Connecticut","09","011","702100",4484,4012
+"743","Census Tract 7023, New London County, Connecticut","09","011","702300",2122,1674
+"744","Census Tract 7024, New London County, Connecticut","09","011","702400",3667,2628
+"745","Census Tract 7025, New London County, Connecticut","09","011","702500",4510,3131
+"746","Census Tract 7026, New London County, Connecticut","09","011","702600",1171,1110
+"747","Census Tract 7027, New London County, Connecticut","09","011","702700",4913,3869
+"748","Census Tract 7028, New London County, Connecticut","09","011","702800",4062,2871
+"749","Census Tract 7029, New London County, Connecticut","09","011","702900",2542,2365
+"750","Census Tract 7030, New London County, Connecticut","09","011","703000",3544,3351
+"751","Census Tract 7051.01, New London County, Connecticut","09","011","705101",4814,4469
+"752","Census Tract 7051.02, New London County, Connecticut","09","011","705102",4167,3766
+"753","Census Tract 7052, New London County, Connecticut","09","011","705200",3436,3305
+"754","Census Tract 7053, New London County, Connecticut","09","011","705300",3609,3354
+"755","Census Tract 7054, New London County, Connecticut","09","011","705400",2513,2408
+"756","Census Tract 7071, New London County, Connecticut","09","011","707100",5293,4880
+"757","Census Tract 7081, New London County, Connecticut","09","011","708100",2602,2450
+"758","Census Tract 7091, New London County, Connecticut","09","011","709100",6705,6177
+"759","Census Tract 7092, New London County, Connecticut","09","011","709200",5247,4827
+"760","Census Tract 7101, New London County, Connecticut","09","011","710100",4340,4197
+"761","Census Tract 7111, New London County, Connecticut","09","011","711100",2993,2731
+"762","Census Tract 7121, New London County, Connecticut","09","011","712100",1993,1931
+"763","Census Tract 7131, New London County, Connecticut","09","011","713100",2631,2470
+"764","Census Tract 7141.01, New London County, Connecticut","09","011","714101",3385,3260
+"765","Census Tract 7141.03, New London County, Connecticut","09","011","714103",7699,7359
+"766","Census Tract 7141.04, New London County, Connecticut","09","011","714104",5059,4900
+"767","Census Tract 7151, New London County, Connecticut","09","011","715100",4176,3826
+"768","Census Tract 7161.01, New London County, Connecticut","09","011","716101",5964,4394
+"769","Census Tract 7161.02, New London County, Connecticut","09","011","716102",5065,4120
+"770","Census Tract 8701, New London County, Connecticut","09","011","870100",7314,7043
+"771","Census Tract 8702, New London County, Connecticut","09","011","870200",6187,4836
+"772","Census Tract 8703, New London County, Connecticut","09","011","870300",6566,4422
+"773","Census Tract 8705.01, New London County, Connecticut","09","011","870501",4018,2842
+"774","Census Tract 8705.02, New London County, Connecticut","09","011","870502",3842,2392
+"775","Census Tract 8707.01, New London County, Connecticut","09","011","870701",2168,2042
+"776","Census Tract 8707.03, New London County, Connecticut","09","011","870703",1661,1553
+"777","Census Tract 8707.04, New London County, Connecticut","09","011","870704",4260,3853
+"778","Census Tract 9800, New London County, Connecticut","09","011","980000",2951,2207
+"779","Census Tract 9901, New London County, Connecticut","09","011","990100",0,0
+"780","Census Tract 5261.01, Tolland County, Connecticut","09","013","526101",4459,4351
+"781","Census Tract 5261.02, Tolland County, Connecticut","09","013","526102",5168,4902
+"782","Census Tract 5281, Tolland County, Connecticut","09","013","528100",3181,2933
+"783","Census Tract 5291, Tolland County, Connecticut","09","013","529100",4963,4647
+"784","Census Tract 5301, Tolland County, Connecticut","09","013","530100",2375,2040
+"785","Census Tract 5302, Tolland County, Connecticut","09","013","530200",5803,4934
+"786","Census Tract 5303.01, Tolland County, Connecticut","09","013","530301",5595,4037
+"787","Census Tract 5303.02, Tolland County, Connecticut","09","013","530302",6216,5568
+"788","Census Tract 5304, Tolland County, Connecticut","09","013","530400",3294,2622
+"789","Census Tract 5305, Tolland County, Connecticut","09","013","530500",3188,3078
+"790","Census Tract 5306, Tolland County, Connecticut","09","013","530600",2691,2485
+"791","Census Tract 5331.01, Tolland County, Connecticut","09","013","533101",9380,9043
+"792","Census Tract 5331.02, Tolland County, Connecticut","09","013","533102",5591,5347
+"793","Census Tract 5351, Tolland County, Connecticut","09","013","535100",8959,8712
+"794","Census Tract 5352, Tolland County, Connecticut","09","013","535200",6766,6382
+"795","Census Tract 5381, Tolland County, Connecticut","09","013","538100",1687,586
+"796","Census Tract 5382.01, Tolland County, Connecticut","09","013","538201",5625,5112
+"797","Census Tract 5382.02, Tolland County, Connecticut","09","013","538202",4119,3962
+"798","Census Tract 8401, Tolland County, Connecticut","09","013","840100",5994,5743
+"799","Census Tract 8501, Tolland County, Connecticut","09","013","850100",5349,4928
+"800","Census Tract 8502, Tolland County, Connecticut","09","013","850200",7085,6988
+"801","Census Tract 8601, Tolland County, Connecticut","09","013","860100",5472,4853
+"802","Census Tract 8811, Tolland County, Connecticut","09","013","881100",4237,3710
+"803","Census Tract 8812, Tolland County, Connecticut","09","013","881200",10843,8549
+"804","Census Tract 8813, Tolland County, Connecticut","09","013","881300",5567,4186
+"805","Census Tract 8815, Tolland County, Connecticut","09","013","881500",5681,4412
+"806","Census Tract 8901, Tolland County, Connecticut","09","013","890100",4135,3795
+"807","Census Tract 8902.01, Tolland County, Connecticut","09","013","890201",3584,3490
+"808","Census Tract 8902.02, Tolland County, Connecticut","09","013","890202",5244,5150
+"809","Census Tract 8003, Windham County, Connecticut","09","015","800300",6894,5045
+"810","Census Tract 8004, Windham County, Connecticut","09","015","800400",4079,3350
+"811","Census Tract 8005, Windham County, Connecticut","09","015","800500",6741,5883
+"812","Census Tract 8006, Windham County, Connecticut","09","015","800600",4364,3090
+"813","Census Tract 8007, Windham County, Connecticut","09","015","800700",3193,2408
+"814","Census Tract 8150, Windham County, Connecticut","09","015","815000",2256,2174
+"815","Census Tract 8200, Windham County, Connecticut","09","015","820000",1912,1838
+"816","Census Tract 8250, Windham County, Connecticut","09","015","825000",1709,1664
+"817","Census Tract 8301, Windham County, Connecticut","09","015","830100",4297,4092
+"818","Census Tract 9001, Windham County, Connecticut","09","015","900100",4713,4545
+"819","Census Tract 9002, Windham County, Connecticut","09","015","900200",4677,4538
+"820","Census Tract 9011, Windham County, Connecticut","09","015","901100",7916,7623
+"821","Census Tract 9022, Windham County, Connecticut","09","015","902200",1726,1636
+"822","Census Tract 9025, Windham County, Connecticut","09","015","902500",4216,4064
+"823","Census Tract 9031, Windham County, Connecticut","09","015","903100",7248,6840
+"824","Census Tract 9032, Windham County, Connecticut","09","015","903200",2267,2236
+"825","Census Tract 9041, Windham County, Connecticut","09","015","904100",7217,7127
+"826","Census Tract 9044, Windham County, Connecticut","09","015","904400",4147,3798
+"827","Census Tract 9045, Windham County, Connecticut","09","015","904500",5917,5004
+"828","Census Tract 9051, Windham County, Connecticut","09","015","905100",8240,7801
+"829","Census Tract 9061, Windham County, Connecticut","09","015","906100",5110,4945
+"830","Census Tract 9071, Windham County, Connecticut","09","015","907100",4445,4035
+"831","Census Tract 9072, Windham County, Connecticut","09","015","907200",5327,4941
+"832","Census Tract 9073, Windham County, Connecticut","09","015","907300",5498,5217
+"833","Census Tract 9081, Windham County, Connecticut","09","015","908100",3809,3640
