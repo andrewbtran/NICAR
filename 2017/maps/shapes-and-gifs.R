@@ -201,7 +201,7 @@ gg
 
 file_path <- paste0(state_abbrev, "_maps/", layer_name, ".png")
 ggsave(gg, file=file_path, width=5, height=4, type="cairo-png")
-
+}
 
 # Final state GIF
 
