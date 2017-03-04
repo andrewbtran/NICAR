@@ -60,7 +60,7 @@ library(rgdal)
 # For readOGR to work, we'll need to know the folder where the shape file is
 # And we also need to know the name of the shapefiles
 
-droughtmap <- readOGR(dsn="shapes/USDM_20160105_M", layer="USDM_20160105")
+droughtmap <- readOGR(dsn="shapes/USDM_20161101_M", layer="USDM_20161101")
 
 # Transform the shapefile into a dataframe so we can work with it in R
 droughtfort <- fortify(droughtmap, region="DM")
