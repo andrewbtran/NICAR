@@ -77,7 +77,7 @@ Now, I can load it in with the `readOGR` function and display it with `plot()`.
 First, we'll need to load the [`rgdal` package](https://cran.r-project.org/web/packages/rgdal/rgdal.pdf).
 
 ```{r geo_map_basic, fig.width=8, fig.height=4, warning=F, message=F}
-# install.packages(rgdal)
+# install.packages("rgdal")
 library(rgdal)
 
 # dsn is the folder the shape files are in. layer is the name of the file.

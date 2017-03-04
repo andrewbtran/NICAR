@@ -17,7 +17,7 @@ Find yourself repeating the same tasks over and over again?
 Reproducibility
 ========================================================
 
-## Save your most common tasks as a function
+## Save your most common tasks as functions
 
 <img src="https://cdn.shopify.com/s/files/1/0535/6917/products/sisyphus-shirt.gif?v=1414446009" width="100%">
 

@@ -1,7 +1,7 @@
-# install.package("tidyverse")
-# install.package("ggmap")
-# install.package("DT")
-# install.package("knitr")
+# install.packages("tidyverse")
+# install.packages("ggmap")
+# install.packages("DT")
+# install.packages("knitr")
 
 library(tidyverse)
 library(ggmap)
@@ -28,7 +28,7 @@ stations$lat <- geo$lat
 # Shapefiles with ggplot2
 
 
-# install.packages(rgdal)
+# install.packages("rgdal")
 library(rgdal)
 
 # dsn is the folder the shape files are in. layer is the name of the file.
