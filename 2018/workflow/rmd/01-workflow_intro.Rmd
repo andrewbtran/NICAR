@@ -90,7 +90,7 @@ cat(readLines(here("Test", "Folder", "text.txt")))
 ## At minimum
 
 ```{r, eval=FALSE}
-name_of_projec
+name_of_project
 |--data
     |--2017report.csv
     |--2016report.pdf

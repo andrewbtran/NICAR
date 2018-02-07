@@ -373,6 +373,6 @@ If it's awesome, submit it to CRAN.
 
 This was an extremely simple version of making a package.
 
-For better details, check out [the free book](http://r-pkgs.had.co.nz/) from Hadley Wikham. 
+For better details, check out [the free book](http://r-pkgs.had.co.nz/) from Hadley Wickham. 
 
 
