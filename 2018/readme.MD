@@ -7,7 +7,7 @@
     * [File organization best practices](https://andrewbtran.github.io/NICAR/2018/workflow/docs/01-workflow_intro.html)
     * [Intro to R Markdown](https://andrewbtran.github.io/NICAR/2018/workflow/docs/02-rmarkdown.html)
     * [Github](https://andrewbtran.github.io/NICAR/2018/workflow/docs/03-integrating_github.html)
-    * [Creating functions and packages](https://andrewbtran.github.io/NICAR/2018/workflow/docs/04-creating_packages.html)
+    * [Creating functions and packages](https://andrewbtran.github.io/NICAR/2018/workflow/docs/04-creating_functions_packages.html)
 
 
 ### [NICAR 2017 sessions](https://andrewbtran.github.io/NICAR/2017/)

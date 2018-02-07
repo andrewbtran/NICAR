@@ -12,6 +12,6 @@ output: html_document
     * [Files organization best practices](https://andrewbtran.github.io/NICAR/2018/workflow/rmarkdown.html)
     * [Intro to R Markdown](https://andrewbtran.github.io/NICAR/2018/workflow/rmarkdown.html)
     * [Github](https://andrewbtran.github.io/NICAR/2018/workflow/integrating_github.html)
-    * [Creating functions and packages](https://andrewbtran.github.io/NICAR/2018/workflow/creating_packages.html)
+    * [Creating functions and packages](https://andrewbtran.github.io/NICAR/2018/workflow/creating_functions_packages.html)
 
 ### [NICAR 2017 sessions](https://andrewbtran.github.io/NICAR/2017/)
