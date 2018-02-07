@@ -1,0 +1,290 @@
+---
+title: "Sharing analyses with RMarkdown"
+output:
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+**[Setting up a reproducible data analysis workflow in R](https://www.ire.org/events-and-training/event/3189/3643/)**
+
+* [File organization best practices](https://andrewbtran.github.io/NICAR/2018/workflow/docs/01-workflow_intro.html)
+* *Intro to R Markdown*
+* [Github](https://andrewbtran.github.io/NICAR/2018/workflow/docs/03-integrating_github.html)
+* [Creating functions and packages](https://andrewbtran.github.io/NICAR/2018/workflow/docs/04-creating_packages.html)
+
+## Why R + Markdown?
+
+### Markdown
+
+Super simple way to add formating to plain text
+
+- headers
+- bold
+- bullet lists
+- links
+
+Created by John Gruber (of Daring Fireball) as a simple way for non-programming types to write in an easy-to-read format that could be converted directly into HTML.
+
+<img src="images/markdown.png">
+
+### R code
+
+```
+boston_payroll %>%
+  group_by(TITLE) %>%
+  summarise_each(funs(mean), REGULAR, OVERTIME)
+```
+
+### .Rmd files
+
+<div style="float:left; padding-right:20px"><img src="images/rmdfiles.png"></div>
+An R Markdown (.Rmd) file is a record of your analysis process. 
+
+It contains the code that a scientist needs to reproduce your work along with the narration that a reader needs to understand your work.
+
+**Literate programming**
+
+### Show your work
+
+**Everyone's doing it!**
+
+<img src="images/somanyrepos.png" height="300">
+
+### Reproducible research
+
+The idea that data analyses, and more generally, stories, are published with their data and software code so that others may verify the findings and build upon them.
+
+* Look for insight deeper than the summary report
+* Verify details yourself
+* Learn new techniques from looking at other processes
+* Figure out ways to apply the analysis to your own needs
+* Your future self will thank you for documenting your process now
+
+-----
+ 
+<div style="float:left; width:40%;padding-right:20px"><img src="http://rmarkdown.rstudio.com/images/bandThree2.png"></div> 
+At the click of a button, or the type of a command, you can rerun the code in an R Markdown file to reproduce your work and export the results as a finished report.
+
+R Markdown supports dozens of static and dynamic output formats including
+
+- HTML
+- PDF
+- MS Word
+- Beamer
+- HTML5 slides
+- Tufte-style handouts
+- books
+- dashboards
+- scientific articles (white pages)
+- websites
+
+---
+
+### Produce slick-looking PDFs
+
+Be sure to get [LaTex](https://www.latex-project.org/get/) installed first.
+
+<img src="images/pdf_output.png">
+
+### IPython Notebooks
+
+<img src="images/pythonnotebook.png" height="300">
+
+### How .rmd files render in Github
+
+<img src="images/markdownoutput.png" height="300">
+
+**That's fine, I'm not mad**
+
+```{r datatable, warning=F, message=F}
+library(DT)
+library(dplyr)
+library(readr)
+payroll <- read_csv("../data/bostonpayroll2013.csv") %>% 
+  select(NAME, TITLE, DEPARTMENT, REGULAR, OVERTIME) %>% 
+  filter(row_number()<100)
+datatable(payroll, extensions = 'Buttons', options = list(
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel', 'pdf', 'print')
+  )
+)
+```
+
+### Output .Rmd files to HTML
+
+#### Links not attachments!
+
+<img src="images/link.gif">
+
+Reporters sometimes aren't very organized. Send them links instead!
+
+<img src="images/bad_desktop.png">
+
+
+### Host the HTML of your analysis
+
+- Internally or
+- On Github pages
+- Share with reporters and editors, let them explore your analysis further
+- Let them download customized spreadsheets with buttons in the `DT` [(datatable) package](https://rstudio.github.io/DT/extensions.html)
+- If your analysis gets updated, keep the file name then they only have to refresh their link
+- Then get into Shiny!
+
+
+
+## Coding in RMarkdown
+
+### 1. Open a new .Rmd file
+
+at **File > New File > R Markdown**. 
+
+<div style="max-width:500px; margin-left:auto; margin-right:auto;"><img src="images/menu.png"></div>
+
+Title the R Markdown file and select **HTML** as the output for now.
+
+<div style="max-width:400px; margin-left:auto; margin-right:auto;"><img src="images/html.png"></div>
+
+### .Rmd structure
+
+<div style="width:50%; margin-left:auto; margin-right:auto;"><img src="images/layout2.png"></div>
+
+**YAML HEADER**
+
+Optional section of render options written as **key:value** pairs.
+
+- At start of file
+- Between lines of **---** (3 dashes)
+
+**CODE CHUNKS**
+
+Chunks of embedded R code. Each chunk:
+
+- begins with **```{r}** (the key to the left of 1)
+- ends with **```**
+
+**TEXT**
+
+Narration formatted with markdown mixed with code chunks.
+
+
+### 2. Write document
+
+Edit the default template by putting in your own code and text.
+
+Intersperse the text with your code to tell a story.
+
+### 2b. Label your chunks of code
+
+You'll see why in a moment.
+
+<img src="images/labels.png">
+
+### 2c. Notebooks style
+
+You can run individual chunks of code before generating the full report to see how it looks.
+
+Click the green arrow next to each chunk.
+
+<img src="images/chunky.png">
+
+
+### 3. Knit document to create report
+
+Use knit button or type **render()** to knit
+
+<div style="width:60%; margin-left:auto; margin-right:auto;"><img src="images/knit_button.png"></div>
+
+### 3b. Check out the build log
+
+Down in the console. Warnings and errors will appear.
+
+Also measures progress by chunks, which is why it's important to label them.
+
+<img src="images/console.png">
+
+### 4. Preview output in IDE window
+
+<img src="images/preview.png">
+
+### 5. Output file
+
+You have a .Rmd file and clicking knit HTML also generated a .html file
+
+<div style="width:50%; margin-left:auto; margin-right:auto;"><img src="images/testpage.png"></div>
+
+### Datatables
+
+You need to load libraries just like you would a normal script.
+
+Let's look at the data in R Markdown with a new package called [`DT`](https://rstudio.github.io/DT/) that uses the Datatables [jquery library](https://datatables.net/).
+
+Example from **Part 1** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
+
+## Specific features
+
+### Hide warnings, messages
+
+Adding `warning=F` and `message=F` hid the little messages.
+
+Example from **Part 2** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
+
+### Hide code
+
+If the person you're sharing this with has no interest in the code and only the quick results, use `echo=F` to hide the chunk of code and just display the output.
+
+Example from **Part 3** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
+
+### Inline R code
+
+Embed lines of R code within the narrative with
+
+<div style="width:50%; margin-left:auto; margin-right:auto;"><img src="images/inline.png"></div>
+
+Example from **Part 4** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
+
+### Pretty tables
+
+Make pretty tables with the `knitr` package and the `kable` function.
+
+Example from **Part 5** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
+
+### Change theme and style
+
+Change the appearance and style of the HTML document by changing the theme up top.
+
+Options from the [Bootswatch](http://bootswatch.com/) theme library includes:
+
+- `default`
+- `cerulean`
+- `journal`
+- `cosmo`
+
+highlights 
+
+- `tango`
+- `pygments`
+- `kate`
+
+Example from **Part 6** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
+
+### Table of contents
+
+Add a floating table of contents by changing `html_document` to `toc: true` and `toc_float: true`.
+
+Example from **Part 7** in the `chunks.MD` [file](https://raw.githubusercontent.com/andrewbtran/NICAR/master/2017/reproducibility-rmarkdown/chunks.MD).
+
+### Next steps?
+
+Exporting as a PDF will require LaTex installed first
+  * Get it from [latex-project.org](https://www.latex-project.org/get/) or [MacTex](http://www.tug.org/mactex/)
+
+Check out [all the features](http://rmarkdown.rstudio.com/html_document_format.html#overview) of R Markdown at RStudio
+
+**Publish your results to Github pages**
+
+Read more [on how](http://www.stephaniehicks.com/githubPages_tutorial/pages/github-intro.html)
+
+**Try to publish directly to Wordpress**
+
+I haven't actually made this work but maybe you [can try](https://yihui.name/knitr/demo/wordpress/#comment-1102994305)
