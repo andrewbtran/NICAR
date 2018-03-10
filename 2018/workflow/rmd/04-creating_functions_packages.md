@@ -26,6 +26,8 @@ Reproducibility
 Example: Data with counts by state
 ========================================================
 
+Open `rmd/04-function_example.Rmd` and run the chunks when spotted
+
 <img src="images/sbcount.png">
 
 ```r

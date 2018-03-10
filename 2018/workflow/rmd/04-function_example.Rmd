@@ -1,0 +1,108 @@
+---
+title: "04-function_example"
+output: html_document
+---
+
+1. data with counts by state
+
+```{r sb}
+sb <- read.csv("https://docs.google.com/spreadsheets/d/1gH6eUQVQsEmFagy0qzQDEuwb3cutMWaddCLc7ESbzjc/pub?gid=294374511&single=true&output=csv", stringsAsFactors=F)
+
+# sb <- read.csv("../data/sb.csv", stringsAsFactors=F)
+sb
+```
+
+2. bringing in population
+
+```{r pop}
+pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+
+# pop <- read.csv("../data/pop.csv", stringsAsFactors=F)
+
+pop
+```
+
+3. Join and display
+
+```{r join_display}
+library(tidyverse)
+sb_adjusted <- left_join(sb, pop, by=c("State_Abbreviation"="Abbrev"))
+
+head(sb_adjusted, 3)
+```
+
+4. Calculating per capita
+
+```{r some_math}
+sb_adjusted$per_capita <- sb_adjusted$Starbucks/sb_adjusted$Population*100000
+head(sb_adjusted, 3)
+
+```
+
+5. Turning that process into a function
+
+```{r function_intro}
+# Save the dataframe as a consistent name
+any_df <- sb
+
+# Rename the first column to "Abbrev"
+colnames(any_df)[1] <- "Abbrev"
+
+# Join by the similar name
+df_adjusted <- left_join(any_df, pop, by="Abbrev")
+
+# Do the calculations based on the values in the second column
+df_adjusted$per_capita <- df_adjusted[,2] / df_adjusted$Population * 100000
+
+head(df_adjusted, 3)
+```
+
+
+6. Function time
+
+```{r function}
+
+pc_adjust <- function(any_df, state_type){
+  pop <- read.csv("https://docs.google.com/spreadsheets/d/16oW_uvRJCNoOnCeAkJH4fDouFokjaGUdGFUCaFdKd6I/pub?output=csv", stringsAsFactors=F)
+  # pop <- read.csv("pop.csv", stringsAsFactors=F)
+  # State type options are either "Abbrev" or "State"
+colnames(any_df)[1] <- state_type
+df_adjusted <- left_join(any_df, pop, by=state_type)
+df_adjusted$per_capita <- df_adjusted[,2] / df_adjusted$Population * 1000000
+return(df_adjusted)
+}
+
+str(pc_adjust)
+```
+
+7. How does the sb dataframe look like again?
+
+```{r sb_test1}
+sb
+```
+
+8. Test the function out on the data frame
+
+```{r sb_test2}
+
+test <- pc_adjust(sb, "Abbrev")
+test
+```
+
+9. Bring in another data set
+
+```{r dunkin_test}
+dd <- read.csv("https://docs.google.com/spreadsheets/d/1TWuWZpfDUMWmMpc7aPqUQ-g1a1J0rUO8_cle_zcPyI8/pub?gid=1983903926&single=true&output=csv", stringsAsFactors=F)
+
+# dd <- read.csv("../data/dd.csv", stringsAsFactors=F)
+
+dd
+```
+
+10. Run the function on it
+
+```{r dunkin_function}
+dd_adjusted <- pc_adjust(dd, "State")
+
+dd_adjusted
+```

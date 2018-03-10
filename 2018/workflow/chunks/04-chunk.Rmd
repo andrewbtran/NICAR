@@ -1,0 +1,32 @@
+---
+title: "04-chunk"
+output: html_document
+---
+
+```{r loading, warning=F, message=F, echo=F}
+# load packages
+library(tidyverse)
+
+# Loading the Boston city payroll
+payroll <- read.csv("../data/bostonpayroll2013.csv", stringsAsFactors=F)
+
+payroll$TOTAL.EARNINGS <- gsub("\\$", "", payroll$TOTAL.EARNINGS)
+payroll$TOTAL.EARNINGS <- gsub(",", "", payroll$TOTAL.EARNINGS)
+payroll$TOTAL.EARNINGS <- as.numeric(payroll$TOTAL.EARNINGS)
+
+payroll_total <- select(payroll, NAME, TITLE, DEPARTMENT, TOTAL.EARNINGS)
+
+most_pay <- payroll_total %>%
+arrange(desc(TOTAL.EARNINGS)) %>%
+head(1)
+```
+
+The Boston city employee who was paid the most in 2014 was a `r most_pay$TITLE` at `r most_pay$DEPARTMENT`.
+
+This person made $`r prettyNum(most_pay$TOTAL.EARNINGS,big.mark=",",scientific=FALSE)`.
+
+```{r display_data, warning=F, message=F, echo=F}
+library(DT)
+datatable(payroll_total)
+
+```

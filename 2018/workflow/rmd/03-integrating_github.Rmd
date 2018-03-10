@@ -93,3 +93,14 @@ Change the *Source* from `None` to `master branch` or `master branch\docs` (depe
 - Try to exclude any extraneous files like r history
 
 You can borrow [this one](https://github.com/wpinvestigative/kushner_eb5_census/blob/master/.gitignore)
+
+# Include readmes and data dictionaries
+
+- [Buzzfeed](https://github.com/BuzzFeedNews/everything) is a good model for how they index their story links and repos as a table
+
+<img src="images/index.png">
+
+# Please don't create monster data repos
+
+<img src="images/fivethirtyeight.png">
+

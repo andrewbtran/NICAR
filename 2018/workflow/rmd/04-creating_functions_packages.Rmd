@@ -34,6 +34,8 @@ Save your most common tasks as a function
 
 # Introducing the example 
 
+Open `rmd/04-function_example.Rmd` and run the chunks when spotted
+
 Data with counts by state
 
 ```{r }

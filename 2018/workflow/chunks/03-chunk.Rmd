@@ -1,0 +1,21 @@
+---
+title: "03-chunk"
+output: html_document
+---
+
+# Boston employee pay in 2014
+
+```{r loading, warning=F, message=F, echo=F}
+# load packages
+library(tidyverse)
+
+# Loading the Boston city payroll
+payroll <- read.csv("../data/bostonpayroll2013.csv", stringsAsFactors=F)
+payroll_total <- select(payroll, NAME, TITLE, DEPARTMENT, TOTAL.EARNINGS)
+```
+
+```{r display_data, warning=F, message=F, echo=F}
+library(DT)
+datatable(payroll_total)
+
+```

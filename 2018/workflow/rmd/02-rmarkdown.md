@@ -117,6 +117,12 @@ Reporters sometimes aren't very organized
 ========================================================
 <img src="images/bad_desktop.png">
 
+Host the files on an internal server
+========================================================
+<img src="images/S3.png">
+<p>I have the code above aliased so I can type in a keyword and it will move all html files in a certain directory to an S3 server while preserving the structure of the subdirectories.</p>
+<img src="images/url.png">
+
 
 Host the HTML of your analysis
 ========================================================
@@ -222,6 +228,8 @@ Let's look at the data in R Markdown with a new package called [`DT`](https://rs
 
 Example from **Part 1** in the `chunks.MD` file.
 
+Open and knit `chunks/01-chunk.Rmd`
+
 Specific features
 ========================================================
 
@@ -229,6 +237,7 @@ Adding `warning=F` and `message=F` hid the little messages.
 
 Example from **Part 2** in the `chunks.MD` file.
 
+Open and knit `chunks/02-chunk.Rmd`
 
 Specific features
 ========================================================
@@ -236,6 +245,9 @@ Specific features
 If the person you're sharing this with has no interest in the code and only the quick results, use `echo=F` to hide the chunk of code and just display the output.
 
 Example from **Part 3** in the `chunks.MD` file.
+
+Open and knit `chunks/03-chunk.Rmd`
+
 
 Specific features
 ========================================================
@@ -246,6 +258,8 @@ Embed lines of R code within the narrative with
 
 Example from **Part 4** in the `chunks.MD` file.
 
+Open and knit `chunks/04-chunk.Rmd`
+
 
 Specific features
 ========================================================
@@ -254,6 +268,7 @@ Make pretty tables with the `knitr` package and the `kable` function.
 
 Example from **Part 5** in the `chunks.MD` file.
 
+Open and knit `chunks/05-chunk.Rmd`
 
 
 Specific features
@@ -276,12 +291,17 @@ highlights
 
 Example from **Part 6** in the `chunks.MD` file.
 
+Open and knit `chunks/02-chunk.Rmd`
+
 Specific features
 ========================================================
 
 Add a floating table of contents by changing `html_document` to `toc: true` and `toc_float: true`.
 
 Example from **Part 7** in the `chunks.MD` file.
+
+Open and knit `chunks/07-chunk.Rmd`
+
 
 Quick notes
 ========================================================
