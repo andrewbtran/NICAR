@@ -19,7 +19,9 @@ Thanks
 
 These are all things I picked up from browsing other presentations and repos.
 
-Much thanks to [Jenny Bryan](https://github.com/jennybc) and [Joris Muller](http://blog.jom.link/) from whom I cobbled many of these ideas and practices from. Also to BuzzFeed, FiveThirtyEight, ProPublica, Chicago Tribune, Los Angeles Times, and TrendCT.org
+Much thanks to [Jenny Bryan](https://github.com/jennybc) and [Joris Muller](http://blog.jom.link/) from whom I cobbled many of these ideas and practices from. 
+
+Also to BuzzFeed, FiveThirtyEight, ProPublica, Chicago Tribune, Los Angeles Times, and TrendCT.org
 
 Purpose of a clear data analysis workflow
 ========================================================
