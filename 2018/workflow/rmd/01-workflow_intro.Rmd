@@ -18,6 +18,13 @@ The goal of reproducible data analysis is to tie specific instructions to data a
 
 Let's be consistent with the good practices of social science and research.
 
+
+# Thanks
+
+These are all things I picked up from browsing other presentations and repos.
+
+Much thanks to [Jenny Bryan](https://github.com/jennybc) and [Joris Muller](http://blog.jom.link/) from whom I cobbled many of these ideas and practices from. Also to BuzzFeed, FiveThirtyEight, ProPublica, Chicago Tribune, Los Angeles Times, and TrendCT.org
+
 # Purpose 
 
 Why a clear data analysis workflow
@@ -199,7 +206,7 @@ if(any(!check)){
 
 # Deprecated Functions
 
-The [`here` package](https://rstudio.github.io/packrat/) creates a snapshot of the versions you are using in a workspace.
+The [`packrat` package](https://rstudio.github.io/packrat/) creates a snapshot of the versions you are using in a workspace.
 
 - Isolated: Installing a new or updated package for one project won’t break your other projects, and vice versa.
 - Portable: Easily transport your projects from one computer to another, even across different platforms. 

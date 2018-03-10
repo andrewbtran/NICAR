@@ -13,6 +13,14 @@ Why?
 ========================================================
 Let's be consistent with the good practices of social science and research.
 
+
+Thanks
+========================================================
+
+These are all things I picked up from browsing other presentations and repos.
+
+Much thanks to [Jenny Bryan](https://github.com/jennybc) and [Joris Muller](http://blog.jom.link/) from whom I cobbled many of these ideas and practices from. Also to BuzzFeed, FiveThirtyEight, ProPublica, Chicago Tribune, Los Angeles Times, and TrendCT.org
+
 Purpose of a clear data analysis workflow
 ========================================================
 
@@ -130,6 +138,19 @@ Create the folders
 folder_names <- c("raw_data", "output_data", "rmd", "docs", "scripts")
 
 sapply(folder_names, dir.create)
+```
+
+Interested in tidy paths?
+========================================================
+
+Check out the [`fs` library](http://fs.r-lib.org/).
+
+```
+paths <- file_temp() %>%
+  dir_create() %>%
+  path(letters[1:5]) %>%
+  file_create()
+paths
 ```
 
 Organization principles
