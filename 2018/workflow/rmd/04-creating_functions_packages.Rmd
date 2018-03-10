@@ -13,6 +13,7 @@ output:
 * [Github](https://andrewbtran.github.io/NICAR/2018/workflow/docs/03-integrating_github.html)
 * *Creating functions and packages*
 
+**[Zip of files referred to in this walkthrough](http://andrewbatran.com/nicar/workflow.zip)**
 
 ## Creating functions and packages
 

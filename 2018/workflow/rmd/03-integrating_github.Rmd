@@ -14,6 +14,8 @@ output:
 * *Github*
 * [Creating functions and packages](https://andrewbtran.github.io/NICAR/2018/workflow/docs/04-creating_functions_packages.html)
 
+**[Zip of files referred to in this walkthrough](http://andrewbatran.com/nicar/workflow.zip)**
+
 
 <img src="images/git.png">
 

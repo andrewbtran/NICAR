@@ -9,9 +9,11 @@ Why?
 
 The goal of reproducible data analysis is to tie specific instructions to data analysis and experimental data so that scholarship can be recreated, better understood and verified.
 
-Why?
-========================================================
-Let's be consistent with the good practices of social science and research.
+For journalists
+- Builds trust among readers
+- Enhances transparency
+- Simplifies peer review
+- Promotes community
 
 
 Thanks
