@@ -1,0 +1,901 @@
+---
+title: "NICAR 2019: Mapping with R - Census data"
+author: "Andrew Ba Tran"
+date: "3/8/2019"
+output:
+  revealjs::revealjs_presentation:
+    theme: sky
+    highlight: pygments
+    center: true
+    self_contained: false
+    reveal_plugins: ["notes"]
+---
+
+## Maps are fun
+
+![](images/composite_map.png)
+
+Press **s** to see my lecture notes.
+
+<aside class="notes">There’s something tangible about visualizing data with maps. We recognize where we fit in the borders. It tells us who we are based on where we’ve been. And there’s more location data than ever before thanks to GPS-enable devices like phones, cameras, and vehicles.</aside>
+
+## Maps normally
+
+![](images/tools.png)
+
+
+<aside class="notes">
+Spatial analysis requires multiple programs, usually. You've got spreadsheets, you've got shapefiles or geojson. If you're doing math, you have to take it out into Excel or whatever. Usually cartographers work on them in ArcGIS or QGIS. They style it there or take it into Adobe Illustrator. Recently, GIS work can be done online with Google Fusion Tables and Tableau or Carto.</aside>
+
+## Maps normally
+
+1. **Download data and transform data**
+    * Excel
+2. **Find and download shapefiles**
+    * Census TIGER
+3. **Import maps and join with data and style**
+    * ArcGIS or QGIS
+4. **Export and tweak for style further**
+    * Tableau, CartoDB, Illustrator
+
+
+## Mapping with R
+
+![](images/maps_in_r.png)
+
+<aside class="notes">
+I'm going to show you how you can do this all in R.</aside>
+
+## Why map in R?
+
+* Scripting and reproducibility
+* Transparency and trust
+* Easily interface with APIs for data and shapefiles
+* Life is already complicated
+    * Your process doesn't have to be
+
+## Today
+
+* Create static maps and interactive maps with geolocated data
+* We’ll be using the more-recent packages in the R GIS community
+    * simple features
+    * leaflet
+* Access the Census API to download data and use what we’ve already learned to join that data to shapefiles to make choropleth maps– both interactive and static.
+
+<aside class="notes">
+There’s a steep learning curve in using R to programmatically analyze and visualize spatial data. But the perks include approaching your work in a customizable, transparent, and reproducible way.</aside>
+
+## Basics
+
+There are two underlying important pieces of information for spatial data:
+
+* Coordinates of the object
+* How the coordinates relate to a physical location on Earth
+    * Also known as coordinate reference system or **CRS**
+
+## CRS
+
+
+* Geographic 
+    * Uses three-dimensional model of the earth to define specific locations on the surface of the grid
+    * longitude (East/West) and latitude (North/South)
+* Projected
+    * A translation of the three-dimensional grid onto a two-dimensional plane
+    
+## CRS
+    
+![](images/projection_tween.gif)
+
+
+## Raster versus Vector data
+
+Spatial data with a defined CRS can either be vector or raster data.
+
+* Vector
+    * Based on points that can be connected to form lines and polygons
+    * Located with in a coordinate reference system
+    * Example: Road map
+* Raster
+    * Are values within a grid system
+    * Example: Satellite imagery
+
+## sf vs sp
+
+* An older package, **sp**, lets a user handle both vector and raster data.
+* This class will focus on vector data and the **sf** package. 
+
+<aside class="notes">
+It also takes much more effort to get your system ready for it (*shakes fist at gdal*). The main differences between the **sp** and **sf** packages are how they store CRS information. While **sp** uses spatial sub classes, **sf** stores data in data frames, allowing it to interact with **dplyr** methods we've learned so far. I encourage you to check out other spatial data analysis and modeling [classes](http://www.rspatial.org/) if you remain interested in this afterward.</aside>
+
+## Shape files
+
+Though we refer to a shape file in the singular, it's actually a collection of at least three basic files: 
+
+* .shp - lists shape and vertices
+* .shx - has index with offsets
+* .dbf - relationship file between geometry and attributes (data)
+
+All files must be present in the directory and named the same (except for the file extension) to import correctly.
+
+<aside class="notes">
+R can handle importing different kinds of file formats for spatial data, including KML and geojson. We'll focus on shape files, which was created by ESRI in the '90s.</aside>
+
+
+## The plan
+
+
+1. Map blank shape file after downloading
+2. Join Census data to blank shape file and map
+3. Use R package **Tigris** to download shape file
+4. Use R package **censusapi** to download census data and join to new shape file
+5. Use **tidycensus** to download Census data and the shape file all at once
+
+<aside class="notes">
+We'll walk through several methods for dealing with spatial data, each time improving on the style a little bit.
+</aside>
+
+
+## Mapping a simple shape file
+
+We'll start by importing in a shape file of state boundaries from the [Census](https://www.census.gov/geo/maps-data/data/tiger-cart-boundary.html). 
+
+![](images/folder_file.png)
+
+
+<aside class="notes">
+When you unzip a file that contains a shape file, this is what it looks like.
+</aside>
+
+
+## Mapping a simple shape file
+
+**st_read()** is the function to import the shapefile.
+
+Type out the code below or copy and paste it into the console or run `simple_states` from the static_maps_slides.Rmd file
+
+
+```{r simple_states, warning=F, message=F, echo=T, results='hide'}
+library(ggplot2)
+library(sf)
+
+fifty_location <- "data/cb_2017_us_state_20m/cb_2017_us_state_20m.shp"
+fifty_states <- st_read(fifty_location)
+```
+
+## Mapping a simple shape file
+
+
+```
+View(fifty_states)
+```
+
+![](images/view1.png)
+
+<aside class="notes">
+We pointed to the shape file and used the `st_read()` function to import it. This is what the object fifty_states looks like as a data frame.
+</aside>
+
+## Map fifty_states
+
+Map with ggplot2 functions and **geom_sf**
+
+```{r plot_fifty_simple, fig.width=9, fig.height=5, echo=T}
+ggplot(fifty_states) + geom_sf()
+```
+
+<aside class="notes">
+
+Well, that's interesting. We have the boundaries of each state, including Hawaii and Alaska.
+
+And **ggplot2** is doing its best to fit everything on one image. Which is taxing on the system. 
+
+Also, there are no colors because we don't have any data to fill with.
+</aside>
+
+## Join it to data 
+
+Let's pull in population data from [CensusReporter.org](https://censusreporter.org/data/table/?table=B02001&geo_ids=040|01000US)
+
+![](images/census.png)
+
+## Import the data
+
+Using **read_csv()** from the **readr** package.
+
+```{r import_pop_csv, warning=F, message=F, echo=T}
+library(readr)
+populations <- read_csv("data/acs2016_1yr_B02001_04000US55.csv")
+```
+
+![](images/folder_csv.png)
+
+## Import the data
+
+```
+View(populations)
+```
+
+![](images/view2.png)
+
+
+## Join data to blank shapefile and map
+
+```{r join_data1, warning=F, message=F, echo=T}
+ncol(fifty_states)
+
+library(dplyr)
+
+fifty_states <- left_join(fifty_states, populations,
+                          by=c("NAME"="name"))
+```
+
+
+<aside class="notes">
+
+We have a shape file and a data set of populations. They're both data frames so should be easy to join. State names are where the data sets can join on. The column names for each data frame is different for state names, but we can account for that easily.</aside>
+
+## Did it work? 
+
+```{r viewfifty, echo=T}
+ncol(fifty_states)
+```
+
+There are a lot of variable names in this data frame. Check them out.
+
+```{r colnames_fifty, echo=T}
+colnames(fifty_states)
+```
+
+<aside class="notes">
+Excellent. We went from 10 variables in **fifty_states** to 31.
+</aside>
+
+## What are the variables
+
+
+* **STATEFP** is the state fips code. 
+    * That stands for the Federal Information Processing Standard. It's a standardized way to identify states, counties, census tracts, etc.
+* **GEOID** is also part of the fips code. 
+    * In this instance it's only two digits wide. 
+    * The more specific you get into the Census boundaries, the longer the number gets.
+    
+## What are the variables
+   
+* **B02001001**, **B02001002**, etc.
+    * This is reference to a Census table of information.
+    * For example, [**B02001001**](https://www.socialexplorer.com/data/ACS2016_5yr/metadata/?ds=ACS16_5yr&var=B02001001) is total population for that polygon of data in that row
+    * When you export data from the Census, the variables get translated to this sort of format
+    * You'll have to remember when you download it or [look it up](https://www.census.gov/programs-surveys/acs/guidance/which-data-tool/table-ids-explained.html).
+* **B02001001, Error**
+    * Margin of error included because these are just estimates, after all
+* **geometry** 
+    * This is the CRS data
+    
+## Map with the new data
+
+* Map with `geom_sf()`
+* Fill with **B02001001**
+* Leave out Hawaii and Alaska for now
+
+<aside class="notes">
+Let's map it with `geom_sf()` and fill it with the population variable **B02001001**. And we'll filter out Hawaii and Alaska for now because it'll slow things down if we don't. Sorry! We'll bring them back in later, I promise.
+</aside>
+
+```
+forty_eight <- fifty_states %>% 
+  filter(NAME!="Hawaii" & NAME!="Alaska" & NAME!="Puerto Rico")
+
+
+ggplot(forty_eight) +
+  geom_sf(aes(fill=B02001001)) +
+  scale_fill_distiller(direction=1, name="Population") +
+  labs(title="Population of 48 states", caption="Source: US Census")
+```
+
+## The functions
+
+```
+forty_eight <- fifty_states %>% 
+  filter(NAME!="Hawaii" & NAME!="Alaska" & NAME!="Puerto Rico")
+
+ggplot(forty_eight) +
+  geom_sf(aes(fill=B02001001)) +
+  scale_fill_distiller(direction=1, name="Population") +
+  labs(title="Population of 48 states", caption="Source: US Census")
+```
+
+* **%>%** and **filter**
+* **ggplot()**
+* **geom_sf()** and **aes()** and the **fill** variable
+* **scale_fill_distiller() ** and the **direction** and **name** variables
+* **labs()** and **title** and **caption** variables
+
+
+## New map with Census data
+
+
+```{r joined_map, fig.width=9, fig.height=5, echo=T}
+forty_eight <- fifty_states %>% 
+  filter(NAME!="Hawaii" & NAME!="Alaska" & NAME!="Puerto Rico")
+
+ggplot(forty_eight) +
+  geom_sf(aes(fill=B02001001)) +
+  scale_fill_distiller(direction=1, name="Population") +
+  labs(title="Population of 48 states", caption="Source: US Census")
+```
+
+<aside class="notes">
+Not bad. Very basic. Notice that the x and y axis are latitude and longitude.
+
+So we've gone over how to bring in shape files and data locally, join them, and how to map it.
+
+There's a more efficient way of dealing with shape files if you know what you're looking for.</aside>
+
+
+## Downloading shape files directly into R
+
+Using the [**tigris**](https://github.com/walkerke/tigris) package, which lets us download [Census shapefiles](https://www.census.gov/geo/maps-data/data/tiger-line.html) directly into R without having to unzip and point to directories, etc. 
+
+Simply call any of these functions (with the proper location variables):
+
+* `tracts()`
+* `counties()`
+* `school_districts()`
+* `roads()`
+
+
+<aside class="notes">
+Here's a pretty [thorough introduction](https://walkerke.github.io/tigris-webinar/) from the package creator, Kyle Walker.
+
+Shape files can be downloaded simply by referring to them as a function such as
+</aside>
+
+## Downloading Texas
+
+First, let's make sure the shape files download as **sf** files (because it can also handle **sp** versions, as well)
+
+If **cb** is set to TRUE, it downloads a generalized (1:500k) counties file. Default is FALSE (the most detailed TIGER file).
+
+```{r tigris_install, warning=F, message=F, quietly=T, echo=T, results='hide'}
+library(tigris)
+
+options(tigris_use_cache = TRUE)
+options(tigris_class = "sf")
+
+tx <- counties("TX", cb=T)
+```
+
+## What the tx object looks like
+
+```
+View(tx)
+```
+
+![](images/txview.png)
+
+Looks familiar, right?
+
+## When we imported the file locally
+
+```
+fifty_location <- "data/cb_2017_us_state_20m/cb_2017_us_state_20m.shp"
+fifty_states <- st_read(fifty_location)
+
+View(fifty_states)
+```
+
+![](images/view1.png)
+
+## Mapping Texas
+
+```{r tigris_map, warning=F, message=F, quietly=T, echo=T, results='hide'}
+ggplot(tx) + 
+  geom_sf() +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  labs(title="Texas counties")
+```
+
+## Notes on some code
+
+```
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+```
+
+* **theme_void()** is a special function that gets rid of grids and gray space for maps
+* **theme()** is how you can alter specific styles of the visualization
+* **theme_void()** is a collection of individual **theme()** modifications
+
+Time to add some data
+
+<aside class="notes">
+Notice how we used a couple of new lines to eliminate the axes and the grids and backgrounds?
+
+Looking like a real map. We just need to add some data.
+</aside>
+
+
+
+## Downloading Census data into R via API
+
+Instead of downloading data from the horrible-to-navigate Census [FactFinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml) or pleasant-to-navigate [CensusReporter.org](https://censusreporter.org/) we can pull the code with the [**censusapi** package](https://hrecht.github.io/censusapi/articles/getting-started.html) from Hannah Recht, of Bloomberg.
+
+First, sign up for a [census key](https://api.census.gov/data/key_signup.html) and load it into the environment.
+
+```{r loading_my_key, echo=F}
+source("key.R")
+Sys.setenv(CENSUS_KEY=census_key)
+readRenviron("~/.Renviron")
+```
+
+## Load the censusapi library
+
+Replace YOURKEYHERE with your Census API key.
+
+```
+# Add key to .Renviron
+Sys.setenv(CENSUS_KEY="YOURKEYHERE")
+# Reload .Renviron
+readRenviron("~/.Renviron")
+# Check to see that the expected key is output in your R console
+Sys.getenv("CENSUS_KEY")
+```
+
+```{r load_censusapi, warning=F, message=F, echo=T}
+library(censusapi)
+```
+
+
+## Look up Census tables
+
+Check out the dozens of data sets you have access to now.
+
+```
+apis <- listCensusApis()
+View(apis)
+```
+
+![](images/apis.png)
+
+
+## Downloading Census data
+
+
+We'll focus on using the `getCensus()` function from the package. It makes an API call and returns a data frame of results.
+
+These are the arguments you'll need to pass it:
+
+* `name` - the name of the Census data set, like "acs5" or "timeseries/bds/firms"
+* `vintage` - the year of the data set
+* `vars` - one or more variables to access (remember *B02001001* from above?)
+* `region` - the geography level of data, like county or tracts or state
+
+
+
+<aside class="notes">
+We won't get too deep into the usage of **censusapi**, though I recommend the [excellent documentation](https://hrecht.github.io/censusapi/articles/getting-started.html) later.
+
+Also, using listCensusMetadata will take a very long time to load, so you can skip this step for now.
+</aside>
+
+## Get Census metadata
+
+**Please don't run this right now.**
+
+You can use `listCensusMetadata()` to see what tables might be available from the ACS Census survey.
+
+```
+acs_vars <- listCensusMetadata(name="acs/acs5", type="variables", vintage=2016)
+
+View(acs_vars)
+```
+
+![](images/race.png)
+
+<aside class="notes">
+It takes quite a few minutes to download the list of this data set (23,000 rows!) but once you get it, you can explore it to see what sort of data you might like to download. You can also refer to the Census for [some guidance](https://www.census.gov/programs-surveys/acs/guidance/which-data-tool/table-ids-explained.html).
+
+We'll pull median income: *B21004_001E*
+</aside>
+
+## Downloading median income
+
+
+```{r median_income, warning=F, message=F, echo=T}
+tx_income <- getCensus(name = "acs/acs5", vintage = 2016, 
+    vars = c("NAME", "B19013_001E", "B19013_001M"), 
+    region = "county:*", regionin = "state:48")
+head(tx_income)
+```
+
+<aside class="notes">
+Alright, time to join it to our **tx** spatial data frame and map it.
+</aside>
+
+## Join and map
+
+```
+tx4ever <- left_join(tx, tx_income, by=c("COUNTYFP"="county"))
+
+ggplot(tx4ever) + 
+  geom_sf(aes(fill=B19013_001E), color="white") +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  scale_fill_distiller(palette="Oranges", direction=1, name="Median income") +
+  labs(title="2016 Median income in Texas counties", caption="Source: US Census/ACS5 2016")
+```
+
+<aside class="notes">
+Can't join by NAME because tx_income data frame has "County, Texas" at the end. We could gsub out the string but we'll join on where there's already a consistent variable, even though the names don't line up
+</aside>
+
+
+## Texas median income
+
+```{r, tx_income2, warning=F, message=F, echo=F}
+tx4ever <- left_join(tx, tx_income, by=c("COUNTYFP"="county"))
+
+ggplot(tx4ever) + 
+  geom_sf(aes(fill=B19013_001E), color="white") +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  scale_fill_distiller(palette="Oranges", direction=1, name="Median income") +
+  labs(title="2016 Median income in Texas counties", caption="Source: US Census/ACS5 2016")
+```
+
+
+## Download Census data and shapefiles together
+
+Newest package for Census data: [**tidycensus**]((https://walkerke.github.io/tidycensus/index.html))
+
+With **tidycensus**, you can download the shape files with the data you want already attached. No joins necessary. 
+
+Let's get right into mapping. We'll calculate unemployment percents by Census tract in Jersey City. It'll involve wrangling some data. But querying the data with `get_acs()` will be easy and so will getting the shape file by simply passing it `geometry=T`.
+
+<aside class="notes">
+The most recent package dealing with Census data is [**tidycensus**](https://walkerke.github.io/tidycensus/index.html) and it brings together what we've done above-- the data and the geography. It's also created by Kyle Walker.
+
+You can use it to pull data only like with **censusapi** or you can use it to pull shape files only, like with **tigris**.
+
+But with tidycensus you bring both at the same time.
+
+I won't get into the particulars of looking up geography types and Census variables.
+
+</aside>
+
+
+## Load up tidycensus
+
+
+```{r tidycensus, warning=F, message=F, echo=T}
+library(tidycensus)
+```
+
+Pass it your Census key.
+
+```{r key, eval=F, echo=T}
+census_api_key("YOUR API KEY GOES HERE")
+```
+
+```{r loading_my_key2, echo=F, message=F, quietly=T}
+census_api_key(census_key)
+```
+
+## Getting unmployment figures
+
+```{r racejobvars, warning=F, message=F, quietly=T, echo=T, results='hide'}
+jobs <- c(labor_force = "B23025_005E", 
+              unemployed = "B23025_002E")
+
+jersey <- get_acs(geography="tract", year=2016, 
+                  variables= jobs, county = "Hudson", 
+                  state="NJ", geometry=T)
+```
+
+```{r jersey, echo=T}
+head(jersey)
+```
+
+## Transforming and mapping the data
+
+
+```
+library(tidyr)
+
+jersey %>% 
+  mutate(variable=case_when(
+    variable=="B23025_005" ~ "Unemployed",
+    variable=="B23025_002" ~ "Workforce")) %>%
+  select(-moe) %>% 
+  spread(variable, estimate) %>% 
+  mutate(percent_unemployed=round(Unemployed/Workforce*100,2)) %>% 
+ggplot(aes(fill=percent_unemployed)) + 
+  geom_sf(color="white") +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  scale_fill_distiller(palette="Reds", direction=1, name="Estimate") +
+  labs(title="Percent unemployed in Jersey City", 
+  caption="Source: US Census/ACS5 2016")
+```
+
+<aside class="notes">
+
+Time for some math. Can you follow what's happening in the code based on what you've learned in previous chapters?
+
+We can string the **dplyr** wrangling and **ggplot2** code together. Just watch and look out for the transition from `%>%` to `+`.
+</aside>
+
+## Transforming and mapping the data
+
+```{r unemployed_nj, warning=F, message=F, quietly=T, echo=F, results='hide'}
+library(tidyr)
+
+jersey %>% 
+  mutate(variable=case_when(
+    variable=="B23025_005" ~ "Unemployed",
+    variable=="B23025_002" ~ "Workforce")) %>%
+  select(-moe) %>% 
+  spread(variable, estimate) %>% 
+  mutate(percent_unemployed=round(Unemployed/Workforce*100,2)) %>% 
+ggplot(aes(fill=percent_unemployed)) + 
+  geom_sf(color="white") +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  scale_fill_distiller(palette="Reds", direction=1, name="Estimate") +
+  labs(title="Percent unemployed in Jersey City", caption="Source: US Census/ACS5 2016") +
+  NULL
+  
+```
+
+## Faceting maps (Small multiples)
+
+
+```{r facet, warning=F, message=F, quietly=T, echo=T, results='hide'}
+racevars <- c(White = "B02001_002", 
+              Black = "B02001_003", 
+              Asian = "B02001_005",
+              Hispanic = "B03003_003")
+
+harris <- get_acs(geography = "tract", variables = racevars, 
+                  state = "TX", county = "Harris County", geometry = TRUE,
+                  summary_var = "B02001_001", year=2017) 
+```
+
+
+<aside class="notes">
+Another example: We'll pull the population of non-Hispanic whites, non-Hispanic blacks, non-Hispanic Asians, and Hispanics by Census tract from the latest ACS Census. The function is `get_acs()` and we'll also add the `summary_var` argument to get multi-group denominators.
+</aside>
+
+## Faceting maps (Small multiples)
+
+```
+head(harris)
+```
+
+```{r head_harris}
+head(harris)
+```
+
+<aside class="notes">
+This is a very tidy data frame. 
+
+And looks like we've have some grouping material.
+</aside>
+
+## Transforming and mapping the data
+
+```
+library(viridis)
+
+harris %>%
+  mutate(pct = 100 * (estimate / summary_est)) %>%
+  ggplot(aes(fill = pct, color = pct)) +
+  facet_wrap(~variable) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  scale_fill_viridis(direction=-1) +
+  scale_color_viridis(direction=-1) +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  labs(title="Racial geography of Harris County, Texas", caption="Source: US Census 2010")
+```
+
+## Transforming and mapping the data
+
+```{r faceting, warning=F, message=F, quietly=T, echo=F, results='hide'}
+library(viridis)
+
+harris %>%
+  mutate(pct = 100 * (estimate / summary_est)) %>%
+  ggplot(aes(fill = pct, color = pct)) +
+  facet_wrap(~variable) +
+  geom_sf() +
+  coord_sf(crs = 26915) + 
+  scale_fill_viridis(direction=-1) +
+  scale_color_viridis(direction=-1) +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent')) +
+  labs(title="Racial geography of Harris County, Texas", caption="Source: US Census 2010")
+```
+
+
+## *About Alaska and Hawaii
+
+If you pass `shift_geo=T` to the `get_acs()` function in **tidycensus** then the states will be re positioned.
+
+```
+county_pov <- get_acs(geography = "county",
+                      variables = "B17001_002",
+                      summary_var = "B17001_001",
+                      geometry = TRUE,
+                      shift_geo = TRUE) %>% 
+  mutate(pctpov = 100 * (estimate/summary_est))
+
+ggplot(county_pov) +
+  geom_sf(aes(fill = pctpov), color=NA) +
+  coord_sf(datum=NA) +
+  labs(title = "Percent of population in poverty by county",
+       subtitle = "Alaska and Hawaii are shifted and not to scale",
+       caption = "Source: ACS 5-year, 2016",
+       fill = "% in poverty") +
+  scale_fill_viridis(direction=-1)
+```
+
+## Welcome back Alaska and Hawaii
+
+```{r alaska_hawii, warning=F, message=F, quietly=T, echo=F, results='hide'}
+county_pov <- get_acs(geography = "county",
+                      variables = "B17001_002",
+                      summary_var = "B17001_001",
+                      geometry = TRUE,
+                      shift_geo = TRUE) %>% 
+  mutate(pctpov = 100 * (estimate/summary_est))
+
+ggplot(county_pov) +
+  geom_sf(aes(fill = pctpov), color=NA) +
+  coord_sf(datum=NA) +
+  labs(title = "Percent of population in poverty by county",
+       subtitle = "Alaska and Hawaii are shifted and not to scale",
+       caption = "Source: ACS 5-year, 2016",
+       fill = "% in poverty") +
+  scale_fill_viridis(direction=-1)
+```
+
+## New static map options
+
+* tigris
+* censusapi
+* tidycensus
+* tmap
+* urbnmapr (via Urban Institute)
+
+<aside class="notes">
+So, why not use **tidycensus** every time instead of **tigris** or **censusapi**? 
+
+Well, you don't need a Census key API to use **tigris**.
+</aside>
+
+
+## Interactive maps
+
+
+## Leaflet
+
+The [Leaflet R package](https://rstudio.github.io/leaflet/) was created by the folks behind RStudio to integrate with the popular opensource JavaScript library. 
+
+Essentially, this package lets you make maps with custom map tiles, markers, polygons, lines, popups, and geojson. 
+
+Almost any maps you can make in Google Fusion Tables or Carto(DB), you can make in R using the Leaflet package.
+
+<aside class="notes">
+It’s great for journalists who have little knowledge of JavaScript who want to make interesting interactives using R. And there is [excellent documentation](https://rstudio.github.io/leaflet/) if you want to dig deeper into its functionality after this introduction.
+</aside>
+
+## Interactive map
+
+Start with the `tx` shapefile we downloaded via API
+
+* `leaflet()` - initializes the leaflet function
+* `addTiles()` - the underlying map tiles
+* `addPolygons()` - instead of dots, we're adding Polygons, or shapes
+    * Passing the argument `popup` to the function with the variable *NAME* from the shape file
+
+```{r viz_states_interactive, eval=F}
+library(leaflet)
+
+tx %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(popup=~NAME)
+```
+
+## Interactive map
+
+```{r viz_states_interactive2, echo=F, message=F, warning=F}
+library(leaflet)
+
+tx %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(popup=~NAME)
+```
+
+<aside class="notes">
+This is how it looks raw. The Census shape files also include territories, like Guam and Puerto Rico.
+</aside>
+
+## Setting up map options
+
+```{r tx4ever1, warning=F, message=F}
+# Creating a color palette based on the number range in the B19013_001E column
+pal <- colorNumeric("Reds", domain=tx4ever$B19013_001E)
+
+# Setting up the pop up text
+popup_sb <- paste0("Median income in ", tx4ever$NAME.x, "\n$", as.character(tx4ever$B19013_001E))
+```
+
+
+
+## Map code
+
+* `addProviderTiles()` - instead of `addTiles()`
+    * Uses the Leaflet Providers plugin to add [different tiles](http://leaflet-extras.github.io/leaflet-providers/preview/) to map
+* `setView()` - sets the starting position of the map
+    * Centers it on defined coordinates with a specific zoom level
+* Lots of arguments passed to `addPolygons()`
+    * `fillColor()`
+    * `fillOpacity()`
+    * `weight`
+    * `smoothFactor()`
+* `addLegend()` - same as in the previous section but with more customization
+
+## Map code
+
+```{r tx4ever2, warning=F, message=F, eval=F}
+# Mapping it with the new tiles CartoDB.Positron
+leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-98.807691, 31.45037, zoom = 6) %>% 
+  addPolygons(data = tx4ever , 
+              fillColor = ~pal(tx4ever$B19013_001E), 
+              fillOpacity = 0.7, 
+              weight = 0.2, 
+              smoothFactor = 0.2, 
+              popup = ~popup_sb) %>%
+  addLegend(pal = pal, 
+            values = tx4ever$B19013_001E, 
+            position = "bottomright", 
+            title = "Median income")
+```
+
+## Map
+
+```{r tx4ever3, warning=F, message=F, echo=F}
+# Mapping it with the new tiles CartoDB.Positron
+leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-98.807691, 31.45037, zoom = 6) %>% 
+  addPolygons(data = tx4ever , 
+              fillColor = ~pal(tx4ever$B19013_001E), 
+              fillOpacity = 0.7, 
+              weight = 0.2, 
+              smoothFactor = 0.2, 
+              popup = ~popup_sb) %>%
+  addLegend(pal = pal, 
+            values = tx4ever$B19013_001E, 
+            position = "bottomright", 
+            title = "Median income")
+```
+
+## Newer options
+
+[**Mapdeck**](https://symbolixau.github.io/mapdeck/articles/layers.html)
+
+![](https://symbolixau.github.io/mapdeck/articles/img/articles/grid.gif)
+
+## Newer options
+
+[**Rayshader**](https://www.rayshader.com/)
+
+![](https://www.rayshader.com/reference/figures/smallhobart.gif)

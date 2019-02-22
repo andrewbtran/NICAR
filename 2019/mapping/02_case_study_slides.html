@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Andrew Ba Tran" />
+  <title>NICAR 2019: Mapping with R - Sinclair Case Study</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="case_study_slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="case_study_slides_files/reveal.js-3.3.0.1/css/theme/sky.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">NICAR 2019: Mapping with R - Sinclair Case Study</h1>
+    <h2 class="author">Andrew Ba Tran</h2>
+    <h3 class="date">3/8/2019</h3>
+</section>
+
+<section class="slide level2">
+
+<p>We’re going to recreate the graphic from The Washington Post [story about Sinclair Broadcasting]((<a href="https://www.washingtonpost.com/graphics/2018/lifestyle/sinclair-broadcasting/" class="uri">https://www.washingtonpost.com/graphics/2018/lifestyle/sinclair-broadcasting/</a>):</p>
+<p><img src="images/sinclair_map.png" /></p>
+<aside class="notes">
+</aside>
+</section>
+<section id="sinclair-broadcasting" class="slide level2">
+<h2>Sinclair Broadcasting</h2>
+<p>Graphics editor <a href="https://twitter.com/chrisalcantara?lang=en">Chris Alcantara</a> used a mix of R, Excel, QGIS, and Illustrator to create this map.</p>
+<p>We’re going to try to stick to R exclusively with the help of some packages like</p>
+<ul>
+<li><strong>jsonlite</strong></li>
+<li><strong>tigris</strong></li>
+<li><strong>dplyr</strong></li>
+<li><strong>ggplot2</strong></li>
+<li><strong>sf</strong></li>
+<li><strong>ggrepel</strong></li>
+<li><strong>shadowtext</strong></li>
+</ul>
+</section>
+<section id="finding-the-data" class="slide level2">
+<h2>Finding the data</h2>
+<p>There’s a map on Sinclair’s <a href="http://sbgi.net/">website</a> showing off all their stations.</p>
+<p>Grab the json <a href="http://sbgi.net/resources/assets/sbgi/MetaverseStationData.json">URL</a> that’s running the map.</p>
+</section>
+<section id="scraping-the-data" class="slide level2">
+<h2>Scraping the data</h2>
+<p>We’ll use the <strong>jsonlite</strong> package</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(jsonlite)
+
+json_url &lt;-<span class="st">&quot;http://sbgi.net/resources/assets/sbgi/MetaverseStationData.json&quot;</span>
+
+stations &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(json_url)</code></pre></div>
+</section>
+<section id="turning-the-json-into-a-clean-data-frame" class="slide level2">
+<h2>Turning the JSON into a clean data frame</h2>
+<p><img src="images/messy.png" /></p>
+</section>
+<section id="turning-the-json-into-a-clean-data-frame-1" class="slide level2">
+<h2>Turning the JSON into a clean data frame</h2>
+<p>Let’s focus on Primary stations and extract the latitude and longitude data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">primary_stations &lt;-<span class="st"> </span>stations <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(Channel<span class="op">==</span><span class="st">&quot;Primary&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">Location=</span><span class="kw">str_replace</span>(Location, <span class="st">&quot;Point </span><span class="ch">\\</span><span class="st">(&quot;</span>, <span class="st">&quot;&quot;</span>),
+    <span class="dt">lon=</span><span class="kw">str_replace</span>(Location, <span class="st">&quot; .*&quot;</span>, <span class="st">&quot;&quot;</span>),
+    <span class="dt">lat=</span><span class="kw">str_replace</span>(Location, <span class="st">&quot;.* &quot;</span>, <span class="st">&quot;&quot;</span>),
+    <span class="dt">lat=</span><span class="kw">str_replace</span>(lat, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>))</code></pre></div>
+</section>
+<section id="what-have-we-got" class="slide level2">
+<h2>What have we got</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(primary_stations)</code></pre></div>
+<pre><code>## Observations: 192
+## Variables: 28
+## $ Call_Letter            &lt;chr&gt; &quot;KAAS&quot;, &quot;KAAS-LD&quot;, &quot;KABB&quot;, &quot;KAEF&quot;, &quot;KAME&quot;…
+## $ Logo_List              &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;kabb_fox.jpg&quot;, &quot;/resources/asset…
+## $ Logo_Map               &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;kabb_fox_map.jpg&quot;, &quot;/resources/a…
+## $ Web_1st_URL            &lt;chr&gt; &quot;http://www.foxkansas.com&quot;, &quot;http://www.f…
+## $ Web_Address            &lt;chr&gt; &quot;http://www.foxkansas.com&quot;, &quot;http://www.f…
+## $ Station                &lt;chr&gt; &quot;KAAS&quot;, &quot;KAAS-LD&quot;, &quot;KABB&quot;, &quot;KAEF&quot;, &quot;KAME&quot;…
+## $ Channel                &lt;chr&gt; &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary&quot;, &quot;Primary…
+## $ Affiliation            &lt;chr&gt; &quot;FOX&quot;, &quot;FOX&quot;, &quot;FOX&quot;, &quot;ABC&quot;, &quot;Nevada Sport…
+## $ DMA                    &lt;chr&gt; &quot;Wichita - Hutchinson, KS&quot;, &quot;Wichita - Hu…
+## $ DMA_Code               &lt;chr&gt; &quot;678&quot;, &quot;678&quot;, &quot;641&quot;, &quot;802&quot;, &quot;811&quot;, &quot;820&quot;,…
+## $ DMA_Short              &lt;chr&gt; &quot;Wichita_KS&quot;, &quot;Wichita_KS&quot;, &quot;San Antonio_…
+## $ DMA_Rank               &lt;int&gt; 76, 76, 31, 195, 109, 22, 57, 122, 122, 1…
+## $ Station_Status         &lt;chr&gt; &quot;O&amp;O&quot;, &quot;O&amp;O&quot;, &quot;O&amp;O&quot;, &quot;O&amp;O&quot;, &quot;JSA&quot;, &quot;O&amp;O&quot;,…
+## $ Station_Address        &lt;chr&gt; &quot;316 North West Street, Wichita, KS 67203…
+## $ Station_City           &lt;chr&gt; &quot;Wichita&quot;, &quot;Wichita&quot;, &quot;San Antonio&quot;, &quot;Eur…
+## $ Station_State          &lt;chr&gt; &quot;KS&quot;, &quot;KS&quot;, &quot;TX&quot;, &quot;CA&quot;, &quot;NV&quot;, &quot;OR&quot;, &quot;AR&quot;,…
+## $ Station_Zip            &lt;int&gt; 67203, 67203, 78229, 95501, 89502, 97232,…
+## $ Station_Logo           &lt;chr&gt; &quot;sbg_noimage&quot;, &quot;sbg_noimage&quot;, &quot;kabb_fox&quot;,…
+## $ Station_URL            &lt;chr&gt; &quot;http://www.foxkansas.com, http://www.fox…
+## $ Station_Phone_Number   &lt;chr&gt; &quot;316-942-2424&quot;, &quot;316-942-2424&quot;, &quot;210-366-…
+## $ Station_Fax_Number     &lt;chr&gt; &quot;316-942-8927&quot;, &quot;316-942-8927&quot;, &quot;210-377-…
+## $ Actual_RF_Channel      &lt;chr&gt; &quot;17&quot;, &quot;31&quot;, &quot;30&quot;, &quot;22&quot;, &quot;20&quot;, &quot;43&quot;, &quot;22&quot;,…
+## $ News_Schedule_Weekday  &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;0500-0900, 1100-1200, 2100-2200&quot;…
+## $ News_Schedule_Saturday &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;2100-2200&quot;, &quot;&quot;, &quot;&quot;, &quot;0700-0900,1…
+## $ News_Schedule_Sunday   &lt;chr&gt; &quot;&quot;, &quot;&quot;, &quot;2100-2200&quot;, &quot;&quot;, &quot;&quot;, &quot;0700-0900,0…
+## $ Location               &lt;chr&gt; &quot;-97.388134 37.68888)&quot;, &quot;-97.388134 37.68…
+## $ lon                    &lt;chr&gt; &quot;-97.388134&quot;, &quot;-97.388134&quot;, &quot;-98.569649&quot;,…
+## $ lat                    &lt;chr&gt; &quot;37.68888&quot;, &quot;37.68888&quot;, &quot;29.490196&quot;, &quot;40.…</code></pre>
+<aside class="notes">
+<p>Interesting.</p>
+Well, our ultimate goal is to map this out so readers can see the scope of influence that this company reaches.
+</aside>
+</section>
+<section id="what-can-we-do-with-this-data" class="slide level2">
+<h2>What can we do with this data?</h2>
+<p>There are two data points that we can extract from this data set:</p>
+<ul>
+<li>latitude and longitude for each station</li>
+<li>the DMA, or Designated Market Area, each station is assigned to</li>
+</ul>
+<p>We can map out the station locations quickly using the <strong>sf</strong> package to visualize latitude and longitude of each one on top of a map of the country downloaded using the <strong>tigris</strong> package.</p>
+</section>
+<section id="single-out-the-stations" class="slide level2">
+<h2>Single out the stations</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">station_latlon &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(primary_stations, DMA_Short, Location, lon, lat) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lon=</span><span class="kw">as.numeric</span>(lon)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lat=</span><span class="kw">as.numeric</span>(lat)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(lon))
+
+<span class="kw">glimpse</span>(station_latlon)</code></pre></div>
+<pre><code>## Observations: 121
+## Variables: 4
+## $ DMA_Short &lt;chr&gt; &quot;Wichita_KS&quot;, &quot;San Antonio_TX&quot;, &quot;Eureka_CA&quot;, &quot;Reno_NV&quot;…
+## $ Location  &lt;chr&gt; &quot;-97.388134 37.68888)&quot;, &quot;-98.569649 29.490196)&quot;, &quot;-124…
+## $ lon       &lt;dbl&gt; -97.38813, -98.56965, -124.16704, -119.78651, -122.643…
+## $ lat       &lt;dbl&gt; 37.68888, 29.49020, 40.80141, 39.51247, 45.52701, 34.7…</code></pre>
+</section>
+<section id="download-map-of-state-boundaries" class="slide level2">
+<h2>Download map of state boundaries</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sf)
+<span class="kw">library</span>(tigris)
+
+<span class="kw">options</span>(<span class="dt">tigris_class =</span> <span class="st">&quot;sf&quot;</span>)
+
+states &lt;-<span class="st"> </span><span class="kw">states</span>(<span class="dt">cb=</span>T)
+
+<span class="kw">glimpse</span>(states)</code></pre></div>
+</section>
+<section id="refining-the-data" class="slide level2">
+<h2>Refining the data</h2>
+<p><strong>Filter</strong> out some territories and states from the data and set the <strong>Projection</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">states &lt;-<span class="st"> </span><span class="kw">filter</span>(states, <span class="op">!</span>STUSPS <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AK&quot;</span>, <span class="st">&quot;AS&quot;</span>, <span class="st">&quot;MP&quot;</span>, <span class="st">&quot;PR&quot;</span>, <span class="st">&quot;VI&quot;</span>, <span class="st">&quot;HI&quot;</span>, <span class="st">&quot;GU&quot;</span>))
+
+<span class="co"># Converting the projection to Albers</span>
+states &lt;-<span class="st"> </span><span class="kw">st_transform</span>(states, <span class="dv">5070</span>)
+
+<span class="co"># Changing the projection of station_latlon so it matches the states sf dataframe map</span>
+
+station_latlon_projected &lt;-<span class="st"> </span>station_latlon <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(lon)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">st_as_sf</span>(<span class="dt">coords=</span><span class="kw">c</span>(<span class="st">&quot;lon&quot;</span>, <span class="st">&quot;lat&quot;</span>), <span class="dt">crs =</span> <span class="st">&quot;+proj=longlat&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">st_transform</span>(<span class="dt">crs=</span><span class="kw">st_crs</span>(states)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">st_coordinates</span>(geometry)
+
+station_latlon &lt;-<span class="st"> </span><span class="kw">cbind</span>(station_latlon, station_latlon_projected)</code></pre></div>
+</section>
+<section id="map-it" class="slide level2">
+<h2>Map it</h2>
+<pre><code>ggplot(states) +
+  geom_sf() +
+  geom_point(data=station_latlon, aes(x=X, y=Y), color=&quot;blue&quot;) +
+  theme_void() +
+  theme(panel.grid.major=element_line(colour=&quot;transparent&quot;)) +
+  labs(title=&quot;Station locations&quot;)</code></pre>
+<p>We’ve added a new map layer on top of the <code>states</code> boundaries map with the function: <code>geom_point()</code></p>
+<aside class="notes">
+Looks familiar, right?
+</aside>
+</section>
+<section id="map-it-1" class="slide level2">
+<h2>Map it</h2>
+<p><img src="case_study_slides_files/figure-revealjs/map_it-1.png" width="960" /></p>
+</section>
+<section id="next-figure-out-the-scope" class="slide level2">
+<h2>Next, figure out the scope</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fixing a bad data point</span>
+primary_stations<span class="op">$</span>DMA_Code &lt;-<span class="st"> </span><span class="kw">ifelse</span>(primary_stations<span class="op">$</span>DMA_Short<span class="op">==</span><span class="st">&quot;Lincoln_NE&quot;</span>, <span class="dv">722</span>, primary_stations<span class="op">$</span>DMA_Code)
+
+## Summarizing by DMA
+dma_totals &lt;-<span class="st"> </span>primary_stations <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(DMA, DMA_Code) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">dma_code=</span>DMA_Code) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dma_code=</span><span class="kw">as.numeric</span>(dma_code))
+
+<span class="kw">head</span>(dma_totals)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   DMA                                       dma_code     n
+##   &lt;chr&gt;                                        &lt;dbl&gt; &lt;int&gt;
+## 1 Eugene, OR                                     801     6
+## 2 Lincoln - Hastings - Kearney, NE               722     6
+## 3 Wichita - Hutchinson, KS                       678     6
+## 4 Champaign - Springfield - Decatur, IL          648     5
+## 5 Chico-Redding                                  868     5
+## 6 Yakima - Pasco - Richland - Kennewick, WA      810     5</code></pre>
+<aside class="notes">
+Let’s figure out how many stations fall into a DMA based on the original JSON data we brought in.
+</aside>
+</section>
+<section id="whats-the-dma-footprint-for-each-station" class="slide level2">
+<h2>What’s the DMA footprint for each station?</h2>
+<p>Check around on the internet and you’ll find sources for the DMA shapefile.</p>
+<p>Here’s one from <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/IVXEHT">Harvard’s Dataverse</a>.</p>
+<p>I’ve already downloaded it to our project folder.</p>
+<p>We’ll read it in using the <code>st_read()</code> function from the <strong>sf</strong> package.</p>
+</section>
+<section id="mapping-dmas" class="slide level2">
+<h2>Mapping DMAs</h2>
+<pre><code>geo &lt;- st_read(&quot;data/dma_2008/DMAs.shp&quot;)
+
+# It doesn&#39;t have a CRS so we&#39;ll assign it one
+st_crs(geo) &lt;- 4326
+
+# Converting the projection so it&#39;s Albers
+geo &lt;- st_transform(geo, 5070)
+
+ggplot(geo) +
+  geom_sf(color=&quot;red&quot;) +
+  coord_sf()</code></pre>
+</section>
+<section id="mapping-dmas-1" class="slide level2">
+<h2>Mapping DMAs</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">geo &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="st">&quot;data/dma_2008/DMAs.shp&quot;</span>)
+
+<span class="co"># It doesn&#39;t have a CRS so we&#39;ll assign it one</span>
+<span class="kw">st_crs</span>(geo) &lt;-<span class="st"> </span><span class="dv">4326</span>
+
+<span class="co"># Converting the projection so it&#39;s Albers</span>
+geo &lt;-<span class="st"> </span><span class="kw">st_transform</span>(geo, <span class="dv">5070</span>)
+
+<span class="kw">ggplot</span>(geo) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_sf</span>()</code></pre></div>
+<p><img src="case_study_slides_files/figure-revealjs/dma_map-1.png" width="960" /></p>
+</section>
+<section id="mapping-sinclair-dmas" class="slide level2">
+<h2>Mapping Sinclair DMAs</h2>
+<p>Join the DMA station count to it so we can visualize it.</p>
+<pre><code># Prepping a column name to join on
+geo &lt;- geo %&gt;% 
+  mutate(dma_code=as.numeric(as.character(DMA)))
+
+geo &lt;- left_join(geo, dma_totals, by=&quot;dma_code&quot;) %&gt;% 
+  filter(!is.na(n)) 
+
+ggplot() +
+  geom_sf(data=states, color=&quot;red&quot;, fill=NA) +
+  geom_sf(data=geo, aes(fill=n)) +
+  coord_sf()</code></pre>
+</section>
+<section id="mapping-sinclair-dmas-1" class="slide level2">
+<h2>Mapping Sinclair DMAs</h2>
+<p><img src="case_study_slides_files/figure-revealjs/dma_map_choropleth-1.png" width="960" /></p>
+<aside class="notes">
+<p>Wonderful.</p>
+<p>We have all the components for the visualization now.</p>
+<p>Let’s style it up so it matches the one Chris made for the story.</p>
+<p>We’ll add the <strong>station_latlon</strong> data frame of station locations, too.</p>
+Gotta clean it up first and limit the cities displayed to avoid being cluttered.
+</aside>
+</section>
+<section id="data-prep" class="slide level2">
+<h2>Data prep</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Filtering out locations based on map</span>
+cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Portland&quot;</span>, <span class="st">&quot;Seattle&quot;</span>, <span class="st">&quot;Butte&quot;</span>, <span class="st">&quot;Boise&quot;</span>, <span class="st">&quot;Reno&quot;</span>, <span class="st">&quot;Fresno&quot;</span>, <span class="st">&quot;Bakersfield&quot;</span>, 
+            <span class="st">&quot;Reno&quot;</span>, <span class="st">&quot;Salt Lake City&quot;</span>, <span class="st">&quot;Las Vegas&quot;</span>, <span class="st">&quot;El Paso&quot;</span>, <span class="st">&quot;Austin&quot;</span>, <span class="st">&quot;San Antonio&quot;</span>,
+            <span class="st">&quot;Corpus Christi&quot;</span>, <span class="st">&quot;Oklahoma City&quot;</span>, <span class="st">&quot;Wichita&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Sioux City&quot;</span>, 
+            <span class="st">&quot;Minneapolis&quot;</span>, <span class="st">&quot;Green Bay&quot;</span>, <span class="st">&quot;Milwaukee&quot;</span>, <span class="st">&quot;Des Moines&quot;</span>, <span class="st">&quot;Springfield&quot;</span>, 
+            <span class="st">&quot;St. Louis&quot;</span>, <span class="st">&quot;Little Rock&quot;</span>, <span class="st">&quot;Flint&quot;</span>, <span class="st">&quot;Columbus&quot;</span>, <span class="st">&quot;Lexington&quot;</span>, <span class="st">&quot;Birmingham&quot;</span>,
+            <span class="st">&quot;Mobile&quot;</span>, <span class="st">&quot;Macon&quot;</span>, <span class="st">&quot;Asheville&quot;</span>, <span class="st">&quot;Charleston&quot;</span>, <span class="st">&quot;Buffalo&quot;</span>, <span class="st">&quot;Johnstown&quot;</span>, <span class="st">&quot;Baltimore&quot;</span>,
+            <span class="st">&quot;Norfolk&quot;</span>, <span class="st">&quot;Conway&quot;</span>, <span class="st">&quot;Savannah&quot;</span>, <span class="st">&quot;Gainesville&quot;</span>, <span class="st">&quot;West Palm Beach&quot;</span>, <span class="st">&quot;Albany&quot;</span>,
+            <span class="st">&quot;Providence&quot;</span>, <span class="st">&quot;Portland&quot;</span>)
+
+station_latlon_filtered &lt;-<span class="st"> </span>station_latlon <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">DMA_Short=</span> <span class="kw">gsub</span>(<span class="st">&quot;_.*&quot;</span>, <span class="st">&quot;&quot;</span>, DMA_Short)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">DMA_Short=</span> <span class="kw">gsub</span>(<span class="st">&quot;Bozeman&quot;</span>, <span class="st">&quot;Butte&quot;</span>, DMA_Short)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">DMA_Short=</span> <span class="kw">gsub</span>(<span class="st">&quot;Champaign&quot;</span>, <span class="st">&quot;Springfield&quot;</span>, DMA_Short)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">DMA_Short=</span> <span class="kw">gsub</span>(<span class="st">&quot;Myrtle Beach&quot;</span>, <span class="st">&quot;Conway&quot;</span>, DMA_Short)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">DMA_Short=</span> <span class="kw">gsub</span>(<span class="st">&quot;West Palm&quot;</span>, <span class="st">&quot;West Palm Beach&quot;</span>, DMA_Short)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(DMA_Short <span class="op">%in%</span><span class="st"> </span>cities) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(DMA_Short) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>()<span class="op">==</span><span class="dv">1</span>)</code></pre></div>
+</section>
+<section id="data-prep-1" class="slide level2">
+<h2>Data prep</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(station_latlon_filtered)</code></pre></div>
+<pre><code>## Observations: 41
+## Variables: 6
+## Groups: DMA_Short [41]
+## $ DMA_Short &lt;chr&gt; &quot;Wichita&quot;, &quot;San Antonio&quot;, &quot;Reno&quot;, &quot;Portland&quot;, &quot;Little …
+## $ Location  &lt;chr&gt; &quot;-97.388134 37.68888)&quot;, &quot;-98.569649 29.490196)&quot;, &quot;-119…
+## $ lon       &lt;dbl&gt; -97.38813, -98.56965, -119.78651, -122.64375, -92.2710…
+## $ lat       &lt;dbl&gt; 37.68888, 29.49020, 39.51247, 45.52701, 34.74508, 35.3…
+## $ X         &lt;dbl&gt; -121246.74, -249168.34, -2005457.33, -2054419.36, 3385…
+## $ Y         &lt;dbl&gt; 1628840.1, 716202.8, 2084644.2, 2794219.9, 1304925.7, …</code></pre>
+</section>
+<section id="style-prep" class="slide level2">
+<h2>Style prep</h2>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html"><strong>ggrepel</strong></a></li>
+<li><a href="https://github.com/GuangchuangYu/shadowtext/"><strong>shadowtext</strong></a></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">geo &lt;-<span class="st"> </span>geo <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">bin=</span><span class="kw">case_when</span>(
+    n <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;1&quot;</span>,
+    n <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;2&quot;</span>,
+    n <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;3&quot;</span>,
+    n <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;4&quot;</span>,
+    n <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;5+&quot;</span>
+  ))
+
+<span class="kw">library</span>(ggrepel)
+<span class="kw">library</span>(shadowtext)</code></pre></div>
+<aside class="notes">
+<p>Let’s create bins for the number of stations per DMA– we’re turning continuous data into categorical data so it’s easier to control the visualization.</p>
+Then we’re going to use a couple of special packages that will help deal with the text on the map.
+</aside>
+</section>
+<section id="final-map" class="slide level2">
+<h2>Final map</h2>
+<p>We’re layering our different shape files:</p>
+<ul>
+<li>The state borders</li>
+<li>The DMA borders we combined with the counts of them from the summarized Sinclair JSON file</li>
+<li>The locations of a few dozen stations we also extracted from the Sinclair JSON file</li>
+</ul>
+<p>And we’re adding a bunch of functions in there for styling, like <code>scale_fill_brewer()</code> and <code>geom_shadowtext()</code> and <code>geom_text_repel()</code> and various theme options.</p>
+</section>
+<section id="final-map-1" class="slide level2">
+<h2>Final map</h2>
+<pre><code>ggplot() +
+  geom_sf(data=states, color=&quot;gray&quot;, fill=NA, size=.3) +
+  geom_sf(data=geo, aes(fill=bin), color=&quot;light gray&quot;, size=.2) +
+  scale_fill_brewer(palette = &quot;Oranges&quot;, name=&quot;Number of Sinclair-owned TV stations&quot;) +
+  geom_point(data=station_latlon_filtered, aes(x=X, y=Y), 
+             color=&quot;dark gray&quot;, fill=&quot;white&quot;, shape=21) +
+  geom_shadowtext(data=station_latlon_filtered, aes(x=X, y=Y, label=DMA_Short), 
+             color=&quot;black&quot;, bg.color=&quot;white&quot;, vjust=-1, size=2.5) +
+  geom_text_repel() +
+  coord_sf() +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = &#39;transparent&#39;),
+        legend.position=&quot;top&quot;, legend.direction=&quot;horizontal&quot;) +
+  labs(title=&quot;Sinclair&#39;s nationwide reach&quot;,
+       subtitle=&quot;This map only highlights stations owned outright by Sinclair. 
+It does not include the many stations licensed to other operators but managed by Sinclair.&quot;,
+       caption=&quot;Sources: U.S. Securities and Exchange Commission, Nielsen, Television Bureau of Advertising, GeoCommons&quot;)
+
+ggsave(&quot;sinclair_ggplot.png&quot;, width=10, height=6, units=&quot;in&quot;)</code></pre>
+</section>
+<section id="final-map-2" class="slide level2">
+<h2>Final map</h2>
+<p><img src="case_study_slides_files/figure-revealjs/sf_map3-1.png" width="960" /></p>
+</section>
+<section id="how-does-it-compare" class="slide level2">
+<h2>How does it compare?</h2>
+<p><img src="images/compare.png" /></p>
+</section>
+    </div>
+  </div>
+
+  <script src="case_study_slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="case_study_slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'case_study_slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
