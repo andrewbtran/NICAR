@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="case_study_slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="02_case_study_slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 <style type="text/css">
@@ -49,7 +49,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="case_study_slides_files/reveal.js-3.3.0.1/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="02_case_study_slides_files/reveal.js-3.3.0.1/css/theme/sky.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -526,6 +526,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 json_url &lt;-<span class="st">&quot;http://sbgi.net/resources/assets/sbgi/MetaverseStationData.json&quot;</span>
 
+<span class="co"># json_url &lt;- &quot;data/MetaverseStationData.json&quot;</span>
+
 stations &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(json_url)</code></pre></div>
 </section>
 <section id="turning-the-json-into-a-clean-data-frame" class="slide level2">
@@ -616,6 +618,9 @@ Well, our ultimate goal is to map this out so readers can see the scope of influ
 
 states &lt;-<span class="st"> </span><span class="kw">states</span>(<span class="dt">cb=</span>T)
 
+<span class="co"># states &lt;- readRDS(&quot;backup_data/stats.rds&quot;)</span>
+
+
 <span class="kw">glimpse</span>(states)</code></pre></div>
 </section>
 <section id="refining-the-data" class="slide level2">
@@ -651,7 +656,7 @@ Looks familiar, right?
 </section>
 <section id="map-it-1" class="slide level2">
 <h2>Map it</h2>
-<p><img src="case_study_slides_files/figure-revealjs/map_it-1.png" width="960" /></p>
+<p><img src="02_case_study_slides_files/figure-revealjs/map_it-1.png" width="960" /></p>
 </section>
 <section id="next-figure-out-the-scope" class="slide level2">
 <h2>Next, figure out the scope</h2>
@@ -715,7 +720,7 @@ geo &lt;-<span class="st"> </span><span class="kw">st_transform</span>(geo, <spa
 <span class="kw">ggplot</span>(geo) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">coord_sf</span>()</code></pre></div>
-<p><img src="case_study_slides_files/figure-revealjs/dma_map-1.png" width="960" /></p>
+<p><img src="02_case_study_slides_files/figure-revealjs/dma_map-1.png" width="960" /></p>
 </section>
 <section id="mapping-sinclair-dmas" class="slide level2">
 <h2>Mapping Sinclair DMAs</h2>
@@ -734,7 +739,7 @@ ggplot() +
 </section>
 <section id="mapping-sinclair-dmas-1" class="slide level2">
 <h2>Mapping Sinclair DMAs</h2>
-<p><img src="case_study_slides_files/figure-revealjs/dma_map_choropleth-1.png" width="960" /></p>
+<p><img src="02_case_study_slides_files/figure-revealjs/dma_map_choropleth-1.png" width="960" /></p>
 <aside class="notes">
 <p>Wonderful.</p>
 <p>We have all the components for the visualization now.</p>
@@ -834,7 +839,7 @@ ggsave(&quot;sinclair_ggplot.png&quot;, width=10, height=6, units=&quot;in&quot;
 </section>
 <section id="final-map-2" class="slide level2">
 <h2>Final map</h2>
-<p><img src="case_study_slides_files/figure-revealjs/sf_map3-1.png" width="960" /></p>
+<p><img src="02_case_study_slides_files/figure-revealjs/sf_map3-1.png" width="960" /></p>
 </section>
 <section id="how-does-it-compare" class="slide level2">
 <h2>How does it compare?</h2>
@@ -843,8 +848,8 @@ ggsave(&quot;sinclair_ggplot.png&quot;, width=10, height=6, units=&quot;in&quot;
     </div>
   </div>
 
-  <script src="case_study_slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="case_study_slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+  <script src="02_case_study_slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="02_case_study_slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 
@@ -864,7 +869,7 @@ ggsave(&quot;sinclair_ggplot.png&quot;, width=10, height=6, units=&quot;in&quot;
 
         // Optional reveal.js plugins
         dependencies: [
-          { src: 'case_study_slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '02_case_study_slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
         ]
       });
     </script>
