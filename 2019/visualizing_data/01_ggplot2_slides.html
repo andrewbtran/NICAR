@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Andrew Ba Tran" />
+  <title>NICAR 2019: Visualizing data with Tidyverse</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="01_ggplot2_slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="01_ggplot2_slides_files/reveal.js-3.3.0.1/css/theme/sky.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">NICAR 2019: Visualizing data with Tidyverse</h1>
+    <h2 class="author">Andrew Ba Tran</h2>
+    <h3 class="date">3/9/2019</h3>
+</section>
+
+<section id="chart-options-in-excel" class="slide level2">
+<h2>Chart options in Excel</h2>
+<p><img src="images/chart_menu.png" /></p>
+<p>Press <strong>s</strong> to see my lecture notes.</p>
+<aside class="notes">
+<p>You’ve seen the typology of graph types in apps like Excel, right?</p>
+<p>It’s a pretty good menu. Would you like a bar chart, a pie chart, a line chart, or any of these other options?</p>
+There’s no deep structure or explanation of how to get the data there– it only focuses on the end result.
+</aside>
+</section>
+<section id="grammar-of-graphics" class="slide level2">
+<h2>Grammar of Graphics</h2>
+<ul>
+<li>Cycle through graphics quickly</li>
+<li>Tweak until production ready</li>
+</ul>
+<aside class="notes">
+<p>This type of menu assumes you have data structured correctly to make that visualization work. But we rarely get the data we need in the format we need it to be in order to make the visualization immediately.</p>
+<p>When you get raw data, you should be able think about all the transformations, summaries, and wrangling that can lead to good visualizations.</p>
+<p>And sometimes you won’t know what works until you see it sketched out.</p>
+R allows you to quickly iterate through data visualizations to explore the data and see what works best to communicate what’s important to readers.
+</aside>
+</section>
+<section id="ggplot2" class="slide level2">
+<h2>ggplot2</h2>
+<ul>
+<li>Approach creating data visualizations differently</li>
+<li>Instead of starting with how you want a chart to end up</li>
+<li>Start with the data set and explore where the structure takes you</li>
+<li>You’ll be able to see the underlying connections between different graphs</li>
+</ul>
+</section>
+<section id="chart-1" class="slide level2">
+<h2>Chart 1</h2>
+<img src="images/bobs3.png" />
+<aside class="notes">
+The pie chart focuses the reader on large percentages, and encourages the reader to think of the total (here, the amount represents the amount of time the Belcher family is out in the front of their restaurant) as distributed to different groups.
+</aside>
+</section>
+<section id="chart-2" class="slide level2">
+<h2>Chart 2</h2>
+<img src="images/bobs2.png" />
+<aside class="notes">
+The stacked bar plot provides the same information, but makes it easier to accurately determine at a glance how large each group is out of the whole.
+</aside>
+</section>
+<section id="chart-3" class="slide level2">
+<h2>Chart 3</h2>
+<p><img src="images/bobs1.png" /></p>
+<aside class="notes">
+This bar chart splits the categories horizontally, and draws attention to how the family members are ordered. It encourages the reader to think about the distribution rather than disconnected categories, and gives a better sense of sense of scale.
+</aside>
+</section>
+<section id="grammar-of-graphics-1" class="slide level2">
+<h2>Grammar of Graphics</h2>
+<p>The grammar of graphics lets you approach visualizations structurally, letting you combine and swap out graphical elements into figures that display data meaningfully.</p>
+<aside class="notes">
+<p>It’s grown in popularity and has been implemented across many languages, like JavaScript, Julia, and Python. R’s version is ggplot2, created by Hadley Wickham and currently maintained by dozens from the R community.</p>
+If you look at the pie chart through the lens of the grammar of graphics, you can see that its pretty much a stacked bar chart, with the height mapped to the slice angle.
+</aside>
+</section>
+<section id="load-data" class="slide level2">
+<h2>Load data</h2>
+<p>Let’s load some data, create a chart, and break down the layers.</p>
+<p>We’ll some data from <a href="http://www.vulture.com/2013/04/leading-men-age-but-their-love-interests-dont.html">Vulture.com</a> comparing ages of leading men in movies compared to their love interests.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+
+ages &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ages.csv&quot;</span>)</code></pre></div>
+</section>
+<section id="the-data" class="slide level2">
+<h2>The data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ages)</code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   Movie         Genre actor       actor_age actress      actress_age budget
+##   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Mo&#39; Better B… drama Denzel Was…        35 Joie Lee              28     10
+## 2 Malcolm X     drama Denzel Was…        37 Angela Bass…          34     34
+## 3 The Preacher… drama Denzel Was…        41 Whitney Hou…          33     40
+## 4 He Got Game   drama Denzel Was…        43 Milla Jovov…          22     25
+## 5 Remember the… drama Denzel Was…        45 Micole Ari …          29     30
+## 6 Training Day  drama Denzel Was…        46 Eva Mendes            27     45</code></pre>
+<p>This is the data we’re working with.</p>
+<p>The variables/columns are Movie, Genre, actor, actor_age, actress, actress_age, budget.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
+</section>
+<section id="first-chart" class="slide level2">
+<h2>First chart</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">intercept=</span><span class="dv">0</span>, <span class="dt">col=</span><span class="st">&quot;light gray&quot;</span>) </code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/chart_example-1.png" width="624" /></p>
+</section>
+<section id="observations" class="slide level2">
+<h2>Observations?</h2>
+<p>What’s this chart show?</p>
+<ul>
+<li>Men tend to be much older than women in movies.</li>
+</ul>
+</section>
+<section id="the-code" class="slide level2">
+<h2>The code</h2>
+<p>Let’s break the components of this chart down.</p>
+<p><img src="images/gg1.png" /></p>
+</section>
+<section id="the-data-1" class="slide level2">
+<h2>The data</h2>
+<p>We start with with the <strong>data frame</strong>. We initialized the data viz function <code>ggplot()</code> by passing the <strong>ages</strong> data frame to it.</p>
+<p><img src="images/gg1c.png" /></p>
+</section>
+<section id="the-geometry" class="slide level2">
+<h2>The geometry</h2>
+<p><img src="images/gg2.png" /></p>
+<aside class="notes">
+Next, we have the dots representing the data we chose to visualize on the x and y axes.
+</aside>
+</section>
+<section id="aes" class="slide level2">
+<h2>aes()</h2>
+<p>Mappings describe how aesthetics should relate to the variables in the data.</p>
+<p><img src="images/gg2c.png" /></p>
+<p>Set the <strong>aesthetics</strong> (<code>aes()</code>) visual characteristics that represent your data.</p>
+</section>
+<section id="aesthetics" class="slide level2">
+<h2>Aesthetics</h2>
+<p>We are using the default geometric object and color but these are customizable:</p>
+<ul>
+<li>position</li>
+<li>size</li>
+<li>color</li>
+<li>shape</li>
+<li>transparency</li>
+<li>fill</li>
+</ul>
+<p>For each <strong>aesthetic</strong>, we can set the <strong>scales</strong> for how visual characteristic is converted to display values.</p>
+</section>
+<section id="geom_" class="slide level2">
+<h2>geom_</h2>
+<p>Let’s take a look at the <code>geom_</code> function we add to <code>ggplot()</code>.</p>
+<p><img src="images/gg2d.png" /></p>
+</section>
+<section id="important-note" class="slide level2">
+<h2>Important note</h2>
+<p>Notice that <strong>ggplot2</strong> requires a plus between functions.</p>
+<p>This package was created before <strong>dplyr</strong> and others that implemented the <code>%&gt;%</code> piping.</p>
+<p>It’s a weird quirk that I find myself messing up often since the shortcut for piping is pretty much muscle memory to me.</p>
+<ul>
+<li><strong>If you’re using ggplot: plus it!</strong></li>
+<li><strong>For everything else: pipe it!</strong></li>
+</ul>
+</section>
+<section id="geom_-1" class="slide level2">
+<h2>geom_</h2>
+<p><img src="images/gg2e.png" /></p>
+<p>So <code>geom_point()</code> is merely one type out of dozens of possible <em>geom_functions</em>, like <code>geom_bar()</code> or <code>geom_boxplot()</code>.</p>
+</section>
+<section id="geom_function" class="slide level2">
+<h2>geom_function</h2>
+<p>No matter the <em>geom_function</em> you end up with, it still requires <em>mappings</em> to be passed to it.</p>
+<p>In this chart’s instance, it’s <strong>actor_age</strong> and <strong>actress_age</strong> from the <strong>ages</strong> data frame.</p>
+<p>This is basically all you need to create a chart in R. The <code>ggplot()</code> and the data and the <code>geom_</code> and mapping from <code>aes()</code>.</p>
+<aside class="notes">
+<p>You’ve seen the typology of graph types in apps like Excel, right? You don’t have to run the other two lines below from our example.</p>
+But we added more instructions for clarity.
+<aside>
+</section>
+<section id="scaling" class="slide level2">
+<h2>Scaling</h2>
+<p><img src="images/gg3.png" /></p>
+</section>
+<section id="scaling-1" class="slide level2">
+<h2>Scaling</h2>
+<p>Scaling can also be passed to the <code>aes()</code> of the <em>geom_function</em> but can also apply to the entire chart.</p>
+<p><img src="images/gg3c.png" /></p>
+<p>In this chart, we used the <code>expand_limits()</code> function to force the x- and y-axis to start at 0.</p>
+<aside class="notes">
+<p>Otherwise, <code>ggplot()</code> would shift the scale so that the points in the chart fill up the entire chart. It assumes you don’t want that extraneous white space that doesn’t include data.</p>
+But for this particular data, we want to emphasize the disparity in ages by starting at the zeroes. Plus, there is a large contingent of data visualization pros that might yell at you for not starting the base at zero (even though there might be some exceptions to that rule!).
+</aside>
+</section>
+<section id="extra-line-layer" class="slide level2">
+<h2>Extra line layer</h2>
+<p><img src="images/gg4.png" /></p>
+<aside class="notes">
+The last line in the stack of functions we have so far is the <code>ab_line()</code>. It’s not necessary, but it’s part of the layering options in <strong>ggplot2</strong>.
+</aside>
+</section>
+<section id="line-layer-in-code" class="slide level2">
+<h2>Line layer in code</h2>
+<p><img src="images/gg4c.png" /></p>
+<p>Each function in <strong>ggplot2</strong> like <code>geom_abline()</code> allows for additional variables that can be passed to it. In this example, we specify the intercept should be at 1 and the color of the bar should be “light gray”. We accept the default width of the line by not passing it the variable to the <code>geom_abline()</code> at all.</p>
+</section>
+<section id="lets-make-some-more-charts." class="slide level2">
+<h2>Let’s make some more charts.</h2>
+<p>But first, consider the data.</p>
+</section>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<p>It’s crucial to understand the structure of the data you have when working with <code>ggplot2()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(ages)</code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   Movie         Genre actor       actor_age actress      actress_age budget
+##   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Mo&#39; Better B… drama Denzel Was…        35 Joie Lee              28     10
+## 2 Malcolm X     drama Denzel Was…        37 Angela Bass…          34     34
+## 3 The Preacher… drama Denzel Was…        41 Whitney Hou…          33     40
+## 4 He Got Game   drama Denzel Was…        43 Milla Jovov…          22     25
+## 5 Remember the… drama Denzel Was…        45 Micole Ari …          29     30
+## 6 Training Day  drama Denzel Was…        46 Eva Mendes            27     45</code></pre>
+<p>We have six variables (columns) in this data frame.</p>
+<aside class="notes">
+<p>Each row represents data for a single movie. That’s pretty tidy.</p>
+<p>It seems like an obvious format, but not all data sets have this structure by default.</p>
+Data works best in <code>ggplot()</code> in a tidy, long (tall) format.
+</aside>
+</section>
+<section id="geoms" class="slide level2">
+<h2>Geoms</h2>
+<p>Let’s go over some new <code>geom_</code> types.</p>
+</section>
+<section id="simple-bar-plot" class="slide level2">
+<h2>Simple bar plot</h2>
+<p>We’ll start with <code>geom_bar()</code> which is the most common type of chart you’ll need to make starting out.</p>
+<p>Notice that we are nesting <code>aes()</code> into <code>ggplot()</code> this time and not using the <code>method=</code> or the <code>data=</code> because they are not necessary.</p>
+</section>
+<section id="geom_bar" class="slide level2">
+<h2>geom_bar</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+    <span class="kw">aes</span>(<span class="dt">x=</span>actor)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/bar-1.png" width="864" /></p>
+</section>
+<section id="variables" class="slide level2">
+<h2>variables</h2>
+<p>Start keeping track of how many variables we’re using in each of these charts.</p>
+<p>For the one above, we started with <strong>one variable</strong> and sort of created a new one by counting the instances they appear in the data frame. We didn’t have to alter the data frame at all or summarize it for this chart to work.</p>
+</section>
+<section id="geom_bar-1" class="slide level2">
+<h2>geom_bar</h2>
+<p>Common <code>geom_bar()</code> options:</p>
+<ul>
+<li>width</li>
+<li>fill</li>
+<li>color (border)</li>
+<li>position_dodge()</li>
+</ul>
+</section>
+<section id="stacked-bar-plot" class="slide level2">
+<h2>Stacked bar plot</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">fill=</span>Genre)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/stacked_bar-1.png" width="864" /></p>
+</section>
+<section id="aesthetics-1" class="slide level2">
+<h2>Aesthetics</h2>
+<p>The only difference between the bar plot and the stacked bar plot was that <code>, fill=Genre</code> was added to the <code>aes()</code> function.</p>
+<p><strong>Variable count:</strong> 2 (actor &amp; genre, if you don’t count the count of actor)</p>
+<p>Reminder of aesthetic properties that can be set:</p>
+<ul>
+<li>position</li>
+<li>size</li>
+<li>color</li>
+<li>shape</li>
+<li>transparency</li>
+<li>fill</li>
+</ul>
+<aside class="notes">
+Before we move on to other chart types, let’s talk about what just happened in the previous.
+</aside>
+</section>
+<section id="aesthetics-and-variables" class="slide level2">
+<h2>Aesthetics and variables</h2>
+<p><img src="images/aes.png" /></p>
+<p>What if we changed the <code>aes()</code> from <code>fill</code> to <code>color</code>?</p>
+</section>
+<section id="fill-to-color" class="slide level2">
+<h2>fill to color</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">color=</span>Genre)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/stacked_bar_color-1.png" width="864" /></p>
+<aside class="notes">
+<p>Yikes, not as effective. But now you know about the option.</p>
+<p>When would this be a good option? Line charts or dots.</p>
+Notice how the color and legend was added automatically?
+</aside>
+</section>
+<section id="auto-color" class="slide level2">
+<h2>Auto color</h2>
+<p><img src="images/autocolor.png" /></p>
+<aside class="notes">
+This is the default color list. There are ways to customize the colors, but we’ll go over that in the next section.
+</aside>
+</section>
+<section id="why-doesnt-this-work" class="slide level2">
+<h2>Why doesn’t this work?</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actor), <span class="dt">fill=</span>Genre) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/stacked_bar_fill_fail-1.png" width="864" /></p>
+<aside class="notes">
+<p>Let’s go back to <code>fill=Genre</code> but this time with a twist.</p>
+Take a look at the code and see if you can spot why it didn’t work like it did earlier.
+</aside>
+</section>
+<section id="do-you-see-it" class="slide level2">
+<h2>Do you see it?</h2>
+</section>
+<section id="do-you-see-it-1" class="slide level2">
+<h2>Do you see it?</h2>
+<p>It’s the parenthesis in <code>aes()</code> – it closed off before including <code>fill=Genre</code> so it wasn’t included.</p>
+</section>
+<section id="try-again-correctly." class="slide level2">
+<h2>Try again correctly.</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">fill=</span>Genre)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/stacked_bar_fill_fail2-1.png" width="864" /></p>
+</section>
+<section id="grouped-bar-plot" class="slide level2">
+<h2>Grouped bar plot</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">fill=</span>Genre)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;dodge&quot;</span>)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/grouped_bar_plot-1.png" width="864" /></p>
+</section>
+<section id="grouped-bar-plot-1" class="slide level2">
+<h2>Grouped bar plot</h2>
+<p>So this chart was similar to the stacked bar plot above, but this time <code>position=&quot;dodge&quot;</code> was passed to the <code>geom_bar()</code> function.</p>
+<p>This tells ggplot to group the bar plot.</p>
+<p>This is useful for easier comparison within groups.</p>
+</section>
+<section id="spinogram" class="slide level2">
+<h2>Spinogram</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">fill=</span>Genre)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/spinogram-1.png" width="864" /></p>
+<aside class="notes">
+<p>It’s simple to turn a stacked bar plot into a percent-based chart. This type of chart allows for a greater understanding of the proportion compared to other groups.</p>
+</aside>
+</section>
+<section id="box-plot" class="slide level2">
+<h2>Box plot</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">y=</span>actress_age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/box_whiskers-1.png" width="672" /></p>
+<aside class="notes">
+<p>It succinctly summarizes the distribution of numbers in each category we’ve set: actors.</p>
+<p>The height of the line is the max and min of the numbers in the y axis: actress ages.</p>
+The top of the box is the top quartile and the bottom of the box is the bottom quartile. The line in the middle is the median age. That floating dot? Considered an outlier.
+</aside>
+</section>
+<section id="boxplot" class="slide level2">
+<h2>Boxplot</h2>
+<p>Common <code>geom_boxplot()</code> options:</p>
+<ul>
+<li>fill</li>
+<li>color</li>
+<li>notch (=TRUE or FALSE)</li>
+<li>outlier. color shape size</li>
+</ul>
+</section>
+<section id="violin-plot" class="slide level2">
+<h2>Violin plot</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">y=</span>actress_age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/violin-1.png" width="672" /></p>
+<p><strong>Variable count:</strong> 2 - <em>actress_age</em> and <em>actor</em></p>
+<aside class="notes">
+<p>This is another way to show distribution of numbers.</p>
+The wider the diameter, the more numbers there are. It’s a bit more intuitive to follow.
+</aside>
+</section>
+<section id="geom_histogram" class="slide level2">
+<h2>geom_histogram</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor_age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">1</span>)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/scaling1-1.png" width="672" /></p>
+</section>
+<section id="geom_histogram-1" class="slide level2">
+<h2>geom_histogram</h2>
+<p>Common <code>geom_histogram()</code> options:</p>
+<ul>
+<li>binwidth</li>
+<li>color (border)</li>
+<li>fill</li>
+</ul>
+</section>
+<section id="scale" class="slide level2">
+<h2>scale</h2>
+<p><strong>Applying a logorithmic scale</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor_age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/scaling2-1.png" width="672" /></p>
+<aside class="notes">
+<p>It makes more sense to apply scalar transformations while plotting rather than altering the data set itself.</p>
+</aside>
+</section>
+<section id="kernel-density-plot" class="slide level2">
+<h2>Kernel density plot</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actress_age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/kernel-1.png" width="864" /></p>
+</section>
+<section id="geom_density" class="slide level2">
+<h2>geom_density</h2>
+<p>Common <code>geom_density()</code> options:</p>
+<ul>
+<li>fill</li>
+<li>color</li>
+<li>alpha</li>
+</ul>
+</section>
+<section id="geom_density-1" class="slide level2">
+<h2>geom_density</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+  <span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">fill=</span>actor)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span>.<span class="dv">3</span>)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/kernel2-1.png" width="864" /></p>
+</section>
+<section id="dot-plot" class="slide level2">
+<h2>Dot plot</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span>Movie)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/dotplot-1.png" width="672" /></p>
+</section>
+<section id="line-plot" class="slide level2">
+<h2>Line plot</h2>
+<p>Let’s start by summarizing the ages of the actresses per actor.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+avg_age &lt;-<span class="st"> </span>ages <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(actor) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age_diff =</span> actor_age<span class="op">-</span>actress_age) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">average_age_diff =</span> <span class="kw">mean</span>(age_diff))
+
+<span class="kw">ggplot</span>(avg_age, <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">y=</span>average_age_diff, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+</section>
+<section id="line-plot-1" class="slide level2">
+<h2>Line plot</h2>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/lineplotb-1.png" width="768" /></p>
+<p><strong>Variable count:</strong> 2 - the new mutated variable <em>average_age_diff</em> and <strong>actor</strong></p>
+<aside class="notes">
+<p>Don’t forget, we can add more layers.</p>
+Let’s make the same chart above but with dots, too.
+</aside>
+</section>
+<section id="chart-with-dots" class="slide level2">
+<h2>Chart with dots</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(avg_age, <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">y=</span>average_age_diff, <span class="dt">group=</span><span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/dot_line-1.png" width="864" /></p>
+<aside class="notes">
+<p>Does this make sense as a visualization? Mmm… nah.</p>
+Never use a line chart to chart anything across an axis that doesn’t represent something continuous.
+</aside>
+</section>
+<section id="geom_point" class="slide level2">
+<h2>geom_point</h2>
+<p>Common <code>geom_point()</code> options:</p>
+<ul>
+<li>color</li>
+<li>fill</li>
+<li>alpha</li>
+<li>shape</li>
+<li>size</li>
+</ul>
+</section>
+<section id="scatterplot-with-fit" class="slide level2">
+<h2>Scatterplot with fit</h2>
+<p>This time, let’s add a <code>geom_smooth()</code> layer.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+      <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+          <span class="dt">y=</span>actress_age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
+</section>
+<section id="scatterplot-with-fit-1" class="slide level2">
+<h2>Scatterplot with fit</h2>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/scatter_fit2-1.png" width="768" /></p>
+</section>
+<section id="linear-regression-line" class="slide level2">
+<h2>Linear regression line</h2>
+<p>Notice the <code>~</code> which is used often in statistical analysis formulas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+      <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+          <span class="dt">y=</span>actress_age)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>,
+              <span class="dt">formula=</span>y<span class="op">~</span>x)</code></pre></div>
+</section>
+<section id="linear-regression-line-1" class="slide level2">
+<h2>Linear regression line</h2>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/scatter_fit_lm2-1.png" width="768" /></p>
+<aside class="notes">
+We can customize it and throw in a linear regression line.
+</aside>
+</section>
+<section id="grouping" class="slide level2">
+<h2>Grouping</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+           <span class="dt">y=</span>actress_age,
+           <span class="dt">color=</span>actor)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/grouping1-1.png" width="768" /></p>
+</section>
+<section id="variables-1" class="slide level2">
+<h2>Variables</h2>
+<p><strong>Variable count:</strong> 3! We’re working with <em>actor_age</em>, <em>actress_age</em>, and <em>actor</em>.</p>
+<p>See how we’re able to start packing more information into a chart with a line of code?</p>
+<aside class="notes">
+<p>When you’re exploring data visually, this might help surface insights you wouldn’t notice by just looking at the raw data.</p>
+<p>Everything’s still pretty clustered in this chart so you might only be able to notice outliers like Tom Cruise and Johnny Depp on the bottom left. But everything in the middle is kinda just too much.</p>
+Let’s go crazy and add another variable.
+</aside>
+</section>
+<section id="more-variables" class="slide level2">
+<h2>More variables</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+           <span class="dt">y=</span>actress_age,
+           <span class="dt">color=</span>actor,
+           <span class="dt">shape=</span>Genre)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/grouping2-1.png" width="768" /></p>
+</section>
+<section id="more-variables-1" class="slide level2">
+<h2>More variables</h2>
+<p><strong>Variable count:</strong> 4! We’re working with <em>actor_age</em>, <em>actress_age</em>, <em>actor</em>, and now <em>Genre</em>.</p>
+<p>This looks not good.</p>
+<aside class="notes">
+<p>Why did we do this?? I just wanted to show you that the shapes option exist. You’ll probably never use it.</p>
+Okay, what if we try keeping the color and shapes to one variable: <em>actor</em>?
+</aside>
+</section>
+<section id="variables-2" class="slide level2">
+<h2>Variables</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+           <span class="dt">y=</span>actress_age,
+           <span class="dt">color=</span>actor,
+           <span class="dt">shape=</span>actor)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+</section>
+<section id="variables-3" class="slide level2">
+<h2>Variables</h2>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/grouping3b-1.png" width="768" /></p>
+<aside class="notes">
+<p>Nope, still not great. Plus, there are only a limited amount of shapes to pull from.</p>
+Did you see that warning?
+</aside>
+</section>
+<section id="warning" class="slide level2">
+<h2>Warning</h2>
+<pre><code>## Warning: Removed 10 rows containing missing values (geom_point).</code></pre>
+<p>That’s because it couldn’t find a shape for Tom Hanks. Hanks was left off the chart.</p>
+<p>Like colors, you should limit the palette so it doesn’t confuse readers.</p>
+<aside class="notes">
+<p>Don’t you feel horrible? Tom Hanks is the nicest guy ever.</p>
+</aside>
+</section>
+<section id="scatterplot-with-color-and-size" class="slide level2">
+<h2>Scatterplot with color and size</h2>
+<p>Let’s swap out <em>Genre</em> for another variable that might make more sense to add to the visualization: <em>budget</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+           <span class="dt">y=</span>actress_age,
+           <span class="dt">color=</span>actor,
+           <span class="dt">size=</span>budget)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+</section>
+<section id="scatterplot-with-color-and-size-1" class="slide level2">
+<h2>Scatterplot with color and size</h2>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/grouping4b-1.png" width="768" /></p>
+</section>
+<section id="variables-4" class="slide level2">
+<h2>Variables</h2>
+<p><strong>Variable count:</strong> 4! We’re working with <em>actor_age</em>, <em>actress_age</em>, <em>actor</em>, and now <em>Genre</em>.</p>
+<p>Lots of data being communicated to readers here. The legends were auto-generated.</p>
+</section>
+<section id="coords" class="slide level2">
+<h2>Coords</h2>
+<p>You’ll see <strong>stats</strong> in the <code>geom_bar()</code> function. This is the statistical transformations that summarize data. In this instance we’re setting it to <code>&quot;identity&quot;</code> because we want the bars to represent the numbers in the <code>y</code> in <code>aes()</code>, not the count of it.</p>
+<ul>
+<li>counts</li>
+<li>means</li>
+<li>trend lines</li>
+</ul>
+</section>
+<section id="coords-1" class="slide level2">
+<h2>Coords</h2>
+<p>We’re going to alter the coordinates of the chart so that we get a horizontal chart instead of the default vertical one.</p>
+<p>The <code>coord_flip()</code> option flips a chart you’ve been working on from vertical to horizontal or horizontal to vertical.</p>
+</section>
+<section id="coord_flip" class="slide level2">
+<h2>coord_flip()</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> avg_age, <span class="kw">aes</span>(<span class="dt">x=</span> actor, <span class="dt">y=</span>average_age_diff)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">coord_flip</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/coords-1.png" width="576" /></p>
+</section>
+<section id="facets" class="slide level2">
+<h2>Facets</h2>
+<p>Remember how that big scatter plot above had all the different colors on one viz and it was all clustered together?</p>
+<p>It’s simple to break those out into individual charts.</p>
+<p>This is sometimes referred to as “small multiples”.</p>
+</section>
+<section id="facet_grid" class="slide level2">
+<h2>facet_grid</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">intercept=</span><span class="dv">0</span>, <span class="dt">col=</span><span class="st">&quot;light gray&quot;</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">facet_grid</span>(Genre<span class="op">~</span>actor)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/facet_grid-1.png" width="768" /></p>
+</section>
+<section id="variables-5" class="slide level2">
+<h2>Variables</h2>
+<p><strong>Variable count:</strong> 4! - We’re working with <em>actor_age</em>, <em>actress_age</em>, <em>actor</em>, and also <em>Genre</em>.</p>
+<p>Want to add another variable? Let’s do it. Add <code>size=budget</code> the <code>geom_point()</code>.</p>
+<aside class="notes">
+Take a moment to appreciate how easy this was. This is a pain in the ass in other languages, like D3.
+</aside>
+</section>
+<section id="more-variables-2" class="slide level2">
+<h2>More variables</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age, <span class="dt">size=</span>budget)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">intercept=</span><span class="dv">0</span>, <span class="dt">col=</span><span class="st">&quot;light gray&quot;</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">facet_grid</span>(Genre<span class="op">~</span>actor)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/facet_grid_more-1.png" width="768" /></p>
+</section>
+<section id="variables-6" class="slide level2">
+<h2>Variables</h2>
+<p><strong>Variable count:</strong> 5! - We’re working with <em>actor_age</em>, <em>actress_age</em>, <em>actor</em>, and also <em>Genre</em> AND <em>budget</em>. The sizing kinda jumbles up the circles in some, but keep playing around with alpha or change the size of the chart, maybe.</p>
+<p>This is all possible thanks to the tidiness of the data structure.</p>
+<p>The variables might contain more than one group but it’s all tied back to rows with each individual movie.</p>
+<aside class="notes">
+You can see it’s quite easy to play around with the options until you find the right balance.
+</aside>
+</section>
+<section id="facet-types" class="slide level2">
+<h2>facet types</h2>
+<p>Here are other types of ways to create “small multiples” through facets.</p>
+<ul>
+<li><code>facets_grid(genre~actor)</code></li>
+<li><code>facets_grid(. ~ actor)</code> - just columns</li>
+<li><code>facets_grid(actor ~ .)</code> - just rows</li>
+<li><code>facets_wrap(~ var, ncol=#)</code> - one classification variable wrapped to fill page</li>
+</ul>
+</section>
+<section id="facet_grid-1" class="slide level2">
+<h2>facet_grid()</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">intercept=</span><span class="dv">0</span>, <span class="dt">col=</span><span class="st">&quot;light gray&quot;</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">facet_grid</span>(.<span class="op">~</span>actor)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/facet_grid2-1.png" width="672" /></p>
+</section>
+<section id="facet_grid-2" class="slide level2">
+<h2>facet_grid()</h2>
+<p>You don’t have to use two variables in <code>facet_grid()</code> – you can just use one and it’ll break out the charts based on where the <code>~</code> is in relation to the variable and the <code>.</code>.</p>
+<p>The chart above had <code>facet_wrap(.~actor)</code> so the grid is split vertically.</p>
+<p>If it was swapped to <code>facet_wrap(actor~.)</code> then the grid will split by row.</p>
+</section>
+<section id="facet_wrap" class="slide level2">
+<h2>facet_wrap()</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">intercept=</span><span class="dv">0</span>, <span class="dt">col=</span><span class="st">&quot;light gray&quot;</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">facet_grid</span>(actor<span class="op">~</span>.)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/facet_grid3-1.png" width="768" /></p>
+</section>
+<section id="ncol" class="slide level2">
+<h2>ncol</h2>
+<p>I find myself using <code>facet_wrap()</code> more often because I can customize the number of columns in the small multiples with <code>ncol=</code>.</p>
+</section>
+<section id="facet_wrap-and-ncol" class="slide level2">
+<h2>facet_wrap and ncol</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data=</span>ages) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_point</span>(<span class="dt">mapping=</span><span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age)) <span class="op">+</span><span class="st"> </span>
+<span class="st">   </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">geom_abline</span>(<span class="dt">intercept=</span><span class="dv">0</span>, <span class="dt">col=</span><span class="st">&quot;light gray&quot;</span>) <span class="op">+</span>
+<span class="st">   </span><span class="kw">facet_wrap</span>(<span class="op">~</span>actor, <span class="dt">ncol=</span><span class="dv">4</span>)</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/facet_wrap-1.png" width="864" /></p>
+</section>
+<section id="global-versus-local" class="slide level2">
+<h2>Global versus Local</h2>
+<p>The layers in your <code>ggplot()</code> chart can be customized in nuanced ways.</p>
+<p>Everything nested in the initial <code>ggplot()</code> call will be considered global and apply to the rest of the layers.</p>
+</section>
+<section id="global-versus-local-1" class="slide level2">
+<h2>Global versus Local</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+      <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+          <span class="dt">y=</span>actress_age)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/global-1.png" width="768" /></p>
+</section>
+<section id="aes-1" class="slide level2">
+<h2>aes()</h2>
+<p>So in the chart above, <code>aes()</code> with <em>actor_age</em> and <em>actress_age</em> are in the x and y globally.</p>
+<p>But I can also pass <code>aes()</code> to the <code>geom_point()</code> layer, which will make that local and apply to that layer only.</p>
+</section>
+<section id="local-aes" class="slide level2">
+<h2>local aes()</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+      <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+          <span class="dt">y=</span>actress_age)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>actor))</code></pre></div>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/local-1.png" width="768" /></p>
+</section>
+<section id="local-data" class="slide level2">
+<h2>local data</h2>
+<p>You can also set data locally.</p>
+<p>This is very useful if you want to highlight a specific subset from the data.</p>
+</section>
+<section id="local-data-1" class="slide level2">
+<h2>local data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Let&#39;s make a copy of the  minus the actor variable so it can&#39;t be faceted</span>
+
+ages_copy &lt;-<span class="st"> </span>ages <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>actor)
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span>ages,
+      <span class="kw">aes</span>(<span class="dt">x=</span>actor_age,
+          <span class="dt">y=</span>actress_age,
+          <span class="dt">color=</span>actor)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_point</span>(<span class="dt">data=</span>ages_copy, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">      </span><span class="kw">facet_wrap</span>(<span class="op">~</span>actor) <span class="op">+</span>
+<span class="st">      </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># This removes the legend</span></code></pre></div>
+</section>
+<section id="local-data-2" class="slide level2">
+<h2>local data</h2>
+<p><img src="01_ggplot2_slides_files/figure-revealjs/local2b-1.png" width="864" /></p>
+</section>
+<section id="global-data" class="slide level2">
+<h2>global data</h2>
+<p>We were able to use different data sets. Globally, we wanted to use the <strong>ages</strong> data frame because we were going to facet it.</p>
+<p>We needed a second data set without the <em>actor</em> variable to plot in a background layer and set the color manually to “grey” (go back to the code above and this time put <code>color=&quot;grey&quot;</code> in <code>aes()</code> and see the difference). This was the first <code>geom_point()</code> layer referenced locally.</p>
+<p>The second <code>geom_point()</code> built a scatter plot based on the global data set in <code>ggplot()</code>.</p>
+<aside class="notes">
+This type of chart really improves on that first grouped scatter plot because it makes it easier to see each individual group in the context to the rest of the data.
+</aside>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your turn</h2>
+<p>Challenge yourself with <a href="http://code.r-journalism.com/chapter-4/#section-ggplot2">these exercises</a> so you’ll retain the knowledge of this section.</p>
+<p>Instructions on how to run the exercise app are on the <a href="https://learn.r-journalism.com/en/visualizing/">intro page</a> to this section.</p>
+</section>
+<section id="next-steps" class="slide level2">
+<h2>Next steps</h2>
+<p>With some practice and understanding of <a href="https://ggplot2.tidyverse.org/reference/#section-layer-geoms">basic geom-types</a> you can quickly iterate through different ways to visualize your data.</p>
+<p>Once your data is structured correctly, you can use <strong>ggplot2</strong> to slice, group, and facet data visually multiple ways until you find something worth elaborating on. <a href="https://www.data-to-viz.com/">Data-to-Viz</a> is a great resource.</p>
+<p>What is being communicated? What information is left out or obscured?</p>
+<aside class="notes">
+<p>Going through these examples, you saw how shapes, layout, the number of variables, etc, all matter. Swapping out geoms and aesthetics. Different combinations communicated better than others. It all depends on the structure of the data and what it contains.</p>
+By visualizing data with the grammar of graphics, you’ll approach data in a flexible new way.
+</aside>
+</section>
+<section id="next-steps-1" class="slide level2">
+<h2>Next steps</h2>
+<p>Great, now let’s do more with charts including how to move beyond exploring the data visually and how to turn get these charts to publication quality.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="01_ggplot2_slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="01_ggplot2_slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '01_ggplot2_slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

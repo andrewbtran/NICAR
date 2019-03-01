@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Andrew Ba Tran" />
+  <title>NICAR 2019: Styling visualizations</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="02_styling_viz_slides_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="02_styling_viz_slides_files/reveal.js-3.3.0.1/css/theme/sky.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">NICAR 2019: Styling visualizations</h1>
+    <h2 class="author">Andrew Ba Tran</h2>
+    <h3 class="date">3/09/2019</h3>
+</section>
+
+<section id="customizing-charts" class="slide level2">
+<h2>Customizing charts</h2>
+<p>Let’s bring that data back in again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
+
+ages &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ages.csv&quot;</span>)</code></pre></div>
+</section>
+<section id="plot" class="slide level2">
+<h2>Plot</h2>
+<p>Remember that Dot Plot we made before?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+<span class="kw">ggplot</span>(ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span>Movie)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+</section>
+<section id="plot-1" class="slide level2">
+<h2>Plot</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/dotplot-1.png" width="672" /></p>
+<aside class="notes">
+<p>It’s not that great, right? It’s in reverse alphabetical order.</p>
+Let’s reorder it based on age.
+</aside>
+</section>
+<section id="reordering-chart-labels" class="slide level2">
+<h2>Reordering chart labels</h2>
+<p>This means we need to transform the data.</p>
+<p>The easiest way to do this is with the package <a href="https://forcats.tidyverse.org/index.html"><strong>forcats</strong></a>, which (surprise!) is also part of the tidyverse universe.</p>
+</section>
+<section id="reordering-factors" class="slide level2">
+<h2>Reordering factors</h2>
+<p>The function is <code>fct_reorder()</code> and it works like this</p>
+<p><img src="images/fct_reorder.png" /></p>
+</section>
+<section id="factors" class="slide level2">
+<h2>Factors</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats)
+<span class="kw">ggplot</span>(ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span><span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/dotplot2-1.png" width="672" /></p>
+<aside class="notes">
+Not a bad looking chart. We can tweak it a little more and turn it into
+</aside>
+</section>
+<section id="lollipop-plot" class="slide level2">
+<h2>Lollipop plot</h2>
+<p>This time we’re going to use a new <code>geom_</code>: <code>geom_segment()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span><span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(
+       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>,
+           <span class="dt">xend =</span> actress_age,
+           <span class="dt">yend =</span> <span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>)),
+           <span class="dt">color =</span> <span class="st">&quot;gray50&quot;</span>) <span class="op">+</span>
+<span class="st">           </span><span class="kw">geom_point</span>()</code></pre></div>
+</section>
+<section id="lollipop-plot-1" class="slide level2">
+<h2>Lollipop plot</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/lollipop_chartb-1.png" width="768" /></p>
+<aside class="notes">
+<p>Looking interesting, right?</p>
+<p>If we wanted to publish this on a website or share on social media, we’ll need to clean up the labels and add a title and add a source line.</p>
+That’s easy to do.
+</aside>
+</section>
+<section id="polish-for-publication" class="slide level2">
+<h2>Polish for publication</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span><span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(
+       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>,
+           <span class="dt">y=</span><span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>),
+           <span class="dt">xend =</span> actress_age,
+           <span class="dt">yend =</span> <span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>)),
+           <span class="dt">color =</span> <span class="st">&quot;gray50&quot;</span>) <span class="op">+</span>
+<span class="st">           </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="co"># NEW CODE BELOW</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Actress age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Movie&quot;</span>, 
+       <span class="dt">title =</span> <span class="st">&quot;Actress ages in movies&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;for R for Journalists class&quot;</span>,
+       <span class="dt">caption =</span> <span class="st">&quot;Data from Vulture.com and IMDB&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+</section>
+<section id="polish-for-publication-1" class="slide level2">
+<h2>Polish for publication</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/lollipop_chart_cleanb-1.png" width="768" /></p>
+</section>
+<section id="what-happened" class="slide level2">
+<h2>What happened</h2>
+<p>So we added a lot of information to the <code>labs()</code> function: x, y, title, subtitle, and caption.</p>
+<p>We also added <code>theme_minimal()</code> which changed a lot of the style, such as the gray grid background.</p>
+<p>What if we wanted to clean it up even more?</p>
+<aside class="notes">
+<p>It’s such a tall chart, it’s difficult to keep track of the actual age represented by the lollipop.</p>
+Let’s get rid of the grids and add the numbers to the right of each dot.
+</aside>
+</section>
+<section id="more-tweaking" class="slide level2">
+<h2>More tweaking</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages,
+       <span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span><span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(
+       <span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">0</span>,
+           <span class="dt">y=</span><span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>),
+           <span class="dt">xend =</span> actress_age,
+           <span class="dt">yend =</span> <span class="kw">fct_reorder</span>(Movie, actress_age, <span class="dt">desc=</span><span class="ot">TRUE</span>)),
+           <span class="dt">color =</span> <span class="st">&quot;gray50&quot;</span>) <span class="op">+</span>
+<span class="st">           </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Actress age&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Movie&quot;</span>, 
+       <span class="dt">title =</span> <span class="st">&quot;Actress ages in movies&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;for R for Journalists class&quot;</span>,
+       <span class="dt">caption =</span> <span class="st">&quot;Data from Vulture.com and IMDB&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="co"># NEW CODE BELOW</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>actress_age), <span class="dt">hjust=</span><span class="op">-</span>.<span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
+</section>
+<section id="more-tweaking-1" class="slide level2">
+<h2>More tweaking</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/lollipop_chart_annotatedb-1.png" width="768" /></p>
+</section>
+<section id="what-happened-1" class="slide level2">
+<h2>What happened</h2>
+<p>So, we added two new <strong>ggplot2</strong> elements: <code>geom_text()</code> and <code>theme()</code>.</p>
+<p>We passed the <em>actress_age</em> variable to <code>label</code> and also used <code>hjust=</code> which means horizontally adjust the location. Alternatively, <code>vjust</code> would adjust vertically.</p>
+<p>In <code>theme()</code> there are a bunch of things passed, including <em>panel.border</em> and <em>axis.text.x</em> and made them equal <em>element_blank()</em>.</p>
+<aside class="notes">
+<p>Each piece of the chart can be customized and eliminated with *element_blank().</p>
+<p>Not bad looking!</p>
+Let’s save it.
+</aside>
+</section>
+<section id="saving-ggplots" class="slide level2">
+<h2>Saving ggplots</h2>
+<p>We’ll use <code>ggsave()</code> from the <strong>ggplot2</strong> package.</p>
+<p>File types that can be exported:</p>
+<ul>
+<li>png</li>
+<li>tex</li>
+<li>pdf</li>
+<li>jpeg</li>
+<li>tiff</li>
+<li>bmp</li>
+<li>svg</li>
+</ul>
+</section>
+<section id="saving-ggplots-1" class="slide level2">
+<h2>Saving ggplots</h2>
+<p>You can specify the width of the image in units of “in”, “cm”, “or mm”.</p>
+<p>Otherwise it saves based on the size of how it displayed on your screen.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;actress_ages.png&quot;</span>)</code></pre></div>
+<pre><code>## Saving 8 x 6 in image</code></pre>
+</section>
+<section id="how-it-looks" class="slide level2">
+<h2>How it looks</h2>
+<p><img src="actress_ages.png" /></p>
+<p>Ew, okay. Needs some adjustment. I guess we can’t go with the default display for this particular chart.</p>
+</section>
+<section id="adjusted" class="slide level2">
+<h2>Adjusted</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;actress_ages_adjusted.png&quot;</span>, <span class="dt">width=</span><span class="dv">20</span>, <span class="dt">height=</span><span class="dv">30</span>, <span class="dt">units=</span><span class="st">&quot;cm&quot;</span>)</code></pre></div>
+</section>
+<section id="adjusted-1" class="slide level2">
+<h2>Adjusted</h2>
+<p><img src="actress_ages_adjusted.png" /></p>
+</section>
+<section id="much-better" class="slide level2">
+<h2>Much better!</h2>
+<p>You could then save it as a .svg file and tweak it even further in Adobe Illustrator or Inkscape.</p>
+</section>
+<section id="more-tweaking-2" class="slide level2">
+<h2>More tweaking</h2>
+<p>Alright, I’m going to tweak it some more by adding actor ages. We just need to adjust the <code>geom_segment()</code> and another <code>geom_point()</code> layer so it uses the <em>actor_age</em> variable.</p>
+</section>
+<section id="more-tweaking-3" class="slide level2">
+<h2>More tweaking</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First, let&#39;s permanently reorder the data frame so we don&#39;t have to keep using fct_reorder</span>
+
+<span class="kw">library</span>(dplyr)
+
+ages_reordered &lt;-<span class="st"> </span>ages <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Movie=</span><span class="kw">fct_reorder</span>(Movie, <span class="kw">desc</span>(actor_age)))
+
+<span class="kw">ggplot</span>(ages_reordered) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(
+       <span class="kw">aes</span>(<span class="dt">x =</span> actress_age,
+           <span class="dt">y =</span> Movie,
+           <span class="dt">xend =</span> actor_age,
+           <span class="dt">yend =</span> Movie),
+           <span class="dt">color =</span> <span class="st">&quot;gray50&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span>Movie), <span class="dt">color=</span><span class="st">&quot;dark green&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>Movie), <span class="dt">color=</span><span class="st">&quot;dark blue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>, 
+       <span class="dt">title =</span> <span class="st">&quot;Actor and actress ages in movies&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;for R for Journalists class&quot;</span>,
+       <span class="dt">caption =</span> <span class="st">&quot;Data from Vulture.com and IMDB&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>actress_age, <span class="dt">y=</span>Movie, <span class="dt">label=</span>actress_age), <span class="dt">hjust=</span><span class="kw">ifelse</span>(ages<span class="op">$</span>actress_age<span class="op">&lt;</span>ages<span class="op">$</span>actor_age, <span class="fl">1.5</span>, <span class="op">-</span>.<span class="dv">5</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>Movie, <span class="dt">label=</span>actor_age), <span class="dt">hjust=</span><span class="kw">ifelse</span>(ages<span class="op">$</span>actress_age<span class="op">&lt;</span>ages<span class="op">$</span>actor_age, <span class="op">-</span>.<span class="dv">5</span>, <span class="fl">1.5</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.border =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>(), 
+        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.text.x =</span> <span class="kw">element_blank</span>())</code></pre></div>
+</section>
+<section id="more-tweaking-4" class="slide level2">
+<h2>More tweaking</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/lollipop_chart_annotated_menb-1.png" width="768" /></p>
+<aside class="notes">
+This time I left the x and y axis labels blank because it seemed redundant.
+</aside>
+</section>
+<section id="scales" class="slide level2">
+<h2>Scales</h2>
+<p>Let’s talk about scales.</p>
+<p><strong>Axes</strong></p>
+<ul>
+<li><code>scale_x_continuous()</code></li>
+<li><code>scale_y_continuous()</code></li>
+<li><code>scale_x_discrete()</code></li>
+<li><code>scale_y_discrete()</code></li>
+</ul>
+</section>
+<section id="scales-1" class="slide level2">
+<h2>Scales</h2>
+<p><strong>Colors</strong></p>
+<ul>
+<li><code>scale_color_continuous()</code></li>
+<li><code>scale_color_manual()</code></li>
+<li><code>scale_color_brewer()</code></li>
+</ul>
+</section>
+<section id="scales-2" class="slide level2">
+<h2>Scales</h2>
+<p><strong>Fill</strong></p>
+<ul>
+<li><code>scale_fill_continuous()</code></li>
+<li><code>scale_fill_manual()</code></li>
+</ul>
+</section>
+<section id="scales-in-action" class="slide level2">
+<h2>Scales in action</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">2</span>), <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">30</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">20</span>,<span class="dv">40</span>,<span class="dv">4</span>), <span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">40</span>))</code></pre></div>
+</section>
+<section id="scales-in-action-1" class="slide level2">
+<h2>Scales in action</h2>
+<pre><code>## Warning: Removed 67 rows containing missing values (geom_point).</code></pre>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/scales1b-1.png" width="768" /></p>
+<aside class="notes">
+<p>By setting <em>breaks</em> in <code>scale_x_continuous()</code>, we limited the breaks where the chart was divided on the x axis in intervals of 2. And we limited the x axis with <em>limit</em> between 20 and 30. All other data points were dropped.</p>
+<p>By setting <em>breaks</em> in <code>scale_y_continuous()</code>, we limited the breaks where the chart was divided on the x axis in intervals of 4. And we limited the x axis with <em>limit</em> between 20 and 40. All other data points were dropped.</p>
+<p>That was limiting the scale by continuous data.</p>
+Here’s how to set limits on discrete data.
+</aside>
+</section>
+<section id="limits-on-discrete-data" class="slide level2">
+<h2>Limits on discrete data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="st">&quot;Tom Hanks&quot;</span>, <span class="st">&quot;Tom Cruise&quot;</span>, <span class="st">&quot;Denzel Washington&quot;</span>))</code></pre></div>
+<pre><code>## Warning: Removed 43 rows containing non-finite values (stat_count).</code></pre>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/discrete-1.png" width="672" /></p>
+</section>
+<section id="scales-for-color-and-fill" class="slide level2">
+<h2>Scales for color and fill</h2>
+<p>It’s possible to manually change the colors of your chart.</p>
+<p>You can use hex symbols or the <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">name of a color</a> if it’s recognized.</p>
+<p>We’ll use <code>scale_fill_manual()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+avg_age &lt;-<span class="st"> </span>ages <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(actor) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age_diff =</span> actor_age<span class="op">-</span>actress_age) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">average_age_diff =</span> <span class="kw">mean</span>(age_diff))
+
+<span class="kw">ggplot</span>(avg_age, <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">y=</span>average_age_diff, <span class="dt">fill=</span>actor)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># This removes the legend</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;aquamarine&quot;</span>, <span class="st">&quot;darkorchid&quot;</span>, <span class="st">&quot;deepskyblue2&quot;</span>, <span class="st">&quot;lemonchiffon2&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;peachpuff3&quot;</span>, <span class="st">&quot;tomato&quot;</span>))</code></pre></div>
+</section>
+<section id="scales-for-color-and-fill-1" class="slide level2">
+<h2>Scales for color and fill</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/colorb-1.png" width="864" /></p>
+</section>
+<section id="scales-for-color-and-fill-2" class="slide level2">
+<h2>Scales for color and fill</h2>
+<p>You can also specify a color palette using <code>scale_fill_brewer()</code> or <code>scale_color_brewer()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(avg_age, <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">y=</span>average_age_diff, <span class="dt">fill=</span>actor)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>()</code></pre></div>
+<p>Check out some of the other <a href="https://learnr.wordpress.com/2009/04/15/ggplot2-qualitative-colour-palettes/">palette options</a> that can be passed to brewer.</p>
+</section>
+<section id="scales-for-color-and-fill-3" class="slide level2">
+<h2>Scales for color and fill</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/palette1b-1.png" width="864" /></p>
+</section>
+<section id="scales-for-color-and-fill-4" class="slide level2">
+<h2>Scales for color and fill</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(avg_age, <span class="kw">aes</span>(<span class="dt">x=</span>actor, <span class="dt">y=</span>average_age_diff, <span class="dt">fill=</span>actor)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Pastel1&quot;</span>)</code></pre></div>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/palette2-1.png" width="864" /></p>
+<aside class="notes">
+Did you know that someone made a <a href="https://github.com/karthik/wesanderson">Wes Anderson color palette package</a> based on his different movies?
+</aside>
+</section>
+<section id="annotations" class="slide level2">
+<h2>Annotations</h2>
+<p>You can annotate charts with <code>annotate()</code> and <code>geom_hline()</code> or <code>geom_vline()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="dv">50</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x=</span><span class="dv">40</span>, <span class="dt">y=</span><span class="dv">51</span>, <span class="dt">label=</span><span class="st">&quot;Random text for some reason&quot;</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+</section>
+<section id="annotations-1" class="slide level2">
+<h2>Annotations</h2>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/palette3b-1.png" width="768" /></p>
+</section>
+<section id="themes" class="slide level2">
+<h2>Themes</h2>
+<p>You’ve seen an example of a theme used in a previous chart. <code>theme_bw()</code>.</p>
+<p>But there are many more that have been created and collected into the <strong>ggthemes</strong> library.</p>
+</section>
+<section id="themes-1" class="slide level2">
+<h2>Themes</h2>
+<p>Here’s one for the economist</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggthemes)
+<span class="kw">ggplot</span>(ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age, <span class="dt">color=</span>actor)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_economist</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_colour_economist</span>()</code></pre></div>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/theme1-1.png" width="672" /></p>
+</section>
+<section id="fivethirtyeight" class="slide level2">
+<h2>Fivethirtyeight</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(ages, <span class="kw">aes</span>(<span class="dt">x=</span>actor_age, <span class="dt">y=</span>actress_age, <span class="dt">color=</span>actor)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_fivethirtyeight</span>()</code></pre></div>
+<p><img src="02_styling_viz_slides_files/figure-revealjs/theme2-1.png" width="672" /></p>
+<aside class="notes">
+<p>Check out all the <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html">other ones currently available</a>.</p>
+<p>It’s not difficult to make your own. It’s just time consuming.</p>
+<p>It involves tweaking every little detail, like text, and colors, and how the grids should look.</p>
+Check out the <a href="https://github.com/associatedpress/aptheme/blob/master/R/theme_ap.R">theme</a> that the Associated Press uses. They posted it on <a href="https://github.com/associatedpress/aptheme">their repo</a> and by loading their own package, they can just add <code>theme_ap()</code> at the end of their charts to transform it to AP style.
+</aside>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your turn</h2>
+<p>Challenge yourself with <a href="http://code.r-journalism.com/chapter-4/#section-customizing-charts">these exercises</a> so you’ll retain the knowledge of this section.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="02_styling_viz_slides_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="02_styling_viz_slides_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '02_styling_viz_slides_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

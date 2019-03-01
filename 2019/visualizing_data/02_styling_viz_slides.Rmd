@@ -1,0 +1,551 @@
+---
+title: 'NICAR 2019: Styling visualizations'
+author: "Andrew Ba Tran"
+date: "3/09/2019"
+output:
+  revealjs::revealjs_presentation:
+    theme: sky
+    highlight: pygments
+    center: true
+    self_contained: false
+    reveal_plugins: ["notes"]
+---
+
+## Customizing charts
+
+Let's bring that data back in again.
+
+```{r importing_data, warning=F, message=F}
+library(readr)
+
+ages <- read_csv("data/ages.csv")
+```
+
+## Plot
+
+Remember that Dot Plot we made before? 
+
+```{r dotplota, fig.width=7, fig.height=6, eval=F}
+library(ggplot2)
+
+ggplot(ages,
+       aes(x=actress_age, y=Movie)) +
+  geom_point()
+```
+
+## Plot
+
+```{r dotplot, fig.width=7, fig.height=6, echo=F}
+library(ggplot2)
+
+ggplot(ages,
+       aes(x=actress_age, y=Movie)) +
+  geom_point()
+```
+
+<aside class="notes">
+It's not that great, right? It's in reverse alphabetical order.
+
+Let's reorder it based on age.
+</aside>
+
+## Reordering chart labels
+
+This means we need to transform the data.
+
+The easiest way to do this is with the package [**forcats**](https://forcats.tidyverse.org/index.html), which (surprise!) is also part of the tidyverse universe.
+
+## Reordering factors
+
+The function is `fct_reorder()` and it works like this
+
+![](images/fct_reorder.png)
+
+## Factors
+
+```{r dotplot2, fig.width=7, fig.height=4.5}
+library(forcats)
+ggplot(ages,
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  geom_point()
+```
+
+<aside class="notes">
+Not a bad looking chart. We can tweak it a little more and turn it into
+</aside>
+
+## Lollipop plot
+
+This time we're going to use a new `geom_`: `geom_segment()`
+
+```{r lollipop_chart, fig.width=8, fig.height=8, eval=F}
+ggplot(ages,
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  geom_segment(
+       aes(x = 0,
+           xend = actress_age,
+           yend = fct_reorder(Movie, actress_age, desc=TRUE)),
+           color = "gray50") +
+           geom_point()
+```
+
+## Lollipop plot
+
+
+```{r lollipop_chartb, fig.width=8, fig.height=8, echo=F}
+ggplot(ages,
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  geom_segment(
+       aes(x = 0,
+           xend = actress_age,
+           yend = fct_reorder(Movie, actress_age, desc=TRUE)),
+           color = "gray50") +
+           geom_point()
+```
+
+<aside class="notes">
+Looking interesting, right?
+
+If we wanted to publish this on a website or share on social media, we'll need to clean up the labels and add a title and add a source line.
+
+That's easy to do. 
+</aside>
+
+## Polish for publication
+
+```{r lollipop_chart_clean, fig.width=8, fig.height=8, eval=F}
+ggplot(ages,
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  geom_segment(
+       aes(x = 0,
+           y=fct_reorder(Movie, actress_age, desc=TRUE),
+           xend = actress_age,
+           yend = fct_reorder(Movie, actress_age, desc=TRUE)),
+           color = "gray50") +
+           geom_point() +
+# NEW CODE BELOW
+  labs(x="Actress age", y="Movie", 
+       title = "Actress ages in movies",
+       subtitle = "for R for Journalists class",
+       caption = "Data from Vulture.com and IMDB") +
+  theme_minimal()
+```
+
+## Polish for publication
+
+```{r lollipop_chart_cleanb, fig.width=8, fig.height=8, echo=F}
+ggplot(ages,
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  geom_segment(
+       aes(x = 0,
+           y=fct_reorder(Movie, actress_age, desc=TRUE),
+           xend = actress_age,
+           yend = fct_reorder(Movie, actress_age, desc=TRUE)),
+           color = "gray50") +
+           geom_point() +
+# NEW CODE BELOW
+  labs(x="Actress age", y="Movie", 
+       title = "Actress ages in movies",
+       subtitle = "for R for Journalists class",
+       caption = "Data from Vulture.com and IMDB") +
+  theme_minimal()
+```
+
+## What happened
+
+So we added a lot of information to the `labs()` function: x, y, title, subtitle, and caption.
+
+We also added `theme_minimal()` which changed a lot of the style, such as the gray grid background.
+
+What if we wanted to clean it up even more?
+
+<aside class="notes">
+It's such a tall chart, it's difficult to keep track of the actual age represented by the lollipop.
+
+Let's get rid of the grids and add the numbers to the right of each dot.
+</aside>
+
+## More tweaking
+
+```{r lollipop_chart_annotated, fig.width=8, fig.height=8, eval=F}
+ggplot(ages,
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  geom_segment(
+       aes(x = 0,
+           y=fct_reorder(Movie, actress_age, desc=TRUE),
+           xend = actress_age,
+           yend = fct_reorder(Movie, actress_age, desc=TRUE)),
+           color = "gray50") +
+           geom_point() +
+  labs(x="Actress age", y="Movie", 
+       title = "Actress ages in movies",
+       subtitle = "for R for Journalists class",
+       caption = "Data from Vulture.com and IMDB") +
+  theme_minimal() +
+  # NEW CODE BELOW
+  geom_text(aes(label=actress_age), hjust=-.5) +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_blank(),
+        axis.text.x = element_blank())
+```
+
+##More tweaking
+
+```{r lollipop_chart_annotatedb, fig.width=8, fig.height=8, echo=F}
+ggplot(ages,
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  geom_segment(
+       aes(x = 0,
+           y=fct_reorder(Movie, actress_age, desc=TRUE),
+           xend = actress_age,
+           yend = fct_reorder(Movie, actress_age, desc=TRUE)),
+           color = "gray50") +
+           geom_point() +
+  labs(x="Actress age", y="Movie", 
+       title = "Actress ages in movies",
+       subtitle = "for R for Journalists class",
+       caption = "Data from Vulture.com and IMDB") +
+  theme_minimal() +
+  # NEW CODE BELOW
+  geom_text(aes(label=actress_age), hjust=-.5) +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_blank(),
+        axis.text.x = element_blank())
+```
+
+## What happened
+
+So, we added two new **ggplot2** elements: `geom_text()` and `theme()`.
+
+We passed the *actress_age* variable to `label` and also used `hjust=` which means horizontally adjust the location. Alternatively, `vjust` would adjust vertically.
+
+In `theme()` there are a bunch of things passed, including *panel.border* and *axis.text.x* and made them equal *element_blank()*.
+
+<aside class="notes">
+Each piece of the chart can be customized and eliminated with *element_blank().
+
+Not bad looking!
+
+Let's save it.
+</aside>
+
+## Saving ggplots
+
+We'll use `ggsave()` from the **ggplot2** package.
+
+File types that can be exported:
+
+* png
+* tex
+* pdf
+* jpeg
+* tiff
+* bmp
+* svg
+
+## Saving ggplots
+
+You can specify the width of the image in units of "in", "cm", "or mm". 
+
+Otherwise it saves based on the size of how it displayed on your screen.
+
+```{r ggsave}
+ggsave("actress_ages.png")
+```
+
+## How it looks
+
+![](actress_ages.png)
+
+Ew, okay. Needs some adjustment. I guess we can't go with the default display for this particular chart.
+
+## Adjusted
+
+```{r ggsave2}
+ggsave("actress_ages_adjusted.png", width=20, height=30, units="cm")
+```
+
+## Adjusted
+
+![](actress_ages_adjusted.png)
+
+## Much better!
+
+You could then save it as a .svg file and tweak it even further in Adobe Illustrator or Inkscape.
+
+## More tweaking
+
+Alright, I'm going to tweak it some more by adding actor ages. We just need to adjust the `geom_segment()` and another `geom_point()` layer so it uses the *actor_age* variable.
+
+## More tweaking
+
+```{r lollipop_chart_annotated_men, fig.width=8, fig.height=9, warning=F, message=F, eval=F}
+# First, let's permanently reorder the data frame so we don't have to keep using fct_reorder
+
+library(dplyr)
+
+ages_reordered <- ages %>% 
+  mutate(Movie=fct_reorder(Movie, desc(actor_age)))
+
+ggplot(ages_reordered) +
+  geom_segment(
+       aes(x = actress_age,
+           y = Movie,
+           xend = actor_age,
+           yend = Movie),
+           color = "gray50") +
+  geom_point(aes(x=actress_age, y=Movie), color="dark green") +
+  geom_point(aes(x=actor_age, y=Movie), color="dark blue") +
+  labs(x="", y="", 
+       title = "Actor and actress ages in movies",
+       subtitle = "for R for Journalists class",
+       caption = "Data from Vulture.com and IMDB") +
+  theme_minimal() +
+  geom_text(aes(x=actress_age, y=Movie, label=actress_age), hjust=ifelse(ages$actress_age<ages$actor_age, 1.5, -.5)) +
+  geom_text(aes(x=actor_age, y=Movie, label=actor_age), hjust=ifelse(ages$actress_age<ages$actor_age, -.5, 1.5)) +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_blank(),
+        axis.text.x = element_blank())
+```
+
+
+## More tweaking
+
+```{r lollipop_chart_annotated_menb, fig.width=8, fig.height=9, warning=F, message=F, echo=F}
+# First, let's permanently reorder the data frame so we don't have to keep using fct_reorder
+
+library(dplyr)
+
+ages_reordered <- ages %>% 
+  mutate(Movie=fct_reorder(Movie, desc(actor_age)))
+
+ggplot(ages_reordered) +
+  geom_segment(
+       aes(x = actress_age,
+           y = Movie,
+           xend = actor_age,
+           yend = Movie),
+           color = "gray50") +
+  geom_point(aes(x=actress_age, y=Movie), color="dark green") +
+  geom_point(aes(x=actor_age, y=Movie), color="dark blue") +
+  labs(x="", y="", 
+       title = "Actor and actress ages in movies",
+       subtitle = "for R for Journalists class",
+       caption = "Data from Vulture.com and IMDB") +
+  theme_minimal() +
+  geom_text(aes(x=actress_age, y=Movie, label=actress_age), hjust=ifelse(ages$actress_age<ages$actor_age, 1.5, -.5)) +
+  geom_text(aes(x=actor_age, y=Movie, label=actor_age), hjust=ifelse(ages$actress_age<ages$actor_age, -.5, 1.5)) +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_blank(),
+        axis.text.x = element_blank())
+```
+
+<aside class="notes">
+This time I left the x and y axis labels blank because it seemed redundant.
+</aside>
+
+## Scales
+
+Let's talk about scales.
+
+**Axes**
+
+* `scale_x_continuous()`
+* `scale_y_continuous()`
+* `scale_x_discrete()`
+* `scale_y_discrete()`
+
+## Scales
+
+**Colors**
+
+* `scale_color_continuous()`
+* `scale_color_manual()`
+* `scale_color_brewer()`
+
+## Scales
+
+**Fill**
+
+* `scale_fill_continuous()`
+* `scale_fill_manual()`
+
+## Scales in action 
+
+```{r scales1, eval=F}
+ggplot(ages, aes(x=actor_age, y=actress_age)) + geom_point() +
+  scale_x_continuous(breaks=seq(20,30,2), limits=c(20,30)) +
+  scale_y_continuous(breaks=seq(20,40,4), limits=c(20,40))
+```
+
+## Scales in action
+
+```{r scales1b, echo=F}
+ggplot(ages, aes(x=actor_age, y=actress_age)) + geom_point() +
+  scale_x_continuous(breaks=seq(20,30,2), limits=c(20,30)) +
+  scale_y_continuous(breaks=seq(20,40,4), limits=c(20,40))
+```
+
+<aside class="notes">
+By setting *breaks* in `scale_x_continuous()`, we limited the breaks where the chart was divided on the x axis in intervals of 2. 
+And we limited the x axis with *limit* between 20 and 30. All other data points were dropped.
+
+
+By setting *breaks* in `scale_y_continuous()`, we limited the breaks where the chart was divided on the x axis in intervals of 4. 
+And we limited the x axis with *limit* between 20 and 40. All other data points were dropped.
+
+That was limiting the scale by continuous data. 
+
+Here's how to set limits on discrete data.
+</aside>
+
+## Limits on discrete data
+
+```{r discrete, fig.width=7, fig.height=4.5}
+ggplot(ages, aes(x=actor)) + geom_bar() +
+  scale_x_discrete(limits=c("Tom Hanks", "Tom Cruise", "Denzel Washington"))
+```
+
+## Scales for color and fill
+
+It's possible to manually change the colors of your chart.
+
+You can use hex symbols or the [name of a color](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) if it's recognized.
+
+We'll use `scale_fill_manual()`.
+
+```{r color, fig.width=9, fig.height=5, eval=F}
+library(dplyr)
+
+avg_age <- ages %>% 
+  group_by(actor) %>%
+  mutate(age_diff = actor_age-actress_age) %>% 
+  summarize(average_age_diff = mean(age_diff))
+
+ggplot(avg_age, aes(x=actor, y=average_age_diff, fill=actor)) + 
+  geom_bar(stat="identity") +
+  theme(legend.position="none") + # This removes the legend
+  scale_fill_manual(values=c("aquamarine", "darkorchid", "deepskyblue2", "lemonchiffon2", "orange", "peachpuff3", "tomato"))
+```
+
+## Scales for color and fill
+
+
+```{r colorb, fig.width=9, fig.height=5, echo=F}
+library(dplyr)
+
+avg_age <- ages %>% 
+  group_by(actor) %>%
+  mutate(age_diff = actor_age-actress_age) %>% 
+  summarize(average_age_diff = mean(age_diff))
+
+ggplot(avg_age, aes(x=actor, y=average_age_diff, fill=actor)) + 
+  geom_bar(stat="identity") +
+  theme(legend.position="none") + # This removes the legend
+  scale_fill_manual(values=c("aquamarine", "darkorchid", "deepskyblue2", "lemonchiffon2", "orange", "peachpuff3", "tomato"))
+```
+
+## Scales for color and fill
+
+You can also specify a color palette using `scale_fill_brewer()` or `scale_color_brewer()`
+
+```{r palette1, fig.width=9, fig.height=5, eval=F}
+ggplot(avg_age, aes(x=actor, y=average_age_diff, fill=actor)) + 
+  geom_bar(stat="identity") +
+  theme(legend.position="none") + 
+  scale_fill_brewer()
+```
+
+Check out some of the other [palette options](https://learnr.wordpress.com/2009/04/15/ggplot2-qualitative-colour-palettes/) that can be passed to brewer.
+
+## Scales for color and fill
+
+```{r palette1b, fig.width=9, fig.height=5, echo=F}
+ggplot(avg_age, aes(x=actor, y=average_age_diff, fill=actor)) + 
+  geom_bar(stat="identity") +
+  theme(legend.position="none") + 
+  scale_fill_brewer()
+```
+
+## Scales for color and fill
+
+```{r palette2, fig.width=9, fig.height=4.5}
+ggplot(avg_age, aes(x=actor, y=average_age_diff, fill=actor)) + 
+  geom_bar(stat="identity") +
+  theme(legend.position="none") + 
+  scale_fill_brewer(palette="Pastel1")
+```
+
+<aside class="notes">
+Did you know that someone made a [Wes Anderson color palette package](https://github.com/karthik/wesanderson) based on his different movies? 
+</aside>
+
+## Annotations
+
+You can annotate charts with `annotate()` and `geom_hline()` or `geom_vline()`.
+
+
+```{r palette3, eval=F}
+ggplot(ages, aes(x=actor_age, y=actress_age)) + 
+  geom_point() +
+  geom_hline(yintercept=50, color="red") +
+  annotate("text", x=40, y=51, label="Random text for some reason", color="red")
+```
+
+## Annotations
+
+```{r palette3b, echo=F}
+ggplot(ages, aes(x=actor_age, y=actress_age)) + 
+  geom_point() +
+  geom_hline(yintercept=50, color="red") +
+  annotate("text", x=40, y=51, label="Random text for some reason", color="red")
+```
+
+## Themes
+
+You've seen an example of a theme used in a previous chart. `theme_bw()`.
+
+But there are many more that have been created and collected into the **ggthemes** library.
+
+## Themes
+
+Here's one for the economist
+
+```{r theme1, fig.width=7, fig.height=4}
+library(ggthemes)
+ggplot(ages, aes(x=actor_age, y=actress_age, color=actor)) + 
+  geom_point() +
+  theme_economist() +
+  scale_colour_economist()
+```
+
+## Fivethirtyeight
+
+```{r theme2, fig.width=7, fig.height=4}
+ggplot(ages, aes(x=actor_age, y=actress_age, color=actor)) + 
+  geom_point() +
+  theme_fivethirtyeight()
+```
+
+<aside class="notes">
+Check out all the [other ones currently available](
+https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html).
+
+It's not difficult to make your own. It's just time consuming.
+
+It involves tweaking every little detail, like text, and colors, and how the grids should look.
+
+Check out the [theme](https://github.com/associatedpress/aptheme/blob/master/R/theme_ap.R) that the Associated Press uses. They posted it on [their repo](https://github.com/associatedpress/aptheme) and by loading their own package, they can just add `theme_ap()` at the end of their charts to transform it to AP style.
+</aside>
+
+## Your turn
+
+Challenge yourself with [these exercises](http://code.r-journalism.com/chapter-4/#section-customizing-charts) so you'll retain the knowledge of this section.
