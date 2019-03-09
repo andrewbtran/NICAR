@@ -52,7 +52,7 @@ options(tigris_class = "sf")
 
 states <- states(cb=T)
 
-# states <- readRDS("backup_data/stats.rds")
+# states <- readRDS("backup_data/states.rds")
 
 
 glimpse(states)
@@ -131,20 +131,6 @@ ggplot() +
   geom_sf(data=geo, aes(fill=n)) +
   coord_sf()
 
-## Mapping Sinclair DMAs
-
-# Prepping a column name to join on
-geo <- geo %>% 
-  mutate(dma_code=as.numeric(as.character(DMA)))
-
-
-geo <- left_join(geo, dma_totals, by="dma_code") %>% 
-  filter(!is.na(n)) 
-
-ggplot() +
-  geom_sf(data=states, color="red", fill=NA) +
-  geom_sf(data=geo, aes(fill=n)) +
-  coord_sf()
 
 # Filtering out locations based on map
 cities <- c("Portland", "Seattle", "Butte", "Boise", "Reno", "Fresno", "Bakersfield", 
