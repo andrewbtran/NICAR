@@ -1,5 +1,15 @@
 # NICAR 2019
 
+## WHoa, there's a better version of this class now
+
+Visit this other repo so you don't have to deal with this huge mono-repo of multiple years of NICAR training
+
+* [https://github.com/andrewbtran/NICAR-2019-mapping](https://github.com/andrewbtran/NICAR-2019-mapping)
+
+**Ignore everything below**
+
+____
+
 ### [Mapping with R](https://www.ire.org/events-and-training/event/3433/4207/)
 
 * [Session notes and data](https://github.com/andrewbtran/NICAR/tree/master/2019/mapping)
